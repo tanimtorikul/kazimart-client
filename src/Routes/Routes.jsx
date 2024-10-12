@@ -1,12 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
-import MainLayout from "../Layouts/MainLayout";
-import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
-import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import SignUp from "../pages/SignUp/SignUp";
 import CategoryPage from "../pages/CategoryPage/CategoryPage";
-import Shop from "../pages/Shop/Shop";
-import ProductDetails from "../pages/ProductDetails/ProductDetails";
+import MainLayout from "../Layout/MainLayout";
+import ErrorPage from "../pages/ErrorPage/ErrorPage";
+import Home from "../pages/Home/Home";
 
 export const router = createBrowserRouter([
   {
@@ -30,14 +28,7 @@ export const router = createBrowserRouter([
         path: "/categories/:categoryName",
         element: <CategoryPage />,
       },
-      {
-        path: "/shop",
-        element: <Shop />,
-      },
-      {
-        path: "/shop/:id",
-        element: <ProductDetails />,
-      },
+    
     ],
   },
 ]);
