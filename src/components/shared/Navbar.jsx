@@ -1,7 +1,7 @@
 import logo from "../../assets/kazimart.png";
 import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
-import { FaRegHeart, FaRegUser } from "react-icons/fa";
+import { FaRegUser } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
 import useAuth from "../../hooks/useAuth";
 
@@ -51,6 +51,7 @@ const Navbar = () => {
           style={({ isActive, isPending }) => {
             return {
               fontWeight: isActive ? "bold" : "",
+              borderBottom: isActive ? "2px solid green" : "",
               color: isPending ? "red" : "#103178",
             };
           }}
@@ -60,23 +61,11 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          to="/categories"
-          style={({ isActive, isPending }) => {
-            return {
-              fontWeight: isActive ? "bold" : "",
-              color: isPending ? "red" : "#103178",
-            };
-          }}
-        >
-          Categories
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
           to="/blogs"
           style={({ isActive, isPending }) => {
             return {
               fontWeight: isActive ? "bold" : "",
+              borderBottom: isActive ? "2px solid green" : "",
               color: isPending ? "red" : "#103178",
             };
           }}
@@ -90,6 +79,7 @@ const Navbar = () => {
           style={({ isActive, isPending }) => {
             return {
               fontWeight: isActive ? "bold" : "",
+              borderBottom: isActive ? "2px solid green" : "",
               color: isPending ? "red" : "#103178",
             };
           }}
@@ -103,6 +93,7 @@ const Navbar = () => {
           style={({ isActive, isPending }) => {
             return {
               fontWeight: isActive ? "bold" : "",
+              borderBottom: isActive ? "2px solid green" : "",
               color: isPending ? "red" : "#103178",
             };
           }}
@@ -157,8 +148,11 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-end">
-        <div className="flex gap-6 text-[22px] text-[#FF9923]">
-          <FiShoppingCart />
+        <div className="flex items-center gap-4 ">
+          <div className="flex items-center gap-1 text-lg text-[#01684B]">
+            <FiShoppingCart />
+            <p>Cart</p>
+          </div>
           {user ? (
             <div
               className="relative inline-block text-left"
@@ -183,8 +177,11 @@ const Navbar = () => {
               )}
             </div>
           ) : (
-            <Link to="/login" className="btn text-lg bg-teal-500 text-white">
-              Login
+            <Link to="/login">
+              <div className="flex items-center gap-1 text-lg text-[#01684B]">
+                <FaRegUser />
+                <p>Signin</p>
+              </div>
             </Link>
           )}
         </div>
