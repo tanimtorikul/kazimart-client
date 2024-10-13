@@ -1,0 +1,137 @@
+[
+  {
+    "id": 1,
+    "name": "Rice",
+    "category": ["special", "popular"],
+    "price": 400,
+    "previousPrice": 450,
+    "quantity": "5kg",
+    "imageUrl": "https://i.ibb.co/QmV5Mct/fresh-veg-2-update-1.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Olive Oil",
+    "category": ["foods", "popular"],
+    "price": 900,
+    "previousPrice": 950,
+    "quantity": "1L",
+    "imageUrl": "https://i.ibb.co/sVdhtzn/fresh-veg-10-update-1.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Chicken Breast",
+    "category": ["fashions", "popular"],
+    "price": 550,
+    "previousPrice": 600,
+    "quantity": "1kg",
+    "imageUrl": "https://i.ibb.co/RvdmNvS/Chocolates-9-update-1.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Eggs",
+    "category": ["gadgets", "popular"],
+    "price": 150,
+    "previousPrice": 160,
+    "quantity": "12 pcs",
+    "imageUrl": "https://i.ibb.co/hDF4G0Z/p-27.png"
+  },
+  {
+    "id": 5,
+    "name": "Bananas",
+    "category": ["gadgets", "popular"],
+    "price": 100,
+    "previousPrice": 120,
+    "quantity": "1 dozen",
+    "imageUrl": "https://i.ibb.co/553bxrX/p-17.png"
+  },
+  {
+    "id": 6,
+    "name": "Apples",
+    "category": ["popular", "groceries"],
+    "price": 120,
+    "previousPrice": 140,
+    "quantity": "1kg",
+    "imageUrl": "https://i.ibb.co/kKdjqCc/p-15.png"
+  },
+  {
+    "id": 7,
+    "name": "Milk",
+    "category": ["services"],
+    "price": 80,
+    "previousPrice": 85,
+    "quantity": "1L",
+    "imageUrl": "https://i.ibb.co/rchD5XF/p-23.png"
+  },
+  {
+    "id": 8,
+    "name": "Sugar",
+    "category": ["special"],
+    "price": 70,
+    "previousPrice": 75,
+    "quantity": "1kg",
+    "imageUrl": "https://i.ibb.co/rchD5XF/p-23.png"
+  },
+  {
+    "id": 9,
+    "name": "Wheat Flour",
+    "category": ["foods"],
+    "price": 120,
+    "previousPrice": 130,
+    "quantity": "2kg",
+    "imageUrl": "https://i.ibb.co/rchD5XF/p-23.png"
+  },
+  {
+    "id": 10,
+    "name": "Potatoes",
+    "category": ["groceries"],
+    "price": 30,
+    "previousPrice": 35,
+    "quantity": "1kg",
+    "imageUrl": "https://i.ibb.co/rchD5XF/p-23.png"
+  },
+  {
+    "id": 11,
+    "name": "Tomatoes",
+    "category": ["gadgets"],
+    "price": 50,
+    "previousPrice": 55,
+    "quantity": "1kg",
+    "imageUrl": "https://i.ibb.co/rchD5XF/p-23.png"
+  },
+  {
+    "id": 12,
+    "name": "Lentils",
+    "category": ["fashions"],
+    "price": 150,
+    "previousPrice": 160,
+    "quantity": "1kg",
+    "imageUrl": "https://i.ibb.co/rchD5XF/p-23.png"
+  },
+  {
+    "id": 13,
+    "name": "Salt",
+    "category": ["services"],
+    "price": 20,
+    "previousPrice": 22,
+    "quantity": "1kg",
+    "imageUrl": "https://i.ibb.co/rchD5XF/p-23.png"
+  },
+  {
+    "id": 14,
+    "name": "Onions",
+    "category": ["groceries"],
+    "price": 40,
+    "previousPrice": 45,
+    "quantity": "1kg",
+    "imageUrl": "https://i.ibb.co/rchD5XF/p-23.png"
+  },
+  {
+    "id": 15,
+    "name": "Detergent Powder",
+    "category": ["groceries"],
+    "price": 90,
+    "previousPrice": 100,
+    "quantity": "1kg",
+    "imageUrl": "https://i.ibb.co/rchD5XF/p-23.png"
+  }
+]
