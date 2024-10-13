@@ -12,7 +12,7 @@ const PopularProducts = () => {
   console.log(popularItems);
 
   return (
-    <div>
+    <div className="my-16">
       <SectionTitle
         heading="Popular products that we sold"
         subHeading="We provide the best quality & fresh items near your location"

@@ -21,7 +21,7 @@ const CategoryPage = () => {
 
   return (
     <div>
-      <div className="max-w-[1400px] mx-auto bg-teal-500 my-2 py-24 text-white">
+      <div className="max-w-[1400px] mx-auto bg-[#01684B] my-2 py-6 rounded-xl text-white">
         <h2 className="capitalize text-2xl font-bold text-center">
           {categoryName}
         </h2>

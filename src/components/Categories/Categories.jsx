@@ -22,7 +22,7 @@ const Categories = () => {
   }, []);
 
   return (
-    <div className="my-8">
+    <div className="my-16">
       <SectionTitle
         heading="Categories"
         subHeading="Discover the Trends and Favorites"

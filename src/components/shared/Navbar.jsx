@@ -158,7 +158,6 @@ const Navbar = () => {
 
       <div className="navbar-end">
         <div className="flex gap-6 text-[22px] text-[#FF9923]">
-          <FaRegHeart />
           <FiShoppingCart />
           {user ? (
             <div

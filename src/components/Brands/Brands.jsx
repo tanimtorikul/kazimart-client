@@ -9,7 +9,7 @@ import brand6 from "../../assets/uniliver.png";
 
 const Brands = () => {
   return (
-    <div className="max-w-5xl mx-auto">
+    <div className="max-w-5xl mx-auto my-12">
       <SectionTitle heading="Popular Brands in Kazirmart" />
       <div className="mt-6">
         <Marquee speed={50} className="flex items-center">
