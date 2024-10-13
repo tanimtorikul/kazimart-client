@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useProducts from "../../hooks/useProducts";
 import ProductCard from "../../components/shared/ProductCard";
 
@@ -14,8 +14,6 @@ const CategoryPage = () => {
     );
     setFilteredProducts(filtered);
   }, [categoryName, products]);
-
-  //   console.log(filteredProducts);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -37,7 +35,9 @@ const CategoryPage = () => {
       {/* Product Cards */}
       <div className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-5 gap-4">
         {filteredProducts?.map((product) => (
-          <ProductCard key={product.id} item={product} />
+          <Link key={product._id} to={`/product/${product._id}`}>
+            <ProductCard key={product._id} item={product} />
+          </Link>
         ))}
       </div>
     </div>
