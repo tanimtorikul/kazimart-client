@@ -114,7 +114,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar">
+    <div className="navbar bg-white w-full lg:px-24">
       <div className="navbar-start">
         <div className="dropdown lg:hidden">
           <button
@@ -140,20 +140,22 @@ const Navbar = () => {
           </button>
           {menuOpen && (
             <ul
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm absolute mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 top-full left-0"
               onMouseLeave={() => setMenuOpen(false)}
             >
               {navlinks}
             </ul>
           )}
         </div>
-        <Link to="/">
+        <Link to="/" className="flex justify-center space-x-3 lg:justify-start">
           <img className="w-32" alt="" src={logo} />
         </Link>
       </div>
+
       <div className="navbar-center hidden lg:flex">
         <ul className="menu-horizontal px-1 text-lg">{navlinks}</ul>
       </div>
+
       <div className="navbar-end">
         <div className="flex gap-6 text-[22px] text-[#FF9923]">
           <FaRegHeart />
@@ -182,8 +184,8 @@ const Navbar = () => {
               )}
             </div>
           ) : (
-            <Link to="/login" className="text-[22px] text-[#FF9923]">
-              <FaRegUser />
+            <Link to="/login" className="btn text-lg bg-teal-500 text-white">
+              Login
             </Link>
           )}
         </div>

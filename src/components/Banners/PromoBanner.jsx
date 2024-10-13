@@ -37,10 +37,10 @@ function PromoBanner() {
         }}
       >
         {banners.map((banner, id) => (
-          <SwiperSlide key={id} className="pt-4 md:pt-8">
-            <div className="md:h-[200px]">
+          <SwiperSlide key={id}>
+            <div className="md:h-[200px] my-4 md:my-0">
               <img
-                className="object-contain  w-full h-full"
+                className="object-contain w-full h-full"
                 src={banner.imgUrl}
                 alt=""
               />
