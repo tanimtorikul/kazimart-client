@@ -1,10 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import SocialLogin from "./SocialLogin";
 import useAuth from "../../hooks/useAuth";
+import logo from "../../assets/kazimart.png";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const { signIn } = useAuth();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -14,16 +17,19 @@ const Login = () => {
   const onSubmit = (data) => {
     signIn(data.email, data.password).then((result) => {
       const user = result.user;
+      toast.success("Logged in successfully!");
+      navigate(location?.state ? location.state : "/");
       console.log(user);
     });
     console.log(data);
   };
   return (
     <div className="flex flex-col justify-center md:min-h-[700px] items-center py-4 md:py-0">
-      <div className="flex flex-col md:max-w-2xl rounded-md py-2 px-10 bg-white shadow-xl text-gray-900">
+      <div className="flex flex-col md:max-w-2xl rounded-md py-2 px-10 bg-white shadow-2xl text-gray-900">
         <div className="mb-2 text-center">
-          <p className="md:text-xl font-semibold">Login</p>
+          <img src={logo} alt="Kazimart Logo" className="w-48 h-auto mx-auto" />
         </div>
+
         <form
           onSubmit={handleSubmit(onSubmit)}
           noValidate=""
@@ -77,7 +83,7 @@ const Login = () => {
           <div>
             <button
               type="submit"
-              className="bg-[#E94560] w-full rounded-md py-2 text-white md:text-lg"
+              className="bg-[#01684B] w-full rounded-md py-2 text-white md:text-lg"
             >
               Login
             </button>
@@ -93,7 +99,7 @@ const Login = () => {
           Don&apos;t have an account yet?{" "}
           <Link
             to="/signup"
-            className="hover:underline hover:text-indigo-600 text-gray-600"
+            className="hover:underline hover:text-green-600 text-[#01684B] underline"
           >
             Sign Up
           </Link>

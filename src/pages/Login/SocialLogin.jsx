@@ -25,7 +25,7 @@ const SocialLogin = () => {
     <div className="mt-4">
       <button
         type="submit"
-        className="bg-[#4285F4] w-full rounded-md py-2 text-white md:text-lg flex items-center justify-center space-x-2"
+        className="bg-[#265bb1] w-full rounded-md py-2 text-white md:text-lg flex items-center justify-center space-x-2"
         onClick={handleGoogleSignIn}
       >
         <div className="bg-white rounded-full p-1">

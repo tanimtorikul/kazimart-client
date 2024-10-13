@@ -4,6 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import { FaRegUser } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
 import useAuth from "../../hooks/useAuth";
+import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
@@ -14,6 +15,7 @@ const Navbar = () => {
     logOut()
       .then(() => {
         setShowLogout(false);
+        toast.success("Logged out successfully!");
       })
       .catch((error) => {
         console.error("Logout error:", error);
