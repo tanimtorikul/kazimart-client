@@ -3,6 +3,7 @@ import MainBanner from "../../components/Banners/MainBanner";
 import PromoBanner from "../../components/Banners/PromoBanner";
 import CallToAction from "../../components/CallToAction/CallToAction";
 import Categories from "../../components/Categories/Categories";
+import PopularProducts from "../../components/PopularProducts/PopularProducts";
 
 const Home = () => {
   return (
@@ -10,6 +11,7 @@ const Home = () => {
       <MainBanner />
       <PromoBanner />
       <Categories />
+      <PopularProducts/>
       <About />
       <CallToAction />
     </div>
