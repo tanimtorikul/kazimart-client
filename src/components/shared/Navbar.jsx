@@ -150,10 +150,10 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-end">
-        <div className="flex items-center gap-4 ">
+        <div className="flex items-center gap-6">
           <div className="flex items-center gap-1 text-lg text-[#01684B]">
             <FiShoppingCart />
-            <p>Cart</p>
+          
           </div>
           {user ? (
             <div
@@ -182,7 +182,7 @@ const Navbar = () => {
             <Link to="/login">
               <div className="flex items-center gap-1 text-lg text-[#01684B]">
                 <FaRegUser />
-                <p>Signin</p>
+              
               </div>
             </Link>
           )}
