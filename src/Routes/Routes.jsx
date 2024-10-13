@@ -5,6 +5,7 @@ import CategoryPage from "../pages/CategoryPage/CategoryPage";
 import MainLayout from "../Layout/MainLayout";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import Home from "../pages/Home/Home";
+import Shop from "../pages/Shop/Shop";
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ export const router = createBrowserRouter([
       {
         path: "/categories/:categoryName",
         element: <CategoryPage />,
+      },
+      {
+        path: "/shop",
+        element: <Shop />,
       },
     
     ],

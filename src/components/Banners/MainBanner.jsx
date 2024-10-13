@@ -3,6 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import { Autoplay, EffectFade } from "swiper/modules";
+import { Link } from "react-router-dom";
 
 const MainBanner = () => {
   const [banners, setBanners] = useState([]);
@@ -31,10 +32,7 @@ const MainBanner = () => {
       className="mySwiper"
     >
       {banners.map((banner, id) => (
-        <SwiperSlide
-          key={id}
-          className="w-full flex flex-col gap-4 pt-4 md:pt-8"
-        >
+        <SwiperSlide key={id} className="w-full flex flex-col gap-4">
           <div
             className="hero h-[400px] relative"
             style={{
@@ -52,9 +50,12 @@ const MainBanner = () => {
                 <p className="mb-5 text-lg md:text-xl text-white shadow-md">
                   {banner.subtitle}
                 </p>
-                <button className="btn text-lg rounded-full shadow-md hover:bg-blue-600 transition-colors duration-300">
-                  Get Started
-                </button>
+                <Link
+                  to="/shop"
+                  className="btn text-lg rounded-full shadow-md transition-colors duration-300"
+                >
+                  Shop Now
+                </Link>
               </div>
             </div>
           </div>
