@@ -8,26 +8,15 @@ import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
-  const [showLogout, setShowLogout] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
 
   const handleLogOut = () => {
     logOut()
       .then(() => {
-        setShowLogout(false);
         toast.success("Logged out successfully!");
       })
       .catch((error) => {
         console.error("Logout error:", error);
       });
-  };
-
-  const toggleLogout = () => {
-    setShowLogout(!showLogout);
-  };
-
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
   };
 
   const navlinks = (
@@ -107,15 +96,10 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-white w-full lg:px-24">
-      <div className="navbar-start">
-        <div className="dropdown lg:hidden">
-          <button
-            onClick={toggleMenu}
-            className="btn btn-ghost"
-            aria-haspopup="true"
-            aria-expanded={menuOpen}
-          >
+    <div className="navbar bg-white fixed z-10 w-full lg:px-24">
+      <div className="navbar-start ">
+        <div className="dropdown">
+          <label tabIndex={0} className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -130,56 +114,65 @@ const Navbar = () => {
                 d="M4 6h16M4 12h8m-8 6h16"
               />
             </svg>
-          </button>
-          {menuOpen && (
-            <ul
-              className="menu menu-sm absolute mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52 top-full left-0"
-              onMouseLeave={() => setMenuOpen(false)}
-            >
-              {navlinks}
-            </ul>
-          )}
+          </label>
+          <ul
+            tabIndex={0}
+            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+          >
+            {navlinks}
+          </ul>
         </div>
-        <Link to="/" className="flex justify-center space-x-3 lg:justify-start">
-          <img className="w-32" alt="" src={logo} />
-        </Link>
+        <div className="lg:w-1/3 mb-6 lg:mb-0">
+          <Link
+            to="/"
+            className="flex justify-center space-x-3 lg:justify-start"
+          >
+            <div className="flex items-center justify-center w-36 text-white rounded-full bg-teal-500">
+              <img src={logo} alt="" />
+            </div>
+          </Link>
+        </div>{" "}
+        {/* Corrected closing div for the logo section */}
       </div>
-
       <div className="navbar-center hidden lg:flex">
         <ul className="menu-horizontal px-1 text-lg">{navlinks}</ul>
       </div>
 
       <div className="navbar-end">
-        <div className="flex items-center gap-6">
-          <div className="flex items-center gap-1 text-lg text-[#01684B]">
+        <div className="dropdown dropdown-end flex items-center gap-6">
+        <div className="flex items-center gap-1 text-lg text-[#01684B]">
             <FiShoppingCart />
           
           </div>
           {user ? (
-            <div
-              className="relative inline-block text-left"
-              onClick={toggleLogout}
-            >
-              <img
-                src={user.photoURL}
-                alt="User"
-                className="h-8 w-8 rounded-full cursor-pointer"
-              />
-              {showLogout && (
-                <div className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
-                  <div className="py-1">
-                    <a
-                      onClick={handleLogOut}
-                      className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
-                    >
-                      Logout
-                    </a>
-                  </div>
+            <>
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 rounded-full">
+                  <img alt={user.email} src={user.photoURL} />
                 </div>
-              )}
-            </div>
+              </label>
+              <ul
+                tabIndex={0}
+                className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52"
+              >
+                <li>
+                  <a className="justify-between">{user.displayName}</a>
+                </li>
+                <li>
+                  <a className="justify-between">{user.email}</a>
+                </li>
+                <li>
+                  <Link to="/dashboard/profile">Dashboard</Link>
+                </li>
+                <li>
+                  <button onClick={handleLogOut}>
+                    <a>Logout</a>
+                  </button>
+                </li>
+              </ul>
+            </>
           ) : (
-            <Link to="/login">
+            <Link to="/login" className="text-lg ">
               <div className="flex items-center gap-1 text-lg text-[#01684B]">
                 <FaRegUser />
               

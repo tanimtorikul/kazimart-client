@@ -1,37 +1,60 @@
-// import { FaRegHeart } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
+import useAuth from "../../hooks/useAuth";
+import { Link } from "react-router-dom";
+import { TbCurrencyTaka } from "react-icons/tb";
 
 const ProductCard = ({ item }) => {
   const { imageUrl, previousPrice, price, name, quantity } = item;
+  const { user } = useAuth();
+  console.log(user);
+
+  const handleAddToCart = (item) => {
+    console.log(`${name} added to cart!`);
+  };
 
   return (
-    <div className="bg-white shadow-lg rounded-lg px-5 py-2 hover:shadow-2xl transition duration-600 ease-in-out">
-      {/* Image Section */}
+    <div className="relative bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition duration-200 ease-in-out group">
+      {/* Common Image Section for all devices */}
       <div className="relative flex justify-center border border-gray-100 rounded-lg">
-        <img
-          src={imageUrl}
-          alt={name}
-          className="rounded-lg w-48 h-48 object-cover"
-        />
-        {/* Discount */}
-        <div className="absolute top-2 left-2">
-          <div>
-            <h2 className="bg-[#FF5252] text-white px-2 py-1 rounded-lg text-xs font-semibold">
-              -{previousPrice - price}৳
-            </h2>
-          </div>
-        </div>
-        {/* Heart Icon
-        <div className="absolute top-1 right-2">
-          <FaRegHeart className="text-3xl border border-gray-300 rounded-full p-1 text-gray-700" />
-        </div> */}
-        {/* Shopping Cart Icon */}
-        <div className="absolute top-1 right-2">
-          <FiShoppingCart className="text-3xl text-[] rounded-xl border border-gray-300 p-1" />
-        </div>
+        <Link to={`/product/${item._id}`} className="block">
+          <img
+            src={imageUrl}
+            alt={name}
+            className="rounded-lg w-48 h-48 object-cover"
+          />
+          {/* Discount */}
+          {previousPrice && (
+            <div className="absolute top-2 left-2">
+              <h2 className="bg-[#FF5252] text-white px-2 py-1 rounded-lg text-xs font-semibold flex items-center">
+                -{previousPrice - price}
+                <TbCurrencyTaka />
+              </h2>
+            </div>
+          )}
+        </Link>
       </div>
 
-      {/* Info */}
+      {/* Overlay Section */}
+      <div className="absolute inset-0 hidden md:flex flex-col justify-end duration-500 opacity-0 group-hover:opacity-100 bg-[#01684B]/50">
+        <div className="flex items-center justify-center gap-2 absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+          <button
+            onClick={() => {
+              handleAddToCart(item);
+            }}
+            className="bg-white hover:bg-[#36a853] hover:border-2 hover:text-white hover:border-white transition rounded-full text-gray-900 h-10 w-10 flex items-center justify-center"
+          >
+            <FiShoppingCart />
+          </button>
+        </div>
+        <Link
+          to={`/product/${item._id}`}
+          className="bg-[#36a853] hover:bg-[#2f9047] transition w-full text-white text-sm py-2 cursor-pointer text-center"
+        >
+          Details
+        </Link>
+      </div>
+
+      {/* Info Section */}
       <div className="mt-4 text-center">
         <h2 className="text-lg font-semibold text-gray-800">{name}</h2>
         <p className="text-sm text-gray-400 mt-4">{quantity}</p>

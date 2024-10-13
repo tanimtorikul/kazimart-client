@@ -5,13 +5,12 @@ import { Toaster } from "react-hot-toast";
 
 const MainLayout = () => {
   return (
-    <div className="space-y-6">
-      <div className="max-w-[1800px]  mx-auto font-poppins">
+    <div className="max-w-[1800px]  mx-auto font-poppins">
+      <div >
         <Navbar />
-        <div className="border-b border"></div>
       </div>
 
-      <div className="px-2 md:px-0 min-h-screen">
+      <div className="min-h-screen px-2 md:px-0 py-48">
         <Outlet />
       </div>
       <div>
