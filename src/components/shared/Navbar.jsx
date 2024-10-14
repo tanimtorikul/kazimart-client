@@ -129,7 +129,7 @@ const Navbar = () => {
       <div className="navbar-end">
         <div className="dropdown dropdown-end flex items-center gap-6">
           <div className="indicator flex items-center gap-1 text-lg text-[#01684B] relative">
-            <span className="indicator-item badge text-white bg-[#01684b] text-xs -top-1 -right-1 rounded-full shadow-lg">
+            <span className="indicator-item badge text-white bg-[#01684b] text-xs w-5 h-5 flex items-center justify-center -top-1 -right-1 rounded-full shadow-lg">
               {cart.length}
             </span>
             <FiShoppingCart className="text-2xl" />

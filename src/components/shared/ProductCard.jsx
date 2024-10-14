@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { TbCurrencyTaka } from "react-icons/tb";
 import toast from "react-hot-toast";
 import { axiosSecure } from "../../hooks/useAxiosSecure";
+import useCart from "../../hooks/useCart";
 
 const ProductCard = ({ item }) => {
   const { imageUrl, previousPrice, price, name, quantity, _id } = item;
@@ -11,6 +12,7 @@ const ProductCard = ({ item }) => {
   console.log(user);
   const navigate = useNavigate();
   const location = useLocation();
+  const [, refetch]= useCart()
 
   const handleAddToCart = (item) => {
     if (user && user.email) {
@@ -27,9 +29,11 @@ const ProductCard = ({ item }) => {
       axiosSecure
         .post("/carts", cartItem)
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           if (res.data.insertedId) {
             toast.success(`${name} added to the cart`);
+            // refetch cart to update the cart count
+            refetch()
           } else {
             toast.error("Failed to add to the cart!");
           }
