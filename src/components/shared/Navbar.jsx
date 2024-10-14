@@ -4,9 +4,11 @@ import { FaRegUser } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
+import useCart from "../../hooks/useCart";
 
 const Navbar = () => {
   const { user, logOut } = useAuth();
+  const [cart] = useCart();
 
   const handleLogOut = () => {
     logOut()
@@ -126,9 +128,13 @@ const Navbar = () => {
 
       <div className="navbar-end">
         <div className="dropdown dropdown-end flex items-center gap-6">
-          <div className="flex items-center gap-1 text-lg text-[#01684B]">
-            <FiShoppingCart />
+          <div className="indicator flex items-center gap-1 text-lg text-[#01684B] relative">
+            <span className="indicator-item badge text-white bg-[#01684b] text-xs -top-1 -right-1 rounded-full shadow-lg">
+              {cart.length}
+            </span>
+            <FiShoppingCart className="text-2xl" />
           </div>
+
           {user ? (
             <>
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
