@@ -1,23 +1,45 @@
 import { FiShoppingCart } from "react-icons/fi";
 import useAuth from "../../hooks/useAuth";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { TbCurrencyTaka } from "react-icons/tb";
 import toast from "react-hot-toast";
+import { axiosSecure } from "../../hooks/useAxiosSecure";
 
 const ProductCard = ({ item }) => {
-  const { imageUrl, previousPrice, price, name, quantity } = item;
+  const { imageUrl, previousPrice, price, name, quantity, _id } = item;
   const { user } = useAuth();
   console.log(user);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const handleAddToCart = (item) => {
-    if(user && user.email) {
+    if (user && user.email) {
       // cart to be added in db
-
-    }
-    else{
-      toast.error('You need to login first before adding product to the cart!')
-      navigate('/login')
+      const cartItem = {
+        productId: _id,
+        email: user.email,
+        name,
+        imageUrl,
+        price,
+        quantity,
+      };
+      // axios to post cart to the server
+      axiosSecure
+        .post("/carts", cartItem)
+        .then((res) => {
+          console.log(res.data);
+          if (res.data.insertedId) {
+            toast.success(`${name} added to the cart`);
+          } else {
+            toast.error("Failed to add to the cart!");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      toast.error("You need to login first before adding product to the cart!");
+      navigate("/login", { state: { from: location } });
     }
   };
 
