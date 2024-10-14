@@ -26,13 +26,11 @@ const Navbar = () => {
         <NavLink
           exact
           to="/"
-          style={({ isActive, isPending }) => {
-            return {
-              fontWeight: isActive ? "bold" : "",
-              borderBottom: isActive ? "2px solid green" : "",
-              color: isPending ? "red" : "#103178",
-            };
-          }}
+          style={({ isActive, isPending }) => ({
+            fontWeight: isActive ? "bold" : "",
+            borderBottom: isActive ? "2px solid green" : "",
+            color: isPending ? "red" : "#103178",
+          })}
         >
           Home
         </NavLink>
@@ -40,13 +38,11 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/shop"
-          style={({ isActive, isPending }) => {
-            return {
-              fontWeight: isActive ? "bold" : "",
-              borderBottom: isActive ? "2px solid green" : "",
-              color: isPending ? "red" : "#103178",
-            };
-          }}
+          style={({ isActive, isPending }) => ({
+            fontWeight: isActive ? "bold" : "",
+            borderBottom: isActive ? "2px solid green" : "",
+            color: isPending ? "red" : "#103178",
+          })}
         >
           Shop
         </NavLink>
@@ -54,13 +50,11 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/blogs"
-          style={({ isActive, isPending }) => {
-            return {
-              fontWeight: isActive ? "bold" : "",
-              borderBottom: isActive ? "2px solid green" : "",
-              color: isPending ? "red" : "#103178",
-            };
-          }}
+          style={({ isActive, isPending }) => ({
+            fontWeight: isActive ? "bold" : "",
+            borderBottom: isActive ? "2px solid green" : "",
+            color: isPending ? "red" : "#103178",
+          })}
         >
           Blogs
         </NavLink>
@@ -68,13 +62,11 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/contact"
-          style={({ isActive, isPending }) => {
-            return {
-              fontWeight: isActive ? "bold" : "",
-              borderBottom: isActive ? "2px solid green" : "",
-              color: isPending ? "red" : "#103178",
-            };
-          }}
+          style={({ isActive, isPending }) => ({
+            fontWeight: isActive ? "bold" : "",
+            borderBottom: isActive ? "2px solid green" : "",
+            color: isPending ? "red" : "#103178",
+          })}
         >
           Contact Us
         </NavLink>
@@ -82,13 +74,11 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/about"
-          style={({ isActive, isPending }) => {
-            return {
-              fontWeight: isActive ? "bold" : "",
-              borderBottom: isActive ? "2px solid green" : "",
-              color: isPending ? "red" : "#103178",
-            };
-          }}
+          style={({ isActive, isPending }) => ({
+            fontWeight: isActive ? "bold" : "",
+            borderBottom: isActive ? "2px solid green" : "",
+            color: isPending ? "red" : "#103178",
+          })}
         >
           About Us
         </NavLink>
@@ -127,16 +117,22 @@ const Navbar = () => {
       </div>
 
       <div className="navbar-end">
-        <div className="dropdown dropdown-end flex items-center gap-6">
-          <div className="indicator flex items-center gap-1 text-lg text-[#01684B] relative">
-            <span className="indicator-item badge text-white bg-[#01684b] text-xs w-5 h-5 flex items-center justify-center -top-1 -right-1 rounded-full shadow-lg">
-              {cart.length}
-            </span>
-            <FiShoppingCart className="text-2xl" />
-          </div>
+        <div className="flex items-center gap-6">
+          {/* Cart Icon */}
+          <Link to="/cart">
+            <div className="indicator flex items-center gap-1 text-lg text-[#01684B] relative">
+              {cart.length > 0 && (
+                <span className="indicator-item badge text-white bg-[#01684b] text-xs w-5 h-5 flex items-center justify-center -top-1 -right-1 rounded-full shadow-lg">
+                  {cart.length}
+                </span>
+              )}
+              <FiShoppingCart className="text-2xl" />
+            </div>
+          </Link>
 
+          {/* User Profile Dropdown */}
           {user ? (
-            <>
+            <div className="dropdown dropdown-end">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
                   <img alt={user.email} src={user.photoURL} />
@@ -156,14 +152,12 @@ const Navbar = () => {
                   <Link to="/dashboard/profile">Dashboard</Link>
                 </li>
                 <li>
-                  <button onClick={handleLogOut}>
-                    <a>Logout</a>
-                  </button>
+                  <button onClick={handleLogOut}>Logout</button>
                 </li>
               </ul>
-            </>
+            </div>
           ) : (
-            <Link to="/login" className="text-lg ">
+            <Link to="/login" className="text-lg">
               <div className="flex items-center gap-1 text-lg text-[#01684B]">
                 <FaRegUser />
               </div>
