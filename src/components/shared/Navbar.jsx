@@ -1,5 +1,4 @@
 import logo from "../../assets/kazimart.png";
-import { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { FaRegUser } from "react-icons/fa";
 import { FiShoppingCart } from "react-icons/fi";
@@ -97,9 +96,9 @@ const Navbar = () => {
 
   return (
     <div className="navbar bg-white fixed z-10 w-full lg:px-24">
-      <div className="navbar-start ">
-        <div className="dropdown">
-          <label tabIndex={0} className="btn btn-ghost lg:hidden">
+      <div className="navbar-start">
+        <div className="dropdown lg:hidden">
+          <button className="btn btn-ghost" aria-haspopup="true">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-5 w-5"
@@ -114,35 +113,21 @@ const Navbar = () => {
                 d="M4 6h16M4 12h8m-8 6h16"
               />
             </svg>
-          </label>
-          <ul
-            tabIndex={0}
-            className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-          >
-            {navlinks}
-          </ul>
+          </button>
         </div>
-        <div className="lg:w-1/3 mb-6 lg:mb-0">
-          <Link
-            to="/"
-            className="flex justify-center space-x-3 lg:justify-start"
-          >
-            <div className="flex items-center justify-center w-36 text-white rounded-full bg-teal-500">
-              <img src={logo} alt="" />
-            </div>
-          </Link>
-        </div>{" "}
-        {/* Corrected closing div for the logo section */}
+        <Link to="/" className="flex justify-center space-x-3 lg:justify-start">
+          <img className="w-32" alt="" src={logo} />
+        </Link>
       </div>
+
       <div className="navbar-center hidden lg:flex">
         <ul className="menu-horizontal px-1 text-lg">{navlinks}</ul>
       </div>
 
       <div className="navbar-end">
         <div className="dropdown dropdown-end flex items-center gap-6">
-        <div className="flex items-center gap-1 text-lg text-[#01684B]">
+          <div className="flex items-center gap-1 text-lg text-[#01684B]">
             <FiShoppingCart />
-          
           </div>
           {user ? (
             <>
@@ -175,7 +160,6 @@ const Navbar = () => {
             <Link to="/login" className="text-lg ">
               <div className="flex items-center gap-1 text-lg text-[#01684B]">
                 <FaRegUser />
-              
               </div>
             </Link>
           )}

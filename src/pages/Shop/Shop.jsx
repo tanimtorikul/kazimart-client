@@ -15,11 +15,9 @@ const Shop = () => {
           neque aperiam eos!
         </p>
       </div>
-      <div className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-6 gap-4">
+      <div className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-5 gap-4">
         {items.map((item) => (
-          <Link key={item.id} to={`/product/${item._id}`}>
-            <ProductCard item={item} />
-          </Link>
+          <ProductCard key={item.id} item={item} />
         ))}
       </div>
     </div>

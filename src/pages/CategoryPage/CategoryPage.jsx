@@ -35,9 +35,7 @@ const CategoryPage = () => {
       {/* Product Cards */}
       <div className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-5 gap-4">
         {filteredProducts?.map((product) => (
-          <Link key={product._id} to={`/product/${product._id}`}>
-            <ProductCard key={product._id} item={product} />
-          </Link>
+          <ProductCard key={product._id} item={product} />
         ))}
       </div>
     </div>

@@ -1,15 +1,24 @@
 import { FiShoppingCart } from "react-icons/fi";
 import useAuth from "../../hooks/useAuth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { TbCurrencyTaka } from "react-icons/tb";
+import toast from "react-hot-toast";
 
 const ProductCard = ({ item }) => {
   const { imageUrl, previousPrice, price, name, quantity } = item;
   const { user } = useAuth();
   console.log(user);
+  const navigate = useNavigate()
 
   const handleAddToCart = (item) => {
-    console.log(`${name} added to cart!`);
+    if(user && user.email) {
+      // cart to be added in db
+
+    }
+    else{
+      toast.error('You need to login first before adding product to the cart!')
+      navigate('/login')
+    }
   };
 
   return (

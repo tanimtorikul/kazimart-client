@@ -8,7 +8,7 @@ const CallToAction = () => {
     toast.error("Our mobile app is still in development. Stay tuned!");
   };
   return (
-    <div className="bg-[#CEE7DB] py-12 md:h-[512px]">
+    <div className="bg-[#CEE7DB] py-12 h-[644px] md:h-[512px]">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center mx-4 justify-center">
         <div className="col-span-1">
           <div className="flex items-center gap-4">

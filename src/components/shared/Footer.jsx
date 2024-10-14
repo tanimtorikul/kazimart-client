@@ -1,10 +1,10 @@
 import logo from "../../assets/kazimart.png";
 const Footer = () => {
   return (
-    <footer className="border-y-2 bg-gray-50 border-[#36A853] mt-10">
+    <footer className="border-y md:mt-10">
       <div className="container px-6 py-12 mx-auto max-w-7xl">
         <a className="" href="#">
-          <img className="w-48  py-1 px-4" alt="" src={logo} />
+          <img className="w-48 py-1 px-4" alt="" src={logo} />
         </a>
 
         <div className="grid grid-cols-1 gap-6 my-14 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
