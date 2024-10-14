@@ -2,10 +2,12 @@ import { Link } from "react-router-dom";
 import useCart from "../../hooks/useCart";
 import cartImg from "../../assets/emptycart.png";
 import CartItemCard from "../../components/CartItemCard/CartItemCard";
+import { TbCurrencyTaka } from "react-icons/tb";
 
 const CartPage = () => {
   const [cart] = useCart();
   console.log(cart);
+  const totalPrice = cart.reduce((total, item) => total + item.price, 0);
 
   return (
     <div className="max-w-[1400px] mx-auto">
@@ -30,22 +32,81 @@ const CartPage = () => {
           </h2>
         </div>
       ) : (
-      <div className="flex gap-32 flex-col md:flex-row">
-        {/* cartitem cards */}
+        <div className="flex gap-32 flex-col md:flex-row">
+          {/* cartitem cards */}
           <div className="flex flex-col gap-8">
-          {cart.map((item, index) => (
-            <CartItemCard key={index} item={item} />
-          ))}
-        </div>
-        {/* promo , total price calc and checkout btn */}
-        <div>
-            {/* proceed checkout and total price section */}
-            <div>
-                <h2>Delivery Option</h2>
-                <h2 className="border-b">Cost Summary</h2>
+            {cart.map((item, index) => (
+              <CartItemCard key={index} item={item} />
+            ))}
+          </div>
+          <div className="p-6 rounded-lg shadow-lg border">
+            {/* Delivery Option */}
+            <div className="mb-6">
+              <h2 className="text-lg font-semibold mb-3">Delivery Option</h2>
+              <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 outline-none">
+                <option>Home Delivery</option>
+                <option>Self Pickup</option>
+              </select>
             </div>
+
+            {/* Promo Code Section */}
+            <div className="mb-6 ">
+              <h2 className="text-lg font-semibold mb-3 ">Promo Code</h2>
+              <div className="flex items-center gap-3 border-gray-300 border-dotted border p-3 rounded-xl">
+                <input
+                  type="text"
+                  placeholder="Enter promo code"
+                  className="w-full px-4 py-2  rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
+                />
+                <button className="bg-[#01684B] text-white px-4 py-2 rounded-lg hover:bg-green-700 transition duration-200">
+                  Apply
+                </button>
+              </div>
+            </div>
+
+            {/* Cost Summary Section */}
+            <div className="mb-6 border-b pb-4">
+              <h2 className="text-lg font-semibold mb-3">Cost Summary</h2>
+              <div className="flex justify-between mb-2">
+                <p>Subtotal</p>
+                <div className="flex items-center">
+                  <TbCurrencyTaka className="w-6 h-6 mr-1" />
+                  <p>{totalPrice}</p>
+                </div>
+              </div>
+              <div className="flex justify-between mb-2">
+                <p>Delivery</p>
+                <div className="flex items-center">
+                  <TbCurrencyTaka className="w-6 h-6 mr-1" />
+                  <p>50</p>
+                </div>
+              </div>
+              <div className="flex justify-between mb-2">
+                <p>Promo Discount</p>
+                <div className="flex items-center">
+                  <TbCurrencyTaka className="w-6 h-6 mr-1" />
+                  <p>0</p>
+                </div>
+              </div>
+              <div className="flex justify-between font-semibold text-lg border-t pt-2">
+                <p>Total</p>
+                <div className="flex items-center">
+                  <TbCurrencyTaka className="w-6 h-6 mr-1" />
+                  <p>{totalPrice + 50}</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Proceed to Checkout Button */}
+            <div>
+              <Link to="/checkout">
+                <button className="w-full bg-[#01684B] text-white py-3 rounded-lg hover:bg-green-700 transition duration-200 text-lg font-semibold">
+                  Proceed to Checkout
+                </button>
+              </Link>
+            </div>
+          </div>
         </div>
-      </div>
       )}
     </div>
   );

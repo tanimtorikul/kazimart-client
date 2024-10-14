@@ -41,10 +41,6 @@ const CartItemCard = ({ item, onDelete }) => {
         </button>
       </div>
 
-      {/* delete button
-      <div>
-      
-      </div> */}
     </div>
   );
 };
