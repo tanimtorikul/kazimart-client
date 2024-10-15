@@ -1,18 +1,57 @@
-import { useParams } from "react-router-dom";
-import useProducts from "../../hooks/useProducts";
-import { FaCartShopping } from "react-icons/fa6";
-import { FaStar } from "react-icons/fa";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { FaCartShopping, FaStar } from "react-icons/fa6";
 import { useEffect } from "react";
+import useProducts from "../../hooks/useProducts";
+import useAuth from "../../hooks/useAuth";
+import useCart from "../../hooks/useCart";
+import toast from "react-hot-toast";
+import { axiosSecure } from "../../hooks/useAxiosSecure";
 
 const ProductDetails = () => {
   const { id } = useParams();
   const [items] = useProducts();
+  const { user } = useAuth();
+  const [, refetch] = useCart();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const product = items.find((item) => item._id === id);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  const handleAddToCart = (product) => {
+    if (user && user.email) {
+      // Cart item to be added in db
+      const cartItem = {
+        productId: product._id,
+        email: user.email,
+        name: product.name,
+        imageUrl: product.imageUrl,
+        price: product.price,
+        quantity: product.quantity,
+      };
+      // axios to post cart item to the server
+      axiosSecure
+        .post("/carts", cartItem)
+        .then((res) => {
+          if (res.data.insertedId) {
+            toast.success(`${product.name} added to the cart`);
+            // Refetch cart to update the cart count
+            refetch();
+          } else {
+            toast.error("Failed to add to the cart!");
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      toast.error("You need to login first before adding product to the cart!");
+      navigate("/login", { state: { from: location } });
+    }
+  };
 
   return (
     <div className="max-w-[1400px] mx-auto my-8 px-4">
@@ -61,7 +100,10 @@ const ProductDetails = () => {
                 </h2>
               </div>
 
-              <button className="bg-[#01684B] text-white md:text-xl font-semibold px-8 py-3 rounded-xl shadow-lg hover:bg-teal-600 transition duration-300 ease-in-out flex items-center space-x-2">
+              <button
+                onClick={() => handleAddToCart(product)}
+                className="bg-[#01684B] text-white md:text-xl font-semibold px-8 py-3 rounded-xl shadow-lg hover:bg-teal-600 transition duration-300 ease-in-out flex items-center space-x-2"
+              >
                 <FaCartShopping />
                 <span>Add to Cart</span>
               </button>
