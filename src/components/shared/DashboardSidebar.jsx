@@ -26,7 +26,7 @@ const DashboardSideBar = () => {
             <li>
               <NavLink
                 to="/dashboard/all-products"
-                className="flex items-center px-4 py-2 rounded hover:bg-[#013737] transition-colors"
+                className="flex items-center px-4  rounded hover:bg-[#013737] transition-colors"
                 activeClassName="bg-gray-700"
               >
                 <FaBoxArchive className="mr-2" />
