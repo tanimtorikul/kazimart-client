@@ -12,44 +12,60 @@ const ProductCard = ({ item }) => {
   console.log(user);
   const navigate = useNavigate();
   const location = useLocation();
-  const [, refetch]= useCart()
+  const [, refetch] = useCart();
 
   const handleAddToCart = (item) => {
     if (user && user.email) {
-      // cart to be added in db
-      const cartItem = {
-        productId: _id,
-        email: user.email,
-        name,
-        imageUrl,
-        price,
-        quantity,
-      };
-      // axios to post cart to the server
+      // fetching the cart first to check the product is already in cart
       axiosSecure
-        .post("/carts", cartItem)
+        .get(`/carts?email=${user.email}`)
         .then((res) => {
-          // console.log(res.data);
-          if (res.data.insertedId) {
-            toast.success(`${name} added to the cart`);
-            // refetch cart to update the cart count
-            refetch()
+          const existingCartItem = res.data.find(
+            (cartItem) => cartItem.productId === _id
+          );
+
+          if (existingCartItem) {
+            toast.error(`${name} is already in the cart!`);
           } else {
-            toast.error("Failed to add to the cart!");
+            // then save it in cart
+            const cartItem = {
+              productId: _id,
+              email: user.email,
+              name,
+              imageUrl,
+              price,
+              quantity,
+            };
+            // then save it in cart
+            axiosSecure
+              .post("/carts", cartItem)
+              .then((res) => {
+                if (res.data.insertedId) {
+                  toast.success(`${name} added to the cart`);
+                  refetch(); // Update the cart count
+                } else {
+                  toast.error("Failed to add to the cart!");
+                }
+              })
+              .catch((error) => {
+                console.error(error);
+              });
           }
         })
         .catch((error) => {
           console.error(error);
         });
     } else {
-      toast.error("You need to login first before adding product to the cart!");
+      toast.error(
+        "You need to login first before adding a product to the cart!"
+      );
       navigate("/login", { state: { from: location } });
     }
   };
 
   return (
     <div className="relative bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition duration-200 ease-in-out group">
-      {/* Common Image Section for all devices */}
+      {/* Image  */}
       <div className="relative flex justify-center border border-gray-100 rounded-lg">
         <Link to={`/product/${item._id}`} className="block">
           <img

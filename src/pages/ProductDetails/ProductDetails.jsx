@@ -1,6 +1,6 @@
 import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { FaCartShopping, FaStar } from "react-icons/fa6";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import useProducts from "../../hooks/useProducts";
 import useAuth from "../../hooks/useAuth";
 import useCart from "../../hooks/useCart";
@@ -15,11 +15,25 @@ const ProductDetails = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const [isAddedToCart, setIsAddedToCart] = useState(false);
+
   const product = items.find((item) => item._id === id);
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+
+  // to check the product is already added or not
+  if (user && product) {
+    axiosSecure.get(`/carts?email=${user.email}`).then((res) => {
+      const exisitingCartItem = res.data.find(
+        (cartItem) => cartItem.productId === product._id
+      );
+      if (exisitingCartItem) {
+        setIsAddedToCart(true);
+      }
+    });
+  }
 
   const handleAddToCart = (product) => {
     if (user && user.email) {
@@ -102,10 +116,15 @@ const ProductDetails = () => {
 
               <button
                 onClick={() => handleAddToCart(product)}
-                className="bg-[#01684B] text-white md:text-xl font-semibold px-8 py-3 rounded-xl shadow-lg hover:bg-teal-600 transition duration-300 ease-in-out flex items-center space-x-2"
+                className={`${
+                  isAddedToCart
+                    ? "bg-gray-500 cursor-not-allowed"
+                    : "bg-[#01684B] hover:bg-teal-600"
+                } text-white md:text-xl font-semibold px-8 py-3 rounded-xl shadow-lg transition duration-300 ease-in-out flex items-center space-x-2`}
+                disabled={isAddedToCart}
               >
                 <FaCartShopping />
-                <span>Add to Cart</span>
+                <span>{isAddedToCart ? "Already Added" : "Add to Cart"}</span>
               </button>
             </div>
           </div>
