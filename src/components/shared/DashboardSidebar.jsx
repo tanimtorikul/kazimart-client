@@ -100,7 +100,7 @@ const DashboardSideBar = () => {
             <li>
               <p className="text-[#B1E3CE] hidden md:block">User Management</p>
               <NavLink
-                to="/dashboard/customers"
+                to="/dashboard/users"
                 className="flex items-center px-4 py-2 rounded hover:bg-[#013737] transition-colors"
                 activeClassName="bg-gray-700"
               >
