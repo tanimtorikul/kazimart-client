@@ -4,7 +4,7 @@ import useAuth from "./useAuth";
 
 // Create a new Axios instance
 export const axiosSecure = axios.create({
-  baseURL: "http://localhost:5000/",
+  baseURL: "https://kazimart-server.vercel.app/",
 });
 
 const useAxiosSecure = () => {

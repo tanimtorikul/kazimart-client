@@ -5,7 +5,7 @@ const useProducts = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:5000/products")
+    fetch("https://kazimart-server.vercel.app/products")
       .then((res) => res.json())
       .then((data) => {
         setItems(data);

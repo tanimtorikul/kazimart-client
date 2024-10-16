@@ -8,7 +8,7 @@ const DashboardSideBar = () => {
   const [isAdmin] = useAdmin();
 
   return (
-    <div className="md:w-64 bg-[#005555] min-h-screen text-white">
+    <div className="w-24 md:w-64 bg-[#005555] min-h-screen text-white">
       <div className="p-2 md:p-6">
         <nav>
           <ul className="space-y-4 list-none">
