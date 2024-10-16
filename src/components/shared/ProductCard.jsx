@@ -3,7 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { TbCurrencyTaka } from "react-icons/tb";
 import toast from "react-hot-toast";
-import { axiosSecure } from "../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../hooks/useAxiosSecure"; 
 import useCart from "../../hooks/useCart";
 
 const ProductCard = ({ item }) => {
@@ -13,10 +13,11 @@ const ProductCard = ({ item }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [, refetch] = useCart();
+  const axiosSecure = useAxiosSecure(); 
 
   const handleAddToCart = (item) => {
     if (user && user.email) {
-      // fetching the cart first to check the product is already in cart
+      // fetching the cart first to check if the product is already in the cart
       axiosSecure
         .get(`/carts?email=${user.email}`)
         .then((res) => {
@@ -36,7 +37,6 @@ const ProductCard = ({ item }) => {
               price,
               quantity,
             };
-            // then save it in cart
             axiosSecure
               .post("/carts", cartItem)
               .then((res) => {

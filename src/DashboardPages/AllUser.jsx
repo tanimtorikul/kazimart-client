@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { axiosSecure } from "../hooks/useAxiosSecure";
-import { FaTrashAlt, FaUserAlt } from "react-icons/fa";
+import { FaTrashAlt } from "react-icons/fa";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 const AllUser = () => {
+  const axiosSecure = useAxiosSecure();
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
@@ -86,7 +87,7 @@ const AllUser = () => {
                     </button>
                   )}
                 </td>
-              
+
                 <td>
                   <button onClick={() => handleDelete(user)} className="btn">
                     <FaTrashAlt className="text-red-500" />

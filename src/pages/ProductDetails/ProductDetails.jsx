@@ -5,7 +5,7 @@ import useProducts from "../../hooks/useProducts";
 import useAuth from "../../hooks/useAuth";
 import useCart from "../../hooks/useCart";
 import toast from "react-hot-toast";
-import { axiosSecure } from "../../hooks/useAxiosSecure";
+import useAxiosSecure from "../../hooks/useAxiosSecure"; 
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -14,6 +14,7 @@ const ProductDetails = () => {
   const [, refetch] = useCart();
   const navigate = useNavigate();
   const location = useLocation();
+  const axiosSecure = useAxiosSecure();
 
   const [isAddedToCart, setIsAddedToCart] = useState(false);
 
@@ -24,16 +25,18 @@ const ProductDetails = () => {
   }, []);
 
   // to check the product is already added or not
-  if (user && product) {
-    axiosSecure.get(`/carts?email=${user.email}`).then((res) => {
-      const exisitingCartItem = res.data.find(
-        (cartItem) => cartItem.productId === product._id
-      );
-      if (exisitingCartItem) {
-        setIsAddedToCart(true);
-      }
-    });
-  }
+  useEffect(() => {
+    if (user && product) {
+      axiosSecure.get(`/carts?email=${user.email}`).then((res) => {
+        const existingCartItem = res.data.find(
+          (cartItem) => cartItem.productId === product._id
+        );
+        if (existingCartItem) {
+          setIsAddedToCart(true);
+        }
+      });
+    }
+  }, [user, product, axiosSecure]);
 
   const handleAddToCart = (product) => {
     if (user && user.email) {

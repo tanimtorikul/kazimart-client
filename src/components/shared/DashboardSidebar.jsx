@@ -16,8 +16,11 @@ const DashboardSideBar = () => {
               </p>
               <NavLink
                 to="/dashboard/add-product"
-                className="flex items-center px-4 py-2 rounded hover:bg-[#013737] transition-colors"
-                activeClassName="bg-gray-700"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 rounded transition-colors ${
+                    isActive ? "text-[#47C466] bg-gray-900" : "hover:bg-[#013737]"
+                  }`
+                }
               >
                 <GrGallery className="mr-2" />
                 <p className="md:block hidden">Add Product</p>
@@ -26,8 +29,11 @@ const DashboardSideBar = () => {
             <li>
               <NavLink
                 to="/dashboard/all-products"
-                className="flex items-center px-4  rounded hover:bg-[#013737] transition-colors"
-                activeClassName="bg-gray-700"
+                className={({ isActive }) =>
+                  `flex items-center px-4 rounded transition-colors ${
+                    isActive ? "text-[#47C466] bg-gray-900" : "hover:bg-[#013737]"
+                  }`
+                }
               >
                 <FaBoxArchive className="mr-2" />
                 <p className="md:block hidden">All Products</p>
@@ -41,8 +47,11 @@ const DashboardSideBar = () => {
               </p>
               <NavLink
                 to="/dashboard/add-banner"
-                className="flex items-center px-4 py-2 rounded hover:bg-[#013737] transition-colors"
-                activeClassName="bg-gray-700"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 rounded transition-colors ${
+                    isActive ? "text-[#47C466] bg-gray-900" : "hover:bg-[#013737]"
+                  }`
+                }
               >
                 <GrGallery className="mr-2" />
                 <p className="md:block hidden">Add Banner</p>
@@ -51,20 +60,27 @@ const DashboardSideBar = () => {
             <li>
               <NavLink
                 to="/dashboard/all-banners"
-                className="flex items-center px-4 py-2 rounded hover:bg-[#013737] transition-colors"
-                activeClassName="bg-gray-700"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 rounded transition-colors ${
+                    isActive ? "text-[#47C466] bg-gray-900" : "hover:bg-[#013737]"
+                  }`
+                }
               >
                 <GrGallery className="mr-2" />
                 <p className="md:block hidden">All Banners</p>
               </NavLink>
             </li>
+
             {/* Promo Banners Section */}
             <li>
               <p className="text-[#B1E3CE] hidden md:block">Promo Banners</p>
               <NavLink
                 to="/dashboard/add-banner"
-                className="flex items-center px-4 py-2 rounded hover:bg-[#013737] transition-colors"
-                activeClassName="bg-gray-700"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 rounded transition-colors ${
+                    isActive ? "text-[#47C466] bg-gray-900" : "hover:bg-[#013737]"
+                  }`
+                }
               >
                 <GrGallery className="mr-2" />
                 <p className="md:block hidden">Add Banner</p>
@@ -73,8 +89,11 @@ const DashboardSideBar = () => {
             <li>
               <NavLink
                 to="/dashboard/all-banners"
-                className="flex items-center px-4 py-2 rounded hover:bg-[#013737] transition-colors"
-                activeClassName="bg-gray-700"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 rounded transition-colors ${
+                    isActive ? "text-[#47C466] bg-gray-900" : "hover:bg-[#013737]"
+                  }`
+                }
               >
                 <GrGallery className="mr-2" />
                 <p className="md:block hidden">All Banners</p>
@@ -88,8 +107,11 @@ const DashboardSideBar = () => {
               </p>
               <NavLink
                 to="/dashboard/orders"
-                className="flex items-center px-4 py-2 rounded hover:bg-[#013737] transition-colors"
-                activeClassName="bg-gray-700"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 rounded transition-colors ${
+                    isActive ? "text-[#47C466] bg-gray-900" : "hover:bg-[#013737]"
+                  }`
+                }
               >
                 <FaBoxArchive className="mr-2" />
                 <p className="md:block hidden">Orders</p>
@@ -101,8 +123,11 @@ const DashboardSideBar = () => {
               <p className="text-[#B1E3CE] hidden md:block">User Management</p>
               <NavLink
                 to="/dashboard/users"
-                className="flex items-center px-4 py-2 rounded hover:bg-[#013737] transition-colors"
-                activeClassName="bg-gray-700"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 rounded transition-colors ${
+                    isActive ? "text-[#47C466] bg-gray-900" : "hover:bg-[#013737]"
+                  }`
+                }
               >
                 <FaUser className="mr-3" />
                 <p className="md:block hidden">Users</p>
@@ -116,8 +141,11 @@ const DashboardSideBar = () => {
               </p>
               <NavLink
                 to="/dashboard/report"
-                className="flex items-center px-4 py-2 rounded hover:bg-[#013737] transition-colors"
-                activeClassName="bg-gray-700"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 rounded transition-colors ${
+                    isActive ? "text-[#47C466] bg-gray-900" : "hover:bg-[#013737]"
+                  }`
+                }
               >
                 <FaChartBar className="mr-3" />
                 <p className="md:block hidden">Reports</p>
