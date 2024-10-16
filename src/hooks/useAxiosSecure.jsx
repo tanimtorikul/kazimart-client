@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import useAuth from "./useAuth";
 
 // Create a new Axios instance
-const axiosSecure = axios.create({
+export const axiosSecure = axios.create({
   baseURL: "http://localhost:5000/",
 });
 
