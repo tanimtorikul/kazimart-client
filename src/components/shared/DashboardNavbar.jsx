@@ -16,7 +16,7 @@ const DashboardNavbar = () => {
   return (
     <div className="bg-white shadow-md px-6 flex justify-between items-center">
       <Link to="/">
-        <img className="w-24 h-24" src={logo} alt="Kazimart Logo" />
+        <img className="w-28 h-24" src={logo} alt="Kazimart Logo" />
       </Link>
       <div className="relative">
         {user && (

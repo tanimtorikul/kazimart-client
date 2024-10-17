@@ -40,7 +40,7 @@ const Banners = () => {
   };
 
   return (
-    <div className="bg">
+    <div className="">
       <div className="flex gap-2">
         <img src={BannerImg} className="w-6" alt="Banner Icon" />
         <h2 className="font-semibold">Banner Setup</h2>
