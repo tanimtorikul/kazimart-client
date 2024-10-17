@@ -1,4 +1,9 @@
-import { FaChartBar, FaUser, FaBoxArchive, FaClipboardList } from "react-icons/fa6";
+import {
+  FaChartBar,
+  FaUser,
+  FaBoxArchive,
+  FaClipboardList,
+} from "react-icons/fa6";
 import { GrGallery } from "react-icons/gr";
 import { MdCategory, MdAddShoppingCart } from "react-icons/md";
 import { NavLink } from "react-router-dom";
@@ -14,14 +19,19 @@ const DashboardSideBar = () => {
           <ul className="space-y-4 list-none">
             {isAdmin ? (
               <>
+              <h2 className="text-[#B1E3CE] text-xs md:text-xl py-2">Admin Dashboard</h2>
                 {/* Product Management */}
                 <li>
-                  <p className="text-[#B1E3CE] hidden md:block">Admin - Product Management</p>
+                  <p className="text-[#B1E3CE] hidden md:block">
+                    Product Management
+                  </p>
                   <NavLink
                     to="/dashboard/add-product"
                     className={({ isActive }) =>
                       `flex items-center px-4 py-2 rounded transition-colors ${
-                        isActive ? "text-[#47C466] bg-gray-900" : "hover:bg-[#013737]"
+                        isActive
+                          ? "text-[#47C466] bg-gray-900"
+                          : "hover:bg-[#013737]"
                       }`
                     }
                   >
@@ -34,7 +44,9 @@ const DashboardSideBar = () => {
                     to="/dashboard/all-products"
                     className={({ isActive }) =>
                       `flex items-center px-4 py-2 rounded transition-colors ${
-                        isActive ? "text-[#47C466] bg-gray-900" : "hover:bg-[#013737]"
+                        isActive
+                          ? "text-[#47C466] bg-gray-900"
+                          : "hover:bg-[#013737]"
                       }`
                     }
                   >
@@ -45,12 +57,16 @@ const DashboardSideBar = () => {
 
                 {/* Order Management */}
                 <li>
-                  <p className="text-[#B1E3CE] hidden md:block">Admin - Order Management</p>
+                  <p className="text-[#B1E3CE] hidden md:block">
+                    Order Management
+                  </p>
                   <NavLink
                     to="/dashboard/manage-orders"
                     className={({ isActive }) =>
                       `flex items-center px-4 py-2 rounded transition-colors ${
-                        isActive ? "text-[#47C466] bg-gray-900" : "hover:bg-[#013737]"
+                        isActive
+                          ? "text-[#47C466] bg-gray-900"
+                          : "hover:bg-[#013737]"
                       }`
                     }
                   >
@@ -61,12 +77,16 @@ const DashboardSideBar = () => {
 
                 {/* Category Management */}
                 <li>
-                  <p className="text-[#B1E3CE] hidden md:block">Admin - Category Management</p>
+                  <p className="text-[#B1E3CE] hidden md:block">
+                    Category Management
+                  </p>
                   <NavLink
                     to="/dashboard/add-category"
                     className={({ isActive }) =>
                       `flex items-center px-4 py-2 rounded transition-colors ${
-                        isActive ? "text-[#47C466] bg-gray-900" : "hover:bg-[#013737]"
+                        isActive
+                          ? "text-[#47C466] bg-gray-900"
+                          : "hover:bg-[#013737]"
                       }`
                     }
                   >
@@ -79,7 +99,9 @@ const DashboardSideBar = () => {
                     to="/dashboard/all-categories"
                     className={({ isActive }) =>
                       `flex items-center px-4 py-2 rounded transition-colors ${
-                        isActive ? "text-[#47C466] bg-gray-900" : "hover:bg-[#013737]"
+                        isActive
+                          ? "text-[#47C466] bg-gray-900"
+                          : "hover:bg-[#013737]"
                       }`
                     }
                   >
@@ -90,12 +112,16 @@ const DashboardSideBar = () => {
 
                 {/* User Management */}
                 <li>
-                  <p className="text-[#B1E3CE] hidden md:block">Admin - User Management</p>
+                  <p className="text-[#B1E3CE] hidden md:block">
+                    User Management
+                  </p>
                   <NavLink
                     to="/dashboard/users"
                     className={({ isActive }) =>
                       `flex items-center px-4 py-2 rounded transition-colors ${
-                        isActive ? "text-[#47C466] bg-gray-900" : "hover:bg-[#013737]"
+                        isActive
+                          ? "text-[#47C466] bg-gray-900"
+                          : "hover:bg-[#013737]"
                       }`
                     }
                   >
@@ -103,33 +129,21 @@ const DashboardSideBar = () => {
                     <p className="md:block hidden">All Users</p>
                   </NavLink>
                 </li>
-
-                {/* Admin Add Order */}
-                <li>
-                  <p className="text-[#B1E3CE] hidden md:block">Admin - Add Order</p>
-                  <NavLink
-                    to="/dashboard/add-order"
-                    className={({ isActive }) =>
-                      `flex items-center px-4 py-2 rounded transition-colors ${
-                        isActive ? "text-[#47C466] bg-gray-900" : "hover:bg-[#013737]"
-                      }`
-                    }
-                  >
-                    <MdAddShoppingCart className="mr-2" />
-                    <p className="md:block hidden">Add Order</p>
-                  </NavLink>
-                </li>
               </>
             ) : (
               <>
                 {/* User-specific links */}
                 <li>
-                  <p className="text-[#B1E3CE] hidden md:block">User - Orders</p>
+                  <p className="text-[#B1E3CE] hidden md:block">
+                    User - Orders
+                  </p>
                   <NavLink
                     to="/dashboard/my-orders"
                     className={({ isActive }) =>
                       `flex items-center px-4 py-2 rounded transition-colors ${
-                        isActive ? "text-[#47C466] bg-gray-900" : "hover:bg-[#013737]"
+                        isActive
+                          ? "text-[#47C466] bg-gray-900"
+                          : "hover:bg-[#013737]"
                       }`
                     }
                   >
@@ -138,12 +152,16 @@ const DashboardSideBar = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <p className="text-[#B1E3CE] hidden md:block">User - Profile</p>
+                  <p className="text-[#B1E3CE] hidden md:block">
+                    User - Profile
+                  </p>
                   <NavLink
                     to="/dashboard/profile"
                     className={({ isActive }) =>
                       `flex items-center px-4 py-2 rounded transition-colors ${
-                        isActive ? "text-[#47C466] bg-gray-900" : "hover:bg-[#013737]"
+                        isActive
+                          ? "text-[#47C466] bg-gray-900"
+                          : "hover:bg-[#013737]"
                       }`
                     }
                   >
@@ -152,12 +170,16 @@ const DashboardSideBar = () => {
                   </NavLink>
                 </li>
                 <li>
-                  <p className="text-[#B1E3CE] hidden md:block">User - Settings</p>
+                  <p className="text-[#B1E3CE] hidden md:block">
+                    User - Settings
+                  </p>
                   <NavLink
                     to="/dashboard/settings"
                     className={({ isActive }) =>
                       `flex items-center px-4 py-2 rounded transition-colors ${
-                        isActive ? "text-[#47C466] bg-gray-900" : "hover:bg-[#013737]"
+                        isActive
+                          ? "text-[#47C466] bg-gray-900"
+                          : "hover:bg-[#013737]"
                       }`
                     }
                   >
@@ -167,7 +189,6 @@ const DashboardSideBar = () => {
                 </li>
               </>
             )}
-
           </ul>
         </nav>
       </div>
