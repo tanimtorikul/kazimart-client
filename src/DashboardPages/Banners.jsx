@@ -1,23 +1,48 @@
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import BannerImg from "../assets/banner.png";
 import uploadImage from "../assets/uploadimg.png";
+import BannersList from "../components/BannersList";
 
 const Banners = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
+    clearErrors,
   } = useForm();
 
+  const [image, setImage] = useState(null);
+
   const onSubmit = (data) => {
-    console.log(data);
-    
+    if (!image) {
+      setError("image", {
+        type: "manual",
+        message: "Image is required",
+      });
+      return;
+    }
+
+    const formData = {
+      ...data,
+      image: image || null,
+    };
+    console.log(formData);
+  };
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setImage(file);
+      clearErrors("image");
+    }
   };
 
   return (
     <div className="bg">
       <div className="flex gap-2">
-        <img src={BannerImg} className="w-6" alt="" />
+        <img src={BannerImg} className="w-6" alt="Banner Icon" />
         <h2 className="font-semibold">Banner Setup</h2>
       </div>
       <div className="border-2 rounded-lg p-4 my-4 shadow-lg">
@@ -27,37 +52,30 @@ const Banners = () => {
           className="space-y-6 w-full md:w-2/3"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Banner Image URL */}
+            {/* Image Upload */}
             <div>
-              <p>Upload Image</p>
-              <div className="flex gap-2">
-                <label htmlFor="image1">
-                  <img src={uploadImage} alt="" />
+              <p>
+                Banner Image{" "}
+                <span className="text-sm text-red-600">* ( Ratio 2:1 )</span>
+              </p>
+              <div>
+                <label htmlFor="image">
+                  <img
+                    className="w-96 h-48 object-contain"
+                    src={image ? URL.createObjectURL(image) : uploadImage}
+                    alt="Uploaded Banner"
+                  />
+
                   <input
                     type="file"
-                    id="image1"
+                    id="image"
                     hidden
-                    {...register("image1")}
+                    onChange={handleFileChange}
                   />
                 </label>
-                <label htmlFor="image2">
-                  <img src={uploadImage} alt="" />
-                  <input
-                    type="file"
-                    id="image2"
-                    hidden
-                    {...register("image2")}
-                  />
-                </label>
-                <label htmlFor="image3">
-                  <img src={uploadImage} alt="" />
-                  <input
-                    type="file"
-                    id="image3"
-                    hidden
-                    {...register("image3")}
-                  />
-                </label>
+                {errors.image && (
+                  <span className="text-red-500">{errors.image.message}</span>
+                )}
               </div>
             </div>
 
@@ -78,7 +96,7 @@ const Banners = () => {
               )}
             </div>
 
-            {/* Description */}
+            {/* Banner Description */}
             <div className="md:col-span-2">
               <label
                 htmlFor="description"
@@ -102,7 +120,7 @@ const Banners = () => {
               )}
             </div>
 
-            {/* Submit */}
+            {/* Submit Button */}
             <div className="md:col-span-2">
               <button
                 type="submit"
@@ -113,6 +131,10 @@ const Banners = () => {
             </div>
           </div>
         </form>
+      </div>
+      <div>
+        <h2>Banners Lists</h2>
+        <BannersList />
       </div>
     </div>
   );
