@@ -1,23 +1,18 @@
-import { useEffect, useState } from "react";
+import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "./useAxiosPublic";
 
 const useBanners = () => {
-  const [banners, setBanners] = useState([]);
   const axiosPublic = useAxiosPublic();
 
-  useEffect(() => {
-    const fetchBanners = async () => {
+  const { data: banners = [], refetch } = useQuery({
+    queryKey: ["banners"], 
+    queryFn: async () => {
       const response = await axiosPublic.get("/main-banners");
-      setBanners(response.data);
-     
-      
-    };
+      return response.data;
+    },
+  });
 
-    fetchBanners();
-  }, [axiosPublic]);
-
-  return {banners};
-  
+  return { banners, refetch };
 };
 
 export default useBanners;

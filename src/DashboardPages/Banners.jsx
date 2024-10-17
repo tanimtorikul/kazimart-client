@@ -5,6 +5,8 @@ import useAxiosPublic from "../hooks/useAxiosPublic";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useState } from "react";
 import uploadImg from "../assets/uploadimg.png";
+import toast from "react-hot-toast";
+import useBanners from "../hooks/useBanners";
 
 const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
 const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
@@ -13,6 +15,7 @@ const Banners = () => {
   const [image, setImage] = useState(null);
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
+  const { refetch} = useBanners()
 
   const {
     register,
@@ -27,10 +30,10 @@ const Banners = () => {
       return;
     }
 
-    console.log(data); // data contains title and description
+    console.log(data); 
 
     const formData = new FormData();
-    formData.append("image", image); // Append the selected image file
+    formData.append("image", image); 
 
     try {
       const res = await axiosPublic.post(image_hosting_api, formData, {
@@ -48,9 +51,11 @@ const Banners = () => {
           imageUrl: res.data.data.display_url,
         };
         //
-        const bannerRes = await axiosSecure.post("/banners", bannerItem);
+        const bannerRes = await axiosSecure.post("/main-banners", bannerItem);
         console.log(bannerRes.data);
         if (bannerRes.data.insertedId) {
+          refetch()
+          toast.success('Banner upload hoise!')
         }
       }
     } catch (error) {
