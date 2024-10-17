@@ -6,7 +6,7 @@ const BannersList = () => {
   return (
     <div className="overflow-x-auto py-4">
       <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm">
-        <thead className="bg-gray-50">
+        <thead className="bg-[#F2FCFD]">
           <tr className="">
             <th className="py-3 px-5 text-center text-sm font-semibold text-gray-600 uppercase tracking-wider">
               SL
@@ -33,7 +33,7 @@ const BannersList = () => {
                 <img
                   src={banner.imgUrl}
                   alt={banner.title}
-                  className="w-20 h-20 object-cover"
+                  className="w-24 h-12 object-cover"
                 />
               </td>
               <td className="py-3 px-5 text-center">{banner.title}</td>

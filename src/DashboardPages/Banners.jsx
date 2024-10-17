@@ -1,41 +1,71 @@
 import { useForm } from "react-hook-form";
-import { useState } from "react";
 import BannerImg from "../assets/banner.png";
-import uploadImage from "../assets/uploadimg.png";
 import BannersList from "../components/BannersList";
+import useAxiosPublic from "../hooks/useAxiosPublic";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import { useState } from "react";
+import uploadImg from "../assets/uploadimg.png";
+
+const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
+const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
 
 const Banners = () => {
+  const [image, setImage] = useState(null);
+  const axiosPublic = useAxiosPublic();
+  const axiosSecure = useAxiosSecure();
+  
   const {
     register,
     handleSubmit,
     formState: { errors },
     setError,
-    clearErrors,
   } = useForm();
 
-  const [image, setImage] = useState(null);
-
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     if (!image) {
-      setError("image", {
-        type: "manual",
-        message: "Image is required",
-      });
-      return;
+        setError("image", { type: "manual", message: "Image is required" });
+        return;
     }
 
-    const formData = {
-      ...data,
-      image: image || null,
-    };
-    console.log(formData);
-  };
+    console.log(data); // data contains title and description
+
+    const formData = new FormData();
+    formData.append("image", image); // Append the selected image file
+
+    try {
+        const res = await axiosPublic.post(image_hosting_api, formData, {
+            headers: {
+                "content-type": "multipart/form-data",
+            },
+        });
+
+        console.log(res.data);
+
+        if (res.data.success) {
+          const bannerItem = {
+              title: data.title,
+              description: data.description,
+              imageUrl: res.data.data.display_url, 
+          };
+          // 
+          const bannerRes = await axiosSecure.post('/banners', bannerItem)
+          console.log(bannerRes.data);
+          if (bannerRes.data.insertedId) {
+            
+          }
+          
+      }
+      
+    } catch (error) {
+        console.error("Error uploading image:", error);
+    }
+};
+
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
       setImage(file);
-      clearErrors("image");
     }
   };
 
@@ -62,15 +92,16 @@ const Banners = () => {
                 <label htmlFor="image">
                   <img
                     className="w-96 h-48 object-contain"
-                    src={image ? URL.createObjectURL(image) : uploadImage}
+                    src={image ? URL.createObjectURL(image) : uploadImg}
                     alt="Uploaded Banner"
                   />
 
                   <input
                     type="file"
                     id="image"
-                    hidden
+                    accept="image/*"
                     onChange={handleFileChange}
+                    hidden
                   />
                 </label>
                 {errors.image && (
@@ -86,7 +117,7 @@ const Banners = () => {
               </label>
               <input
                 type="text"
-                {...register("title", { required: "Banner Title is required" })}
+                {...register("title", { required: "Banner Title is required" })} // Register title
                 name="title"
                 placeholder="Enter Banner Title"
                 className="w-full px-4 py-3 border rounded-md border-gray-300 text-gray-900"
@@ -107,7 +138,7 @@ const Banners = () => {
               <textarea
                 {...register("description", {
                   required: "Description is required",
-                })}
+                })} // Register description
                 name="description"
                 placeholder="Enter Banner Description"
                 className="w-full px-3 py-3 border rounded-md border-gray-300 text-gray-900"
