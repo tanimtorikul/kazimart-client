@@ -9,7 +9,7 @@ import useCart from "../../hooks/useCart";
 const ProductCard = ({ item }) => {
   const { imageUrl, previousPrice, price, name, quantity, _id } = item;
   const { user } = useAuth();
-  console.log(user);
+  // console.log(user);
   const navigate = useNavigate();
   const location = useLocation();
   const [, refetch] = useCart();

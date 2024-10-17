@@ -13,7 +13,7 @@ const useProducts = () => {
       });
   }, []);
 
-  console.log(items);
+  // console.log(items);
   return [items, loading];
 };
 

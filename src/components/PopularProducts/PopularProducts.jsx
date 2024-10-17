@@ -8,7 +8,7 @@ const PopularProducts = () => {
     item.category.includes("popular")
   );
 
-  console.log(popularItems);
+  // console.log(popularItems);
 
   return (
     <div className="my-16">

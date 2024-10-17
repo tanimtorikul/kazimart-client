@@ -1,8 +1,9 @@
 import { MdEdit } from "react-icons/md";
-import mainBanners from "../../public/mainbanners.json";
 import { FaTrashAlt } from "react-icons/fa";
+import useBanners from "../hooks/useBanners";
 
 const BannersList = () => {
+  const {banners} = useBanners()
   return (
     <div className="overflow-x-auto py-4">
       <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm">
@@ -26,7 +27,7 @@ const BannersList = () => {
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200">
-          {mainBanners.map((banner, index) => (
+          {banners.map((banner, index) => (
             <tr key={index}>
               <td className="py-3 px-5 text-center">{index + 1}</td>
               <td className="py-3 px-5 flex justify-center">
@@ -37,7 +38,7 @@ const BannersList = () => {
                 />
               </td>
               <td className="py-3 px-5 text-center">{banner.title}</td>
-              <td className="py-3 px-5 text-center">{banner.subtitle}</td>
+              <td className="py-3 px-5 text-center">{banner.description}</td>
               <td className="py-3 px-5 text-center">
                 <button className="border-blue-500 text-blue-500 border px-1 py-1 rounded">
                   <MdEdit />

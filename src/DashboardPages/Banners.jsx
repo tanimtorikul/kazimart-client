@@ -13,7 +13,7 @@ const Banners = () => {
   const [image, setImage] = useState(null);
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
-  
+
   const {
     register,
     handleSubmit,
@@ -23,8 +23,8 @@ const Banners = () => {
 
   const onSubmit = async (data) => {
     if (!image) {
-        setError("image", { type: "manual", message: "Image is required" });
-        return;
+      setError("image", { type: "manual", message: "Image is required" });
+      return;
     }
 
     console.log(data); // data contains title and description
@@ -33,34 +33,30 @@ const Banners = () => {
     formData.append("image", image); // Append the selected image file
 
     try {
-        const res = await axiosPublic.post(image_hosting_api, formData, {
-            headers: {
-                "content-type": "multipart/form-data",
-            },
-        });
+      const res = await axiosPublic.post(image_hosting_api, formData, {
+        headers: {
+          "content-type": "multipart/form-data",
+        },
+      });
 
-        console.log(res.data);
+      console.log(res.data);
 
-        if (res.data.success) {
-          const bannerItem = {
-              title: data.title,
-              description: data.description,
-              imageUrl: res.data.data.display_url, 
-          };
-          // 
-          const bannerRes = await axiosSecure.post('/banners', bannerItem)
-          console.log(bannerRes.data);
-          if (bannerRes.data.insertedId) {
-            
-          }
-          
+      if (res.data.success) {
+        const bannerItem = {
+          title: data.title,
+          description: data.description,
+          imageUrl: res.data.data.display_url,
+        };
+        //
+        const bannerRes = await axiosSecure.post("/banners", bannerItem);
+        console.log(bannerRes.data);
+        if (bannerRes.data.insertedId) {
+        }
       }
-      
     } catch (error) {
-        console.error("Error uploading image:", error);
+      console.error("Error uploading image:", error);
     }
-};
-
+  };
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -138,7 +134,7 @@ const Banners = () => {
               <textarea
                 {...register("description", {
                   required: "Description is required",
-                })} // Register description
+                })}
                 name="description"
                 placeholder="Enter Banner Description"
                 className="w-full px-3 py-3 border rounded-md border-gray-300 text-gray-900"

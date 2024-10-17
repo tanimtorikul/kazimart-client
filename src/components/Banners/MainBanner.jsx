@@ -1,38 +1,26 @@
-import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-fade";
 import { Autoplay, EffectFade } from "swiper/modules";
 import { Link } from "react-router-dom";
+import useBanners from "../../hooks/useBanners";
 
 const MainBanner = () => {
-  const [banners, setBanners] = useState([]);
+  const { banners } = useBanners(); 
 
-  useEffect(() => {
-    const fetchBanners = async () => {
-      try {
-        const res = await fetch("mainbanners.json");
-        const data = await res.json();
-        setBanners(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchBanners();
-  }, []);
+  
 
   return (
     <Swiper
       speed={1000}
       autoplay={{ delay: 2000, disableOnInteraction: false }}
-      settings
       effect={"fade"}
       fadeEffect={{ crossFade: true }}
       modules={[Autoplay, EffectFade]}
       className="mySwiper"
     >
-      {banners.map((banner, id) => (
-        <SwiperSlide key={id} className="w-full flex flex-col gap-4">
+      {banners.map((banner) => (
+        <SwiperSlide key={banner._id} className="w-full flex flex-col gap-4">
           <div
             className="hero h-[400px] relative"
             style={{
@@ -48,7 +36,7 @@ const MainBanner = () => {
                   {banner.title}
                 </h1>
                 <p className="mb-5 text-lg md:text-xl text-white shadow-md">
-                  {banner.subtitle}
+                  {banner.description}
                 </p>
                 <Link
                   to="/shop"
