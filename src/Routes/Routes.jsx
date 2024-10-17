@@ -15,6 +15,7 @@ import Add from '../DashboardPages/Add'
 import Orders from "../DashboardPages/Orders";
 import PrivateRoute from '../Routes/PrivateRoute'
 import AllUser from "../DashboardPages/AllUser";
+import Banners from "../DashboardPages/Banners";
 
 export const router = createBrowserRouter([
   {
@@ -75,6 +76,10 @@ export const router = createBrowserRouter([
       {
         path: 'orders',
         element: <Orders/>
+      },
+      {
+        path: 'main-banner',
+        element: <Banners/>
       },
       {
         path: 'users',

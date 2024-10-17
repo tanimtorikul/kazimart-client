@@ -5,9 +5,10 @@ import {
   FaClipboardList,
 } from "react-icons/fa6";
 import { GrGallery } from "react-icons/gr";
-import { MdCategory, MdAddShoppingCart } from "react-icons/md";
+import { MdCategory } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
+import { RiGalleryView } from "react-icons/ri";
 
 const DashboardSideBar = () => {
   const [isAdmin] = useAdmin();
@@ -19,7 +20,10 @@ const DashboardSideBar = () => {
           <ul className="space-y-4 list-none">
             {isAdmin ? (
               <>
-              <h2 className="text-[#B1E3CE] text-xs md:text-xl py-2">Admin Dashboard</h2>
+                <h2 className="text-[#B1E3CE] text-xs md:text-xl py-2">
+                  Admin Dashboard
+                </h2>
+
                 {/* Product Management */}
                 <li>
                   <p className="text-[#B1E3CE] hidden md:block">
@@ -107,6 +111,41 @@ const DashboardSideBar = () => {
                   >
                     <FaBoxArchive className="mr-2" />
                     <p className="md:block hidden">All Categories</p>
+                  </NavLink>
+                </li>
+
+                {/* Banner Management */}
+                <li>
+                  <p className="text-[#B1E3CE] hidden md:block">
+                    Banner Management
+                  </p>
+                  <NavLink
+                    to="/dashboard/main-banner"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 rounded transition-colors ${
+                        isActive
+                          ? "text-[#47C466] bg-gray-900"
+                          : "hover:bg-[#013737]"
+                      }`
+                    }
+                  >
+                    <GrGallery className="mr-2" />
+                    <p className="md:block hidden">Main Banners</p>
+                  </NavLink>
+                </li>
+                <li>
+                  <NavLink
+                    to="/dashboard/promo-banner"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 rounded transition-colors ${
+                        isActive
+                          ? "text-[#47C466] bg-gray-900"
+                          : "hover:bg-[#013737]"
+                      }`
+                    }
+                  >
+                    <RiGalleryView className="mr-2" />
+                    <p className="md:block hidden">Promo Banners</p>
                   </NavLink>
                 </li>
 
