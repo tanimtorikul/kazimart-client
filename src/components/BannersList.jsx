@@ -1,27 +1,41 @@
 import { MdEdit } from "react-icons/md";
 import { FaTrashAlt } from "react-icons/fa";
 import useBanners from "../hooks/useBanners";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const BannersList = () => {
-  const {banners} = useBanners()
+  const { banners, refetch } = useBanners();
+  const axiosSecure = useAxiosSecure();
+
+  const handleDelete = (id, name) => {
+    axiosSecure.delete(`/main-banners/${id}`).then((res) => {
+     
+      if (res.data.deletedCount > 0) {
+        refetch(); 
+        toast.success(`${name} is deleted from the banners`); 
+      }
+    })
+  };
+
   return (
     <div className="overflow-x-auto py-4">
       <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm">
         <thead className="bg-[#F2FCFD]">
-          <tr className="">
-            <th className="py-3 px-5 text-center text-sm font-semibold text-gray-600 uppercase tracking-wider">
+          <tr>
+            <th className="py-3 px-5 text-center text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wider">
               SL
             </th>
-            <th className="py-3 px-5 text-center text-sm font-semibold text-gray-600 uppercase tracking-wider">
+            <th className="py-3 px-5 text-center text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wider">
               Image
             </th>
-            <th className="py-3 px-5 text-center text-sm font-semibold text-gray-600 uppercase tracking-wider">
+            <th className="py-3 px-5 text-center text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wider">
               Title
             </th>
-            <th className="py-3 px-5  text-center text-sm font-semibold text-gray-600 uppercase tracking-wider">
+            <th className="py-3 px-5 text-center hidden sm:table-cell text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wider">
               Description
             </th>
-            <th className="py-3 px-5 text-center text-sm font-semibold text-gray-600 uppercase tracking-wider">
+            <th className="py-3 px-5 text-center text-xs sm:text-sm font-semibold text-gray-600 uppercase tracking-wider">
               Action
             </th>
           </tr>
@@ -34,16 +48,21 @@ const BannersList = () => {
                 <img
                   src={banner.imgUrl}
                   alt={banner.title}
-                  className="w-24 h-12 object-cover"
+                  className="w-16 h-8 md:w-32 md:h-16 object-cover"
                 />
               </td>
-              <td className="py-3 px-5 text-center">{banner.title}</td>
-              <td className="py-3 px-5 text-center">{banner.description}</td>
+              <td className="py-2 px-2 text-center">{banner.title}</td>
+              <td className="py-3 px-5 hidden sm:table-cell text-center">
+                {banner.description}
+              </td>
               <td className="py-3 px-5 text-center">
                 <button className="border-blue-500 text-blue-500 border px-1 py-1 rounded">
                   <MdEdit />
                 </button>
-                <button className="border-red-500 text-red-500 border px-1 py-1 rounded ml-3">
+                <button
+                  onClick={() => handleDelete(banner._id, banner.title)}
+                  className="border-red-500 text-red-500 border px-1 py-1 rounded md:ml-3"
+                >
                   <FaTrashAlt />
                 </button>
               </td>

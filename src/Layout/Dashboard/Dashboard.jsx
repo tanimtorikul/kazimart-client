@@ -10,9 +10,9 @@ const Dashboard = () => {
         <DashboardNavbar />
         <hr />
         
-        <div className="flex w-full">
+        <div className="flex md:w-full">
         
-          <div className="w-64">
+          <div className="md:w-64">
             <DashboardSidebar />
           </div>
           

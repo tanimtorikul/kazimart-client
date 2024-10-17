@@ -8,14 +8,15 @@ import uploadImg from "../assets/uploadimg.png";
 import toast from "react-hot-toast";
 import useBanners from "../hooks/useBanners";
 
-const image_hosting_key = import.meta.env.VITE_IMAGE_HOSTING_KEY;
-const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
+const cloud_name = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
+const upload_preset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
+const cloudinary_upload_api = `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`;
 
 const Banners = () => {
   const [image, setImage] = useState(null);
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
-  const { refetch} = useBanners()
+  const { refetch } = useBanners();
 
   const {
     register,
@@ -30,36 +31,32 @@ const Banners = () => {
       return;
     }
 
-    console.log(data); 
-
     const formData = new FormData();
-    formData.append("image", image); 
+    formData.append("file", image);
+    formData.append("upload_preset", upload_preset);
 
     try {
-      const res = await axiosPublic.post(image_hosting_api, formData, {
+      const res = await axiosPublic.post(cloudinary_upload_api, formData, {
         headers: {
-          "content-type": "multipart/form-data",
+          "Content-Type": "multipart/form-data",
         },
       });
 
-      console.log(res.data);
-
-      if (res.data.success) {
+      if (res.data.secure_url) {
         const bannerItem = {
           title: data.title,
           description: data.description,
-          imageUrl: res.data.data.display_url,
+          imageUrl: res.data.secure_url,
         };
-        //
+
         const bannerRes = await axiosSecure.post("/main-banners", bannerItem);
-        console.log(bannerRes.data);
         if (bannerRes.data.insertedId) {
-          refetch()
-          toast.success('Banner upload hoise!')
+          refetch();
+          toast.success("Banner uploaded successfully!");
         }
       }
     } catch (error) {
-      console.error("Error uploading image:", error);
+      console.error(error);
     }
   };
 
@@ -80,7 +77,7 @@ const Banners = () => {
         <form
           onSubmit={handleSubmit(onSubmit)}
           noValidate
-          className="space-y-6 w-full md:w-2/3"
+          className="space-y-6 w-1/2 md:w-2/3"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Image Upload */}
@@ -92,7 +89,7 @@ const Banners = () => {
               <div>
                 <label htmlFor="image">
                   <img
-                    className="w-96 h-48 object-contain"
+                    className="w-24 md:w-96 md:h-48 object-contain"
                     src={image ? URL.createObjectURL(image) : uploadImg}
                     alt="Uploaded Banner"
                   />
