@@ -2,9 +2,13 @@ import SectionTitle from "../shared/SectionTitle";
 import { Link } from "react-router-dom";
 import CategoryCard from "./CategoryCard";
 import useCategories from "../../hooks/useCategories";
+import { Swiper, SwiperSlide } from "swiper/react"; 
+import "swiper/css"; 
+import "swiper/css/pagination"; 
+import { Pagination } from "swiper/modules"; 
 
 const Categories = () => {
-  const { categories } = useCategories(); 
+  const { categories } = useCategories();
 
   return (
     <div className="my-16">
@@ -13,12 +17,34 @@ const Categories = () => {
         subHeading="Discover the Trends and Favorites"
       />
 
-      <div className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mt-6">
-        {categories.map((category) => ( 
-          <Link key={category._id} to={`/categories/${category.name}`}>
-            <CategoryCard category={category} />
-          </Link>
-        ))}
+      <div className="max-w-[1400px] mx-auto mt-6">
+        {/* Grid layout for small screens */}
+        <div className="grid grid-cols-2 gap-4 md:hidden">
+          {categories.map((category) => (
+            <Link to={`/categories/${category.category}`} key={category._id}>
+              <CategoryCard category={category} />
+            </Link>
+          ))}
+        </div>
+
+        {/* Swiper for larger screens */}
+        <div className="hidden md:block">
+          <Swiper
+            slidesPerView={5} 
+            spaceBetween={30}
+            pagination={{ clickable: true }}
+            modules={[Pagination]}
+            className="mySwiper"
+          >
+            {categories.map((category) => (
+              <SwiperSlide key={category._id}>
+                <Link to={`/categories/${category.category}`}>
+                  <CategoryCard category={category} />
+                </Link>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
       </div>
     </div>
   );

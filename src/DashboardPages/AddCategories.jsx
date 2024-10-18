@@ -41,8 +41,8 @@ const AddCategories = () => {
 
       if (res.data.secure_url) {
         const categoryItem = {
-          name: data.name,
-          imageUrl: res.data.secure_url,
+          category: data.name,
+          imgUrl: res.data.secure_url,
         };
 
         const categoryRes = await axiosSecure.post("/categories", categoryItem);
