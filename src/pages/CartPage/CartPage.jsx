@@ -9,6 +9,11 @@ const CartPage = () => {
   console.log(cart);
   const totalPrice = cart.reduce((total, item) => total + item.price, 0);
 
+  const handleCheckout = () => {
+    // storing total price in localStorage
+    localStorage.setItem("totalPrice", totalPrice);
+  };
+
   return (
     <div className="max-w-[1400px] mx-auto">
       {cart.length === 0 ? (
@@ -99,7 +104,8 @@ const CartPage = () => {
 
             {/* Proceed to Checkout Button */}
             <div>
-              <Link to="/checkout">
+              <Link to="/checkout" onClick={handleCheckout}>
+              
                 <button className="w-full bg-[#01684B] text-white py-3 rounded-lg hover:bg-green-700 transition duration-200 text-lg font-semibold">
                   Proceed to Checkout
                 </button>

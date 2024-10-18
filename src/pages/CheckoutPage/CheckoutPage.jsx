@@ -6,6 +6,8 @@ import { TbCurrencyTaka } from "react-icons/tb";
 const CheckoutPage = () => {
   const { user } = useAuth();
   const [cart] = useCart();
+  // get the price from localstorage
+  const totalPrice = localStorage.getItem("totalPrice");
 
   const {
     register,
@@ -15,20 +17,19 @@ const CheckoutPage = () => {
 
   const onSubmit = (data) => {
     console.log(data);
-    // Handle form submission here
+    // todo: Handle form submission here
   };
 
   return (
-    <div className="max-w-[1400px] mx-auto my-8 p-6">
+    <div className="max-w-[1400px] mx-auto my-8 p-6 ">
       <h1 className="text-2xl font-semibold mb-6">Checkout</h1>
 
-      {/* Flex container for form and order summary */}
       <div className="flex flex-col md:flex-row gap-12">
         {/* Checkout Form */}
         <form
           onSubmit={handleSubmit(onSubmit)}
           noValidate
-          className="space-y-6 w-full md:w-2/3"
+          className="space-y-6 w-full md:w-2/3 border p-4 rounded-lg"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {/* Full Name */}
@@ -40,7 +41,7 @@ const CheckoutPage = () => {
                 type="text"
                 {...register("name", { required: "Full Name is required" })}
                 name="name"
-                defaultValue={user.displayName}
+                defaultValue={user?.displayName}
                 className="w-full px-4 py-3 border rounded-md border-gray-300 text-gray-900"
               />
               {errors.name && (
@@ -85,7 +86,7 @@ const CheckoutPage = () => {
                 type="email"
                 {...register("email", { required: "Email is required" })}
                 name="email"
-                defaultValue={user?.displayName}
+                defaultValue={user?.email}
                 className="w-full px-4 py-3 border rounded-md border-gray-300 text-gray-900"
               />
               {errors.email && (
@@ -200,13 +201,13 @@ const CheckoutPage = () => {
         </form>
 
         {/* Order Summary */}
-        <div className="p-6 border rounded-lg shadow-md w-full md:w-1/3">
-          <h2 className="text-lg font-semibold mb-4">Order Summary</h2>
-          <div className="mb-4">
-          
-            <p className="text-lg font-medium">
-              Total Price: <TbCurrencyTaka /> 
-            </p>
+        <div className="p-6 h-96 border-2 rounded-lg shadow-md w-full md:w-1/3">
+          <h2 className="text-lg font-semibold mb-4 text-center">
+            Order Summary
+          </h2>
+          <div className="mb-4 flex items-center justify-center">
+            <p className="text-lg font-medium">Total Price: {totalPrice}</p>
+            <TbCurrencyTaka className="ml-1" />
           </div>
         </div>
       </div>

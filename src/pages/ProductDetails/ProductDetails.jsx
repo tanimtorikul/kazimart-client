@@ -5,7 +5,7 @@ import useProducts from "../../hooks/useProducts";
 import useAuth from "../../hooks/useAuth";
 import useCart from "../../hooks/useCart";
 import toast from "react-hot-toast";
-import useAxiosSecure from "../../hooks/useAxiosSecure"; 
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -17,6 +17,7 @@ const ProductDetails = () => {
   const axiosSecure = useAxiosSecure();
 
   const [isAddedToCart, setIsAddedToCart] = useState(false);
+  const [activeTab, setActiveTab] = useState("description");
 
   const product = items.find((item) => item._id === id);
 
@@ -40,7 +41,6 @@ const ProductDetails = () => {
 
   const handleAddToCart = (product) => {
     if (user && user.email) {
-      // Cart item to be added in db
       const cartItem = {
         productId: product._id,
         email: user.email,
@@ -49,13 +49,11 @@ const ProductDetails = () => {
         price: product.price,
         quantity: product.quantity,
       };
-      // axios to post cart item to the server
       axiosSecure
         .post("/carts", cartItem)
         .then((res) => {
           if (res.data.insertedId) {
             toast.success(`${product.name} added to the cart`);
-            // Refetch cart to update the cart count
             refetch();
           } else {
             toast.error("Failed to add to the cart!");
@@ -130,6 +128,43 @@ const ProductDetails = () => {
                 <span>{isAddedToCart ? "Already Added" : "Add to Cart"}</span>
               </button>
             </div>
+          </div>
+
+          {/* Tabs */}
+          <div className="mt-8">
+            <div className="flex space-x-4 border-b-2 mb-4">
+              <button
+                onClick={() => setActiveTab("description")}
+                className={`px-4 py-2 text-lg font-semibold ${
+                  activeTab === "description"
+                    ? "border-b-2 border-[#01684B] text-[#01684B]"
+                    : "text-gray-500"
+                }`}
+              >
+                Description
+              </button>
+              <button
+                onClick={() => setActiveTab("reviews")}
+                className={`px-4 py-2 text-lg font-semibold ${
+                  activeTab === "reviews"
+                    ? "border-b-2 border-[#01684B] text-[#01684B]"
+                    : "text-gray-500"
+                }`}
+              >
+                Reviews
+              </button>
+            </div>
+            {/* 
+             based on active tab */}
+            {activeTab === "description" ? (
+              <div>
+                <p>{product.description}</p>
+              </div>
+            ) : (
+              <div>
+                <p>No reviews yet. Be the first to leave a review!</p>
+              </div>
+            )}
           </div>
         </>
       ) : (
