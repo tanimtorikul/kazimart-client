@@ -16,6 +16,7 @@ import PrivateRoute from '../Routes/PrivateRoute'
 import AllUser from "../DashboardPages/AllUser";
 import Banners from "../DashboardPages/Banners";
 import Overview from "../DashboardPages/Overview";
+import AddCategories from "../DashboardPages/AddCategories";
 
 export const router = createBrowserRouter([
   {
@@ -80,6 +81,10 @@ export const router = createBrowserRouter([
       {
         path: 'main-banner',
         element: <Banners/>
+      },
+      {
+        path: 'categories',
+        element: <AddCategories/>
       },
       {
         path: 'users',

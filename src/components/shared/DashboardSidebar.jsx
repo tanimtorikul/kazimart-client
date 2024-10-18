@@ -3,6 +3,7 @@ import {
   FaUser,
   FaBoxArchive,
   FaClipboardList,
+  FaChartColumn,
 } from "react-icons/fa6";
 import { GrGallery } from "react-icons/gr";
 import { MdCategory } from "react-icons/md";
@@ -37,7 +38,7 @@ const DashboardSideBar = () => {
                       }`
                     }
                   >
-                    <GrGallery className="mr-2" />
+                    <FaChartColumn className="mr-2" />
                     <p className="md:block hidden">Overview</p>
                   </NavLink>
                 </li>
