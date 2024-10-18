@@ -1,19 +1,32 @@
-import { MdEdit } from "react-icons/md";
 import useCategories from "../../hooks/useCategories";
 import { FaTrashAlt } from "react-icons/fa";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const CategoriesList = () => {
   const { categories, refetch } = useCategories();
   const axiosSecure = useAxiosSecure();
 
-  //   handle delete to delete category
   const handleDelete = (id, category) => {
-    axiosSecure.delete(`/categories/${id}`).then((res) => {
-      if (res.data.deletedCount > 0) {
-        refetch();
-        toast.success(`${category} is deleted from the category list`);
+    //
+    Swal.fire({
+      title: "Are you sure?",
+      text: `You are about to delete ${category}. This action cannot be undone.`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/categories/${id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            toast.success(`${category} has been deleted from the banners.`);
+          }
+        });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        toast.info("Action canceled.");
       }
     });
   };
@@ -49,9 +62,6 @@ const CategoriesList = () => {
               </td>
               <td className="py-2 px-2 text-center">{category.category}</td>
               <td className="py-3 px-5 text-center">
-                <button className="border-blue-500 text-blue-500 border px-1 py-1 rounded">
-                  <MdEdit />
-                </button>
                 <button
                   onClick={() => handleDelete(category._id, category.category)}
                   className="border-red-500 text-red-500 border px-1 py-1 rounded md:ml-3"

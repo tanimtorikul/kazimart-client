@@ -5,6 +5,7 @@ import useAxiosPublic from "../hooks/useAxiosPublic";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useState } from "react";
 import CategoriesList from "../components/Categories/CategoriesList";
+import useCategories from "../hooks/useCategories";
 
 const cloud_name = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
 const upload_preset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
@@ -14,6 +15,7 @@ const AddCategories = () => {
   const [image, setImage] = useState(null);
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
+  const {refetch} = useCategories()
 
   const {
     register,
@@ -48,7 +50,7 @@ const AddCategories = () => {
         const categoryRes = await axiosSecure.post("/categories", categoryItem);
         if (categoryRes.data.insertedId) {
           toast.success("Category added successfully!");
-
+          refetch()
           setImage(null);
         }
       }

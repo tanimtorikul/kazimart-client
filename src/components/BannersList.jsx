@@ -1,21 +1,34 @@
-import { MdEdit } from "react-icons/md";
 import { FaTrashAlt } from "react-icons/fa";
 import useBanners from "../hooks/useBanners";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const BannersList = () => {
   const { banners, refetch } = useBanners();
   const axiosSecure = useAxiosSecure();
 
   const handleDelete = (id, name) => {
-    axiosSecure.delete(`/main-banners/${id}`).then((res) => {
-     
-      if (res.data.deletedCount > 0) {
-        refetch(); 
-        toast.success(`${name} is deleted from the banners`); 
+    //
+    Swal.fire({
+      title: "Are you sure?",
+      text: `You are about to delete ${name}. This action cannot be undone.`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/main-banners/${id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            toast.success(`${name} has been deleted from the banners.`);
+          }
+        });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        toast.info("Action canceled.");
       }
-    })
+    });
   };
 
   return (
@@ -56,9 +69,6 @@ const BannersList = () => {
                 {banner.description}
               </td>
               <td className="py-3 px-5 text-center">
-                <button className="border-blue-500 text-blue-500 border px-1 py-1 rounded">
-                  <MdEdit />
-                </button>
                 <button
                   onClick={() => handleDelete(banner._id, banner.title)}
                   className="border-red-500 text-red-500 border px-1 py-1 rounded md:ml-3"
