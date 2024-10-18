@@ -15,7 +15,7 @@ const AddCategories = () => {
   const [image, setImage] = useState(null);
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
-  const {refetch} = useCategories()
+  const { refetch } = useCategories();
 
   const {
     register,
@@ -50,7 +50,7 @@ const AddCategories = () => {
         const categoryRes = await axiosSecure.post("/categories", categoryItem);
         if (categoryRes.data.insertedId) {
           toast.success("Category added successfully!");
-          refetch()
+          refetch();
           setImage(null);
         }
       }
