@@ -1,7 +1,7 @@
 import useAdmin from "../hooks/useAdmin";
 import useAuth from "../hooks/useAuth";
 
-const Profile = () => {
+const Overview = () => {
   const { user } = useAuth();
   const [isAdmin] = useAdmin();
   console.log("isAdmin", isAdmin);
@@ -30,4 +30,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default Overview;

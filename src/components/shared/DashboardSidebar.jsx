@@ -24,6 +24,23 @@ const DashboardSideBar = () => {
                   Admin Dashboard
                 </h2>
 
+                {/* Overview */}
+                <li>
+                  <p className="text-[#B1E3CE] hidden md:block">Overview</p>
+                  <NavLink
+                    to="/dashboard/overview"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 rounded transition-colors ${
+                        isActive
+                          ? "text-[#47C466] bg-gray-900"
+                          : "hover:bg-[#013737]"
+                      }`
+                    }
+                  >
+                    <GrGallery className="mr-2" />
+                    <p className="md:block hidden">Overview</p>
+                  </NavLink>
+                </li>
                 {/* Product Management */}
                 <li>
                   <p className="text-[#B1E3CE] hidden md:block">
@@ -85,7 +102,7 @@ const DashboardSideBar = () => {
                     Category Management
                   </p>
                   <NavLink
-                    to="/dashboard/add-category"
+                    to="/dashboard/categories"
                     className={({ isActive }) =>
                       `flex items-center px-4 py-2 rounded transition-colors ${
                         isActive
@@ -96,21 +113,6 @@ const DashboardSideBar = () => {
                   >
                     <MdCategory className="mr-2" />
                     <p className="md:block hidden">Add Category</p>
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    to="/dashboard/all-categories"
-                    className={({ isActive }) =>
-                      `flex items-center px-4 py-2 rounded transition-colors ${
-                        isActive
-                          ? "text-[#47C466] bg-gray-900"
-                          : "hover:bg-[#013737]"
-                      }`
-                    }
-                  >
-                    <FaBoxArchive className="mr-2" />
-                    <p className="md:block hidden">All Categories</p>
                   </NavLink>
                 </li>
 

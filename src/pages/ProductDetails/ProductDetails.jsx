@@ -72,61 +72,63 @@ const ProductDetails = () => {
     <div className="max-w-[1400px] mx-auto my-8 px-4">
       {product ? (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            <div>
-              <img
-                src={product.imageUrl}
-                alt={product.name}
-                className="rounded-lg border-2 shadow-lg max-h-[500px] object-cover"
-              />
-            </div>
-            <div className="space-y-6">
-              <h2 className="text-2xl font-semibold text-[#002349]">
-                {product.name}
-              </h2>
-
-              <div className="flex items-center gap-8">
-                <div className="flex items-center gap-2 text-[#a8d9e9] rounded-xl bg-[#FFF8E6] px-3 py-1">
-                  <FaStar className="text-yellow-500" />
-                  <span>{product.rating}</span>
-                </div>
-                <p
-                  className={`rounded-2xl px-6 py-2 font-medium ${
-                    product.inStock
-                      ? "bg-[#F2F7F6] border-[#01684B] border-2  text-[#01684B]"
-                      : "text-red-600"
-                  }`}
-                >
-                  {product.inStock ? "In Stock" : "Out of Stock"}
-                </p>
+          <div className="max-w-[1200px] mx-auto my-8 px-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+              <div className="flex justify-center">
+                <img
+                  src={product.imageUrl}
+                  alt={product.name}
+                  className="rounded-lg border-2 shadow-lg md:max-h-[500px] object-cover"
+                />
               </div>
-
-              <p>{product.quantity}</p>
-              <div className="flex gap-2 items-center mb-4">
-                <p className="line-through">৳ {product.previousPrice}</p>
-                <p className="text-2xl text-[#01684B] font-bold">
-                  ৳ {product.price}
-                </p>
-              </div>
-              <div>
-                <p className="text-gray-300">Total Amount:</p>
-                <h2 className="text-5xl text-[#01684B] font-bold">
-                  ৳ {product.price}
+              <div className="space-y-6">
+                <h2 className="text-2xl font-semibold text-[#002349]">
+                  {product.name}
                 </h2>
-              </div>
 
-              <button
-                onClick={() => handleAddToCart(product)}
-                className={`${
-                  isAddedToCart
-                    ? "bg-gray-500 cursor-not-allowed"
-                    : "bg-[#01684B] hover:bg-teal-600"
-                } text-white md:text-xl font-semibold px-8 py-3 rounded-xl shadow-lg transition duration-300 ease-in-out flex items-center space-x-2`}
-                disabled={isAddedToCart}
-              >
-                <FaCartShopping />
-                <span>{isAddedToCart ? "Already Added" : "Add to Cart"}</span>
-              </button>
+                <div className="flex items-center gap-8">
+                  <div className="flex items-center gap-2 text-[#a8d9e9] rounded-xl bg-[#FFF8E6] px-3 py-1">
+                    <FaStar className="text-yellow-500" />
+                    <span>{product.rating}</span>
+                  </div>
+                  <p
+                    className={`rounded-2xl text-sm md:text-lg px-2 md:px-6 py-1 md:py-2 font-medium ${
+                      product.inStock
+                        ? "bg-[#F2F7F6] border-[#01684B] border-2 text-[#01684B]"
+                        : "text-red-600"
+                    }`}
+                  >
+                    {product.inStock ? "In Stock" : "Out of Stock"}
+                  </p>
+                </div>
+
+                <p>{product.quantity}</p>
+                <div className="flex gap-2 items-center mb-4">
+                  <p className="line-through">৳ {product.previousPrice}</p>
+                  <p className="text-lg md:text-2xl text-[#01684B] font-bold">
+                    ৳ {product.price}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-gray-300">Total Amount:</p>
+                  <h2 className="text-2xl md:text-5xl text-[#01684B] font-bold">
+                    ৳ {product.price}
+                  </h2>
+                </div>
+
+                <button
+                  onClick={() => handleAddToCart(product)}
+                  className={`${
+                    isAddedToCart
+                      ? "bg-gray-500 cursor-not-allowed"
+                      : "bg-[#01684B] hover:bg-teal-600"
+                  } text-white md:text-xl font-semibold px-4 md:px-8 py-2 md:py-3 rounded-xl shadow-lg transition duration-300 ease-in-out flex items-center space-x-2`}
+                  disabled={isAddedToCart}
+                >
+                  <FaCartShopping />
+                  <span>{isAddedToCart ? "Already Added" : "Add to Cart"}</span>
+                </button>
+              </div>
             </div>
           </div>
 

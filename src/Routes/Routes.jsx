@@ -10,12 +10,12 @@ import ProductDetails from "../pages/ProductDetails/ProductDetails";
 import CartPage from "../pages/CartPage/CartPage";
 import CheckoutPage from "../pages/CheckoutPage/CheckoutPage";
 import Dashboard from "../Layout/Dashboard/Dashboard";
-import Profile from "../DashboardPages/Profile";
 import Add from '../DashboardPages/Add'
 import Orders from "../DashboardPages/Orders";
 import PrivateRoute from '../Routes/PrivateRoute'
 import AllUser from "../DashboardPages/AllUser";
 import Banners from "../DashboardPages/Banners";
+import Overview from "../DashboardPages/Overview";
 
 export const router = createBrowserRouter([
   {
@@ -66,8 +66,8 @@ export const router = createBrowserRouter([
     </PrivateRoute>,
     children: [
       {
-        path: 'profile',
-        element: <Profile/>
+        path: 'overview',
+        element: <Overview/>
       },
       {
         path: 'add-product',
