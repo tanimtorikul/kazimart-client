@@ -3,8 +3,8 @@ import useProducts from "../../hooks/useProducts";
 import ProductCard from "../shared/ProductCard";
 
 const PopularProducts = () => {
-  const [items] = useProducts();
-  const popularItems = items.filter((item) =>
+  const {products}= useProducts();
+  const popularItems = products.filter((item) =>
     item.category.includes("popular")
   );
 

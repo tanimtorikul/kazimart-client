@@ -1,20 +1,18 @@
-import { useEffect, useState } from "react";
+
+import useAxiosPublic from "./useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
 const useProducts = () => {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const axiosPublic = useAxiosPublic();
 
-  useEffect(() => {
-    fetch("https://kazimart-server.vercel.app/products")
-      .then((res) => res.json())
-      .then((data) => {
-        setItems(data);
-        setLoading(false);
-      });
-  }, []);
-
-  // console.log(items);
-  return [items, loading];
+  const { data: products = [], refetch } = useQuery({
+    queryKey: ["products"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/products");
+      return res.data;
+    },
+  });
+  return { products, refetch };
 };
 
 export default useProducts;

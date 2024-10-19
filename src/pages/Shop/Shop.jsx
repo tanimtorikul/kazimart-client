@@ -1,10 +1,8 @@
-import { Link, useParams } from "react-router-dom";
 import ProductCard from "../../components/shared/ProductCard";
 import useProducts from "../../hooks/useProducts";
 
 const Shop = () => {
-  const [items] = useProducts();
-  const { id } = useParams();
+  const { products } = useProducts();
   return (
     <div>
       <div className="max-w-[1400px] mx-auto bg-[#01684B] my-2 py-6 text-white">
@@ -16,7 +14,7 @@ const Shop = () => {
         </p>
       </div>
       <div className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-5 gap-4">
-        {items.map((item) => (
+        {products.map((item) => (
           <ProductCard key={item.id} item={item} />
         ))}
       </div>
