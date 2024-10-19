@@ -1,19 +1,21 @@
 import useAxiosPublic from "./useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 
-const useProducts = () => {
+const useProducts = (currentPage, itemsPerPage) => {
   const axiosPublic = useAxiosPublic();
 
-  // Fetch products
+  //  products with pagination
   const { data: products = [], refetch } = useQuery({
-    queryKey: ["products"],
+    queryKey: ["products", currentPage, itemsPerPage], 
     queryFn: async () => {
-      const res = await axiosPublic.get("/products");
+      const res = await axiosPublic.get(
+        `/products?page=${currentPage}&size=${itemsPerPage}`
+      );
       return res.data;
     },
   });
 
-  //  product count
+  // Fetch product count
   const { data: productsCount = 0 } = useQuery({
     queryKey: ["productsCount"],
     queryFn: async () => {
