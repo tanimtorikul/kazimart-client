@@ -1,20 +1,22 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import useProducts from "../../hooks/useProducts";
 import ProductCard from "../../components/shared/ProductCard";
 
 const CategoryPage = () => {
-  const { categoryName } = useParams();
+  const { category } = useParams();
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [products] = useProducts();
+  const { products } = useProducts();
 
+  // filter the specific category based on category name
   useEffect(() => {
     const filtered = products.filter((product) =>
-      product.category.includes(categoryName.toLowerCase())
+      product.category[0]?.toLowerCase().includes(category.toLowerCase())
     );
     setFilteredProducts(filtered);
-  }, [categoryName, products]);
+  }, [category, products]);
 
+  // to go to top of the page
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -23,9 +25,11 @@ const CategoryPage = () => {
     <div>
       <div className="max-w-[1400px] mx-auto bg-[#01684B] my-2 py-6 rounded-xl text-white">
         <h2 className="capitalize text-2xl font-bold text-center">
-          {categoryName}
+          {/* category name */}
+          {category}
         </h2>
         <p className="my-4 text-center">
+          {/* dummy text */}
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
           officia sapiente nostrum magni reprehenderit, modi eius consequuntur
           neque aperiam eos!

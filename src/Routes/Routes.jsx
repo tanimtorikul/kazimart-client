@@ -17,6 +17,7 @@ import Banners from "../DashboardPages/Banners";
 import Overview from "../DashboardPages/Overview";
 import AddCategories from "../DashboardPages/AddCategories";
 import AddProduct from "../DashboardPages/AddProduct";
+import ManageProducts from "../DashboardPages/ManageProducts";
 
 export const router = createBrowserRouter([
   {
@@ -37,7 +38,7 @@ export const router = createBrowserRouter([
         element: <SignUp />,
       },
       {
-        path: "/categories/:categoryName",
+        path: "/categories/:category",
         element: <CategoryPage />,
       },
       {
@@ -73,6 +74,10 @@ export const router = createBrowserRouter([
       {
         path: 'add-product',
         element: <AddProduct/>
+      },
+      {
+        path: 'manage-products',
+        element: <ManageProducts/>
       },
       {
         path: 'orders',

@@ -20,7 +20,7 @@ const Overview = () => {
 
   const totalEarnings = 2459;
   const totalOrders = 24;
-  const [products] = useProducts();
+  const {products} = useProducts();
 
   return (
     <div className="p-6 bg-gray-50 min-h-screen">

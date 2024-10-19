@@ -63,7 +63,7 @@ const DashboardSideBar = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="/dashboard/all-products"
+                    to="/dashboard/manage-products"
                     className={({ isActive }) =>
                       `flex items-center px-4 py-2 rounded transition-colors ${
                         isActive
@@ -73,7 +73,7 @@ const DashboardSideBar = () => {
                     }
                   >
                     <FaBoxArchive className="mr-2" />
-                    <p className="md:block hidden">All Products</p>
+                    <p className="md:block hidden">Manage Products</p>
                   </NavLink>
                 </li>
                 <li>
