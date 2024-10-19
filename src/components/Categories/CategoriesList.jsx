@@ -3,6 +3,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import Swal from "sweetalert2";
+import { MdEdit } from "react-icons/md";
 
 const CategoriesList = () => {
   const { categories, refetch } = useCategories();
@@ -62,6 +63,12 @@ const CategoriesList = () => {
               </td>
               <td className="py-2 px-2 text-center">{category.category}</td>
               <td className="py-3 px-5 text-center">
+                <button
+                  onClick={() => handleEdit(category._id, category.category)}
+                  className="border-blue-500 text-blue-500 border px-1 py-1 rounded md:ml-3"
+                >
+                  <MdEdit />
+                </button>
                 <button
                   onClick={() => handleDelete(category._id, category.category)}
                   className="border-red-500 text-red-500 border px-1 py-1 rounded md:ml-3"

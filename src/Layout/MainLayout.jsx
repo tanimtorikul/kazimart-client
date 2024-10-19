@@ -8,7 +8,7 @@ const MainLayout = () => {
     <div className="font-poppins">
       <Navbar />
 
-      <div className="min-h-screen px-2 md:px-0 py-36 md:py-36">
+      <div className="min-h-screen px-2 md:px-0 pt-36">
         <Outlet />
       </div>
       <div>

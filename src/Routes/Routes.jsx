@@ -10,13 +10,13 @@ import ProductDetails from "../pages/ProductDetails/ProductDetails";
 import CartPage from "../pages/CartPage/CartPage";
 import CheckoutPage from "../pages/CheckoutPage/CheckoutPage";
 import Dashboard from "../Layout/Dashboard/Dashboard";
-import Add from '../DashboardPages/Add'
 import Orders from "../DashboardPages/Orders";
 import PrivateRoute from '../Routes/PrivateRoute'
 import AllUser from "../DashboardPages/AllUser";
 import Banners from "../DashboardPages/Banners";
 import Overview from "../DashboardPages/Overview";
 import AddCategories from "../DashboardPages/AddCategories";
+import AddProduct from "../DashboardPages/AddProduct";
 
 export const router = createBrowserRouter([
   {
@@ -72,7 +72,7 @@ export const router = createBrowserRouter([
       },
       {
         path: 'add-product',
-        element: <Add/>
+        element: <AddProduct/>
       },
       {
         path: 'orders',

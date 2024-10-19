@@ -109,7 +109,15 @@ const Login = () => {
           >
             Sign Up
           </Link>
-          .
+          <div className="mb-4 text-center p-4">
+            <p className="text-gray-600">
+              Use the following credentials to log in as a admin:
+            </p>
+            <div className="mt-2">
+              <p className="font-semibold">Email: admin@kazimart.com</p>
+              <p className="font-semibold">Password: K@zimart1234</p>
+            </div>
+          </div>
         </p>
       </div>
     </div>

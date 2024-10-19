@@ -6,9 +6,7 @@ import { Link } from "react-router-dom";
 import useBanners from "../../hooks/useBanners";
 
 const MainBanner = () => {
-  const { banners } = useBanners(); 
-
-  
+  const { banners } = useBanners();
 
   return (
     <Swiper
@@ -22,7 +20,7 @@ const MainBanner = () => {
       {banners.map((banner) => (
         <SwiperSlide key={banner._id} className="w-full flex flex-col gap-4">
           <div
-            className="hero h-[400px] relative"
+            className="hero h-96 md:h-[500px] relative"
             style={{
               backgroundImage: `url(${banner.imgUrl})`,
               backgroundSize: "cover",

@@ -76,32 +76,7 @@ const DashboardSideBar = () => {
                     <p className="md:block hidden">All Products</p>
                   </NavLink>
                 </li>
-
-                {/* Order Management */}
                 <li>
-                  <p className="text-[#B1E3CE] hidden md:block">
-                    Order Management
-                  </p>
-                  <NavLink
-                    to="/dashboard/manage-orders"
-                    className={({ isActive }) =>
-                      `flex items-center px-4 py-2 rounded transition-colors ${
-                        isActive
-                          ? "text-[#47C466] bg-gray-900"
-                          : "hover:bg-[#013737]"
-                      }`
-                    }
-                  >
-                    <FaClipboardList className="mr-2" />
-                    <p className="md:block hidden">Manage Orders</p>
-                  </NavLink>
-                </li>
-
-                {/* Category Management */}
-                <li>
-                  <p className="text-[#B1E3CE] hidden md:block">
-                    Category Management
-                  </p>
                   <NavLink
                     to="/dashboard/categories"
                     className={({ isActive }) =>
@@ -114,6 +89,26 @@ const DashboardSideBar = () => {
                   >
                     <MdCategory className="mr-2" />
                     <p className="md:block hidden">Add Category</p>
+                  </NavLink>
+                </li>
+
+                {/* Order Management */}
+                <li>
+                  <p className="text-[#B1E3CE] hidden md:block">
+                    Order Management
+                  </p>
+                  <NavLink
+                    to="/dashboard/orders"
+                    className={({ isActive }) =>
+                      `flex items-center px-4 py-2 rounded transition-colors ${
+                        isActive
+                          ? "text-[#47C466] bg-gray-900"
+                          : "hover:bg-[#013737]"
+                      }`
+                    }
+                  >
+                    <FaClipboardList className="mr-2" />
+                    <p className="md:block hidden">Manage Orders</p>
                   </NavLink>
                 </li>
 
