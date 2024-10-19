@@ -2,7 +2,9 @@ import ProductCard from "../../components/shared/ProductCard";
 import useProducts from "../../hooks/useProducts";
 
 const Shop = () => {
-  const { products } = useProducts();
+  const { products, productsCount } = useProducts();
+  console.log('Products Count:', productsCount);
+  
   return (
     <div>
       <div className="max-w-[1400px] mx-auto bg-[#01684B] my-2 py-6 text-white">
