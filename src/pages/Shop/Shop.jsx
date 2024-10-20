@@ -1,30 +1,34 @@
-import ProductCard from "../../components/shared/ProductCard";
+import { useState, useEffect } from "react";
 import useProducts from "../../hooks/useProducts";
-import { useEffect, useState } from "react";
+import ProductCard from "../../components/shared/ProductCard";
 
 const Shop = () => {
-  const [currentPage, setCurrentPage] = useState(0); 
-  const [itemsPerPage, setItemsPerPage] = useState(10); 
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage] = useState(10);
+  const [asc, setAsc] = useState(true); 
 
-  // Fetch products and product count with pagination
-  const { products, productsCount } = useProducts(currentPage, itemsPerPage); 
+  const { products, productsCount } = useProducts(currentPage, itemsPerPage, asc);
 
   const numberOfPages = Math.ceil(productsCount / itemsPerPage);
   const pages = [...Array(numberOfPages).keys()];
 
+  // Scroll to top on page change
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentPage]);
 
   return (
     <div>
-      <div className="max-w-[1400px] mx-auto bg-[#01684B] my-2 py-6 text-white">
-        <h2 className="capitalize text-2xl font-bold text-center">Shop</h2>
-        <p className="my-4 text-center">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
-          officia sapiente nostrum magni reprehenderit, modi eius consequuntur
-          neque aperiam eos!
-        </p>
+      {/* Sorting Dropdown */}
+      <div className="max-w-[1400px] mx-auto mb-4 flex justify-end">
+        <select
+          value={asc ? "asc" : "desc"}
+          onChange={(e) => setAsc(e.target.value === "asc")}
+          className="px-4 py-2 border border-[#01684B] text-[#01684B] rounded-md"
+        >
+          <option value="asc">Low to High</option>
+          <option value="desc">High to Low</option>
+        </select>
       </div>
 
       {/* Product Grid */}

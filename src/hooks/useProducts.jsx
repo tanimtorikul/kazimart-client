@@ -1,15 +1,16 @@
 import useAxiosPublic from "./useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 
-const useProducts = (currentPage, itemsPerPage) => {
+const useProducts = (currentPage, itemsPerPage, asc) => {
   const axiosPublic = useAxiosPublic();
 
-  //  products with pagination
+  // Fetch products with pagination and sorting
   const { data: products = [], refetch } = useQuery({
-    queryKey: ["products", currentPage, itemsPerPage], 
+    queryKey: ["products", currentPage, itemsPerPage, asc],
     queryFn: async () => {
+      const sortOrder = asc ? "asc" : "desc";
       const res = await axiosPublic.get(
-        `/products?page=${currentPage}&size=${itemsPerPage}`
+        `/products?page=${currentPage}&size=${itemsPerPage}&sort=${sortOrder}`
       );
       return res.data;
     },
