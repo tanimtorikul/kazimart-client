@@ -2,12 +2,16 @@ import { useEffect, useState } from "react";
 import useProducts from "../hooks/useProducts";
 import { MdEdit } from "react-icons/md";
 import { FaTrashAlt } from "react-icons/fa";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
+import toast from "react-hot-toast";
 
 const ManageProducts = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [itemsPerPage] = useState(10);
   const [asc, setAsc] = useState(true);
   const [search, setSearch] = useState("");
+  const axiosSecure = useAxiosSecure();
 
   const { products, productsCount, refetch } = useProducts(
     currentPage,
@@ -28,6 +32,28 @@ const ManageProducts = () => {
     e.preventDefault();
     const searchText = e.target.search.value;
     setSearch(searchText);
+  };
+  const handleDelete = (id, name) => {
+    //
+    Swal.fire({
+      title: "Are you sure?",
+      text: `You are about to delete ${name}. This action cannot be undone.`,
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, delete it!",
+      cancelButtonText: "No, cancel!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.delete(`/main-banners/${id}`).then((res) => {
+          if (res.data.deletedCount > 0) {
+            refetch();
+            toast.success(`${name} has been deleted from the banners.`);
+          }
+        });
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        toast.info("Action canceled.");
+      }
+    });
   };
 
   return (
@@ -109,7 +135,10 @@ const ManageProducts = () => {
                 <button className="border-blue-500 text-blue-500 border px-1 py-1 rounded md:ml-3">
                   <MdEdit />
                 </button>
-                <button className="border-red-500 text-red-500 border px-1 py-1 rounded md:ml-3">
+                <button
+                  onClick={() => handleDelete(product._id, product.name)}
+                  className="border-red-500 text-red-500 border px-1 py-1 rounded md:ml-3"
+                >
                   <FaTrashAlt />
                 </button>
               </td>
