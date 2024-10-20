@@ -25,9 +25,16 @@ const useProducts = (currentPage, itemsPerPage, asc, search) => {
     },
   });
 
+  // Fetch product by ID
+  const fetchProductById = async (id) => {
+    const res = await axiosPublic.get(`/products/${id}`);
+    return res.data;
+  };
+
   return {
     products,
     productsCount,
+    fetchProductById,
     refetch,
   };
 };

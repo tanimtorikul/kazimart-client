@@ -9,7 +9,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const {products} = useProducts();
+  const { fetchProductById } = useProducts();
   const { user } = useAuth();
   const [, refetch] = useCart();
   const navigate = useNavigate();
@@ -18,9 +18,16 @@ const ProductDetails = () => {
 
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const [activeTab, setActiveTab] = useState("description");
+  const [product, setProduct] = useState(null);
 
-  const product = products.find((item) => item._id === id);
+  useEffect(() => {
+    const getProductDetails = async () => {
+      const fetchedProduct = await fetchProductById(id);
+      setProduct(fetchedProduct);
+    };
 
+    getProductDetails();
+  }, [id, fetchProductById]);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
