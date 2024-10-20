@@ -11,7 +11,7 @@ import CartPage from "../pages/CartPage/CartPage";
 import CheckoutPage from "../pages/CheckoutPage/CheckoutPage";
 import Dashboard from "../Layout/Dashboard/Dashboard";
 import Orders from "../DashboardPages/Orders";
-import PrivateRoute from '../Routes/PrivateRoute'
+import PrivateRoute from "../Routes/PrivateRoute";
 import AllUser from "../DashboardPages/AllUser";
 import Banners from "../DashboardPages/Banners";
 import Overview from "../DashboardPages/Overview";
@@ -53,48 +53,49 @@ export const router = createBrowserRouter([
         path: "/cart",
         element: <CartPage />,
       },
-    
+
       {
         path: "/checkout",
         element: <CheckoutPage />,
       },
-    
     ],
   },
   {
-    path:'dashboard',
-    element: <PrivateRoute>
-      <Dashboard/>
-    </PrivateRoute>,
+    path: "dashboard",
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
     children: [
       {
-        path: 'overview',
-        element: <Overview/>
+        path: "overview",
+        element: <Overview />,
       },
       {
-        path: 'add-product',
-        element: <AddProduct/>
+        path: "add-product",
+        element: <AddProduct />,
       },
       {
-        path: 'manage-products',
-        element: <ManageProducts/>
+        path: "manage-products",
+        element: <ManageProducts />,
       },
       {
-        path: 'orders',
-        element: <Orders/>
+        path: "orders",
+        element: <Orders />,
       },
       {
-        path: 'main-banner',
-        element: <Banners/>
+        path: "main-banner",
+        element: <Banners />,
       },
       {
-        path: 'categories',
-        element: <AddCategories/>
+        path: "categories",
+        element: <AddCategories />,
       },
       {
-        path: 'users',
-        element: <AllUser/>
-      }
-    ]
-  }
+        path: "users",
+        element: <AllUser />,
+      },
+    ],
+  },
 ]);

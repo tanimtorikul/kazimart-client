@@ -1,27 +1,71 @@
+import { useEffect, useState } from "react";
 import useProducts from "../hooks/useProducts";
 import { MdEdit } from "react-icons/md";
-import { FaTrashAlt } from "react-icons/fa"; 
-import { useEffect, useState } from "react";
+import { FaTrashAlt } from "react-icons/fa";
 
 const ManageProducts = () => {
   const [currentPage, setCurrentPage] = useState(0);
-  const [itemsPerPage, setItemsPerPage] = useState(10);
+  const [itemsPerPage] = useState(10);
+  const [asc, setAsc] = useState(true);
+  const [search, setSearch] = useState("");
 
   const { products, productsCount, refetch } = useProducts(
     currentPage,
-    itemsPerPage
+    itemsPerPage,
+    asc,
+    search
   );
 
   const numberOfPages = Math.ceil(productsCount / itemsPerPage);
   const pages = [...Array(numberOfPages).keys()];
 
+  // Scroll to top on page change
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentPage]);
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const searchText = e.target.search.value;
+    setSearch(searchText);
+  };
+
   return (
     <div className="overflow-x-auto py-4">
       <h2 className="text-2xl">Product List</h2>
+
+      <div className="flex justify-between my-4">
+        {/* Searching */}
+        <div>
+          <form onSubmit={handleSearch} className="flex items-center space-x-2">
+            <input
+              name="search"
+              type="search"
+              placeholder="Search products..."
+              className="border border-[#01684B] rounded-md px-4 py-2"
+            />
+            <button
+              type="submit"
+              className="px-4 py-2 bg-[#01684B] text-white rounded-md hover:bg-[#014C36]"
+            >
+              Search
+            </button>
+          </form>
+        </div>
+
+        {/* Sorting Dropdown */}
+        <div className="mb-4">
+          <select
+            value={asc ? "asc" : "desc"}
+            onChange={(e) => setAsc(e.target.value === "asc")}
+            className="px-4 py-2 border border-[#01684B] rounded-md"
+          >
+            <option value="asc">Low to High</option>
+            <option value="desc">High to Low</option>
+          </select>
+        </div>
+      </div>
+      {/* Product Table */}
       <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm">
         <thead className="bg-[#F2FCFD]">
           <tr>
