@@ -21,28 +21,32 @@ const CheckoutPage = () => {
   };
 
   return (
-    <div className="max-w-[1400px] mx-auto my-8 p-6 ">
-      <h1 className="text-2xl font-semibold mb-6">Checkout</h1>
+    <div className="max-w-[1400px] mx-auto md:my-4">
+      <h1 className="md:text-xl font-semibold mb-6">Checkout</h1>
 
       <div className="flex flex-col md:flex-row gap-12">
         {/* Checkout Form */}
         <form
           onSubmit={handleSubmit(onSubmit)}
           noValidate
-          className="space-y-6 w-full md:w-2/3 border p-4 rounded-lg"
+          className="space-y-3 w-full border p-4 rounded-lg"
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Full Name */}
             <div>
-              <label htmlFor="name" className="block mb-2 text-lg font-medium">
+              <label
+                htmlFor="name"
+                className="block mb-2 md:text-lg font-medium"
+              >
                 Full Name
               </label>
               <input
                 type="text"
                 {...register("name", { required: "Full Name is required" })}
                 name="name"
+                disabled
                 defaultValue={user?.displayName}
-                className="w-full px-4 py-3 border rounded-md border-gray-300 text-gray-900"
+                className="w-full px-4 py-3 border rounded-md border-gray-300 text-gray-400"
               />
               {errors.name && (
                 <span className="text-red-500">{errors.name.message}</span>
@@ -53,7 +57,7 @@ const CheckoutPage = () => {
             <div>
               <label
                 htmlFor="phoneNumber"
-                className="block mb-2 text-lg font-medium"
+                className="block mb-2 md:text-lg font-medium"
               >
                 Phone Number
               </label>
@@ -79,7 +83,10 @@ const CheckoutPage = () => {
 
             {/* Email */}
             <div>
-              <label htmlFor="email" className="block mb-2 text-lg font-medium">
+              <label
+                htmlFor="email"
+                className="block mb-2 md:text-lg font-medium"
+              >
                 Email Address
               </label>
               <input
@@ -87,7 +94,8 @@ const CheckoutPage = () => {
                 {...register("email", { required: "Email is required" })}
                 name="email"
                 defaultValue={user?.email}
-                className="w-full px-4 py-3 border rounded-md border-gray-300 text-gray-900"
+                disabled
+                className="w-full px-4 py-3 text-gray-400 border rounded-md border-gray-300 "
               />
               {errors.email && (
                 <span className="text-red-500">{errors.email.message}</span>
@@ -98,7 +106,7 @@ const CheckoutPage = () => {
             <div>
               <label
                 htmlFor="address"
-                className="block mb-2 text-lg font-medium"
+                className="block mb-2 md:text-lg font-medium"
               >
                 Address
               </label>
@@ -111,51 +119,6 @@ const CheckoutPage = () => {
               />
               {errors.address && (
                 <span className="text-red-500">{errors.address.message}</span>
-              )}
-            </div>
-
-            {/* City */}
-            <div>
-              <label htmlFor="city" className="block mb-2 text-lg font-medium">
-                City
-              </label>
-              <input
-                type="text"
-                {...register("city", { required: "City is required" })}
-                name="city"
-                placeholder="Enter Your City"
-                className="w-full px-4 py-3 border rounded-md border-gray-300 text-gray-900"
-              />
-              {errors.city && (
-                <span className="text-red-500">{errors.city.message}</span>
-              )}
-            </div>
-
-            {/* Postal Code */}
-            <div>
-              <label
-                htmlFor="postalCode"
-                className="block mb-2 text-lg font-medium"
-              >
-                Postal Code
-              </label>
-              <input
-                type="text"
-                {...register("postalCode", {
-                  required: "Postal Code is required",
-                  pattern: {
-                    value: /^[0-9]+$/,
-                    message: "Enter a valid Postal Code",
-                  },
-                })}
-                name="postalCode"
-                placeholder="Enter Your Postal Code"
-                className="w-full px-4 py-3 border rounded-md border-gray-300 text-gray-900"
-              />
-              {errors.postalCode && (
-                <span className="text-red-500">
-                  {errors.postalCode.message}
-                </span>
               )}
             </div>
 
@@ -173,9 +136,10 @@ const CheckoutPage = () => {
               />
             </div>
           </div>
-
+          
+        <div className="space-y-6 w-full ">
           {/* Payment Options */}
-          <div className="p-6 border rounded-lg shadow-md mt-6">
+          <div className="p-6 border rounded-lg shadow-md">
             <h2 className="text-lg font-semibold mb-4">Payment Method</h2>
             <div className="space-y-3">
               <label className="flex items-center">
@@ -189,27 +153,27 @@ const CheckoutPage = () => {
             </div>
           </div>
 
-          {/* Submit Button */}
-          <div>
-            <button
-              type="submit"
-              className="bg-[#01684B] w-full rounded-md py-2 text-white md:text-lg"
-            >
-              Place Order
-            </button>
+          {/* Order Summary */}
+          <div className="p-6 border-2 rounded-lg shadow-md">
+            <h2 className="text-lg font-semibold mb-4 text-center">
+              Order Summary
+            </h2>
+            <div className="mb-4 flex items-center justify-center">
+              <p className="text-lg font-medium">Total Price: {totalPrice}</p>
+              <TbCurrencyTaka className="ml-1" />
+            </div>
           </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="bg-[#01684B] w-full rounded-md py-2 text-white md:text-lg"
+          >
+            Place Order
+          </button>
+        </div>
         </form>
 
-        {/* Order Summary */}
-        <div className="p-6 h-96 border-2 rounded-lg shadow-md w-full md:w-1/3">
-          <h2 className="text-lg font-semibold mb-4 text-center">
-            Order Summary
-          </h2>
-          <div className="mb-4 flex items-center justify-center">
-            <p className="text-lg font-medium">Total Price: {totalPrice}</p>
-            <TbCurrencyTaka className="ml-1" />
-          </div>
-        </div>
       </div>
     </div>
   );

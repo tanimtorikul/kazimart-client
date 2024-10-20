@@ -44,7 +44,7 @@ const ManageProducts = () => {
       cancelButtonText: "No, cancel!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure.delete(`/main-banners/${id}`).then((res) => {
+        axiosSecure.delete(`/products/${id}`).then((res) => {
           if (res.data.deletedCount > 0) {
             refetch();
             toast.success(`${name} has been deleted from the banners.`);
@@ -63,16 +63,16 @@ const ManageProducts = () => {
       <div className="flex justify-between my-4">
         {/* Searching */}
         <div>
-          <form onSubmit={handleSearch} className="flex items-center space-x-2">
+          <form onSubmit={handleSearch} className="flex items-center">
             <input
               name="search"
               type="search"
               placeholder="Search products..."
-              className="border border-[#01684B] rounded-md px-4 py-2"
+              className="rounded-l-lg px-4 py-2"
             />
             <button
               type="submit"
-              className="px-4 py-2 bg-[#01684B] text-white rounded-md hover:bg-[#014C36]"
+              className="px-4 py-2 bg-[#01684B] text-white rounded-r-lg hover:bg-[#014C36]"
             >
               Search
             </button>

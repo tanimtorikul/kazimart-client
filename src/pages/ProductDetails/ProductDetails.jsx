@@ -77,7 +77,7 @@ const ProductDetails = () => {
 
   return (
     <div className="max-w-[1400px] mx-auto my-8 px-4">
-      {product ? (
+      {product && (
         <>
           <div className="max-w-[1200px] mx-auto my-8 px-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
@@ -176,8 +176,6 @@ const ProductDetails = () => {
             )}
           </div>
         </>
-      ) : (
-        <p className="text-center text-gray-500">Product not found!</p>
       )}
     </div>
   );

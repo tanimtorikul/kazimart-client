@@ -33,31 +33,29 @@ const Shop = () => {
     <div className="px-4 py-6">
       {/* Searching */}
       <div className="max-w-[1400px] mx-auto mb-6 flex justify-center">
-        <form
-          onSubmit={handleSearch}
-          className="w-full md:w-1/3 flex items-center space-x-2"
-        >
+        <form onSubmit={handleSearch} className="flex items-center">
           <input
             name="search"
             type="search"
             placeholder="Search products..."
-            className="w-full px-4 py-2 border border-[#01684B] rounded-md text-[#01684B] focus:outline-none focus:ring-2 focus:ring-[#01684B] focus:border-transparent"
+            className="rounded-l-lg px-4 py-2 border"
           />
           <button
             type="submit"
-            className="px-4 py-2 bg-[#01684B] text-white rounded-md hover:bg-[#014C36] focus:outline-none focus:ring-2 focus:ring-[#01684B]"
+            className="px-4 py-2 bg-[#01684B] text-white rounded-r-lg hover:bg-[#014C36]"
           >
             Search
           </button>
         </form>
       </div>
-
-      {/* Sorting Dropdown */}
-      <div className="max-w-[1400px] mx-auto mb-4 flex justify-end">
+      {/* sorting
+       */}
+      <div className="max-w-[1400px] mx-auto mb-4 flex justify-end items-center">
+        <span className="text-[#01684B]">Sort by:</span>
         <select
           value={asc ? "asc" : "desc"}
           onChange={(e) => setAsc(e.target.value === "asc")}
-          className="px-4 py-2 border border-[#01684B] text-[#01684B] rounded-md"
+          className="px-4 py-2 text-[#01684B] rounded-md border-none outline-none"
         >
           <option value="asc">Low to High</option>
           <option value="desc">High to Low</option>

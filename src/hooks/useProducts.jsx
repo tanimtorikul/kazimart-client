@@ -25,6 +25,15 @@ const useProducts = (currentPage, itemsPerPage, asc, search) => {
     },
   });
 
+  // Fetch all products (not paginated)
+  const { data: allProducts = [] } = useQuery({
+    queryKey: ["allProducts"],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/products/all");
+      return res.data;
+    },
+  });
+
   // Fetch product by ID
   const fetchProductById = async (id) => {
     const res = await axiosPublic.get(`/products/${id}`);
@@ -33,6 +42,7 @@ const useProducts = (currentPage, itemsPerPage, asc, search) => {
 
   return {
     products,
+    allProducts,
     productsCount,
     fetchProductById,
     refetch,

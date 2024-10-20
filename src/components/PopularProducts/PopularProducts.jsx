@@ -1,14 +1,12 @@
 import SectionTitle from "../shared/SectionTitle";
-import useProducts from "../../hooks/useProducts";
 import ProductCard from "../shared/ProductCard";
+import useProducts from "../../hooks/useProducts";
 
 const PopularProducts = () => {
-  const {products}= useProducts();
-  const popularItems = products.filter((item) =>
+  const { allProducts } = useProducts();
+  const popularItems = allProducts.filter((item) =>
     item.category.includes("popular")
   );
-
-  // console.log(popularItems);
 
   return (
     <div className="my-16">
