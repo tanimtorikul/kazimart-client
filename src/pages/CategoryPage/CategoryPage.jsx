@@ -6,15 +6,15 @@ import ProductCard from "../../components/shared/ProductCard";
 const CategoryPage = () => {
   const { category } = useParams();
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const { products } = useProducts();
+  const { allProducts } = useProducts();
 
   // filter the specific category based on category name
   useEffect(() => {
-    const filtered = products.filter((product) =>
+    const filtered = allProducts.filter((product) =>
       product.category[0]?.toLowerCase().includes(category.toLowerCase())
     );
     setFilteredProducts(filtered);
-  }, [category, products]);
+  }, [category, allProducts]);
 
   // to go to top of the page
   useEffect(() => {
