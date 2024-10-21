@@ -10,7 +10,7 @@ import Spinner from "../../utlis/Spinner";
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const { fetchProductById, isLoading } = useProducts();
+  const { fetchProductById } = useProducts();
   const { user } = useAuth();
   const [, refetch] = useCart();
   const navigate = useNavigate();
@@ -20,11 +20,13 @@ const ProductDetails = () => {
   const [isAddedToCart, setIsAddedToCart] = useState(false);
   const [activeTab, setActiveTab] = useState("description");
   const [product, setProduct] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const getProductDetails = async () => {
       const fetchedProduct = await fetchProductById(id);
       setProduct(fetchedProduct);
+      setIsLoading(false);
     };
 
     getProductDetails();

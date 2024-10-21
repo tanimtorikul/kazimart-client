@@ -5,7 +5,11 @@ const useProducts = (currentPage, itemsPerPage, asc, search) => {
   const axiosPublic = useAxiosPublic();
 
   // Fetch products with pagination and sorting
-  const { data: products = [], refetch, isLoading: productsLoading } = useQuery({
+  const {
+    data: products = [],
+    refetch,
+    isLoading: productsLoading,
+  } = useQuery({
     queryKey: ["products", currentPage, itemsPerPage, asc, search],
     queryFn: async () => {
       const sortOrder = asc ? "asc" : "desc";
@@ -47,7 +51,7 @@ const useProducts = (currentPage, itemsPerPage, asc, search) => {
     fetchProductById,
     refetch,
     isLoading: productsLoading,
-    allProductsLoading
+    allProductsLoading,
   };
 };
 
