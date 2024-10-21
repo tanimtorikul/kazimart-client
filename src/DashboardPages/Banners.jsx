@@ -7,6 +7,7 @@ import { useState } from "react";
 import uploadImg from "../assets/uploadimg.png";
 import toast from "react-hot-toast";
 import useBanners from "../hooks/useBanners";
+import Spinner from "../utlis/Spinner";
 
 const cloud_name = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
 const upload_preset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
@@ -16,7 +17,7 @@ const Banners = () => {
   const [image, setImage] = useState(null);
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
-  const { refetch } = useBanners();
+  const { refetch, isLoading} = useBanners();
 
   const {
     register,
@@ -69,7 +70,10 @@ const Banners = () => {
 
   return (
     <div className="">
-      <div className="flex gap-2">
+     {
+      isLoading ? <Spinner/>
+      : <div>
+         <div className="flex gap-2">
         <img src={BannerImg} className="w-6" alt="Banner Icon" />
         <h2 className="font-semibold">Banner Setup</h2>
       </div>
@@ -165,6 +169,7 @@ const Banners = () => {
         <h2>Banners Lists</h2>
         <BannersList />
       </div>
+      </div>     }
     </div>
   );
 };

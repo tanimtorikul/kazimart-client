@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        jost: ['Poppins', 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'], 
       },
     },
   },

@@ -49,7 +49,7 @@ const AddProduct = () => {
 
         // if "Popular" is checked then adding it to the category array
         if (isPopular) {
-          categoryArray.push("Popular");
+          categoryArray.push("popular");
         }
 
         // product data including all fields

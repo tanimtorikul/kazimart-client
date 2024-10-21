@@ -20,7 +20,7 @@ const Overview = () => {
 
   const totalEarnings = 2459;
   const totalOrders = 24;
-  const {products} = useProducts();
+  const {allProducts} = useProducts();
 
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
@@ -34,7 +34,7 @@ const Overview = () => {
         </h1>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    { isAdmin &&  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         {/* Total Earnings Card */}
         <div className="p-6 bg-green-100 shadow-lg rounded-lg text-center transition-transform transform hover:scale-105">
           <h2 className="text-xl font-semibold text-gray-700">
@@ -66,17 +66,10 @@ const Overview = () => {
             Total Products
           </h2>
           <p className="text-2xl font-bold text-orange-600 mt-2">
-            {products.length}
+            {allProducts.length}
           </p>
         </div>
-      </div>
-
-      <div>
-        <h1 className="text-lg md:text-xl font-semibold text-gray-800 mb-2 py-6">
-          {/* TODO: admin statistics using chartjs */}
-          Admin Statistics
-        </h1>
-      </div>
+      </div>}
     </div>
   );
 };

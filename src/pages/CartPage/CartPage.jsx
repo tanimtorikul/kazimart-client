@@ -3,16 +3,19 @@ import useCart from "../../hooks/useCart";
 import cartImg from "../../assets/emptycart.png";
 import CartItemCard from "../../components/CartItemCard/CartItemCard";
 import { TbCurrencyTaka } from "react-icons/tb";
+import useCartPrice from "../../hooks/useCartPrice";
 
 const CartPage = () => {
   const [cart] = useCart();
+  const {total} = useCartPrice()
   console.log(cart);
-  const totalPrice = cart.reduce((total, item) => total + item.price, 0);
+
 
   const handleCheckout = () => {
     // storing total price in localStorage
-    localStorage.setItem("totalPrice", totalPrice);
+    localStorage.setItem("totalPrice", total);
   };
+
 
   return (
     <div className="max-w-[1400px] mx-auto">
@@ -76,7 +79,7 @@ const CartPage = () => {
                 <p>Subtotal</p>
                 <div className="flex items-center">
                   <TbCurrencyTaka className="w-6 h-6 mr-1" />
-                  <p>{totalPrice}</p>
+                  <p>{total }</p>
                 </div>
               </div>
               <div className="flex justify-between mb-2">
@@ -97,7 +100,7 @@ const CartPage = () => {
                 <p>Total</p>
                 <div className="flex items-center">
                   <TbCurrencyTaka className="w-6 h-6 mr-1" />
-                  <p>{totalPrice + 50}</p>
+                  <p>{total + 50}</p>
                 </div>
               </div>
             </div>
