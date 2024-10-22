@@ -56,56 +56,41 @@ const AllUser = () => {
           {/* Users Table */}
           <div className="overflow-x-auto">
             <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm">
-              <thead className="bg-gray-50">
+              <thead className="bg-[#F2FCFD]">
                 <tr>
-                  <th className="py-3 px-5 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">
-                    SL
-                  </th>
-                  <th className="py-3 px-5 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">
-                    Name
-                  </th>
-                  <th className="py-3 px-5 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">
-                    Email
-                  </th>
-                  <th className="py-3 px-5 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">
-                    Role
-                  </th>
-                  <th className="py-3 px-5 text-left text-sm font-semibold text-gray-600 uppercase tracking-wider">
+                  <th className="py-3 px-5 text-center">SL</th>
+                  <th className="py-3 px-5 text-center">Name</th>
+                  <th className="py-3 px-5 text-center">Email</th>
+                  <th className="py-3 px-5 text-center">Role</th>
+                  <th className="py-3 px-5 text-center hidden sm:table-cell">
                     Action
                   </th>
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200">
                 {users.map((user, index) => (
-                  <tr key={user._id} className="hover:bg-gray-50 transition">
-                    <td className="py-3 px-5 text-sm text-gray-700">
-                      {index + 1}
-                    </td>
-                    <td className="py-3 px-5 text-sm text-gray-700">
-                      {user.name}
-                    </td>
-                    <td className="py-3 px-5 text-sm text-gray-700">
-                      {user.email}
-                    </td>
-                    <td>
+                  <tr key={user._id}>
+                    <td className="py-3 px-5 text-center">{index + 1}</td>
+                    <td className="py-3 px-5 text-center">{user.name}</td>
+                    <td className="py-3 px-5 text-center">{user.email}</td>
+                    <td className="py-3 px-5 text-center">
                       {user.role === "admin" ? (
                         "Admin"
                       ) : (
                         <button
                           onClick={() => handleMakeAdmin(user)}
-                          className="btn"
+                          className="border-[#01684b] text-[#01684b] border px-1 py-1 rounded"
                         >
-                          <p>Make Admin</p>
+                          Make Admin
                         </button>
                       )}
                     </td>
-
-                    <td>
+                    <td className="py-3 px-5 text-center">
                       <button
                         onClick={() => handleDelete(user)}
-                        className="btn"
+                        className="border-red-500 text-red-500 border px-1 py-1 rounded"
                       >
-                        <FaTrashAlt className="text-red-500" />
+                        <FaTrashAlt />
                       </button>
                     </td>
                   </tr>
