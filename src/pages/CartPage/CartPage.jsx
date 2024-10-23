@@ -3,16 +3,19 @@ import useCart from "../../hooks/useCart";
 import cartImg from "../../assets/emptycart.png";
 import CartItemCard from "../../components/CartItemCard/CartItemCard";
 import { TbCurrencyTaka } from "react-icons/tb";
-import useCartPrice from "../../hooks/useCartPrice";
 
 const CartPage = () => {
   const [cart] = useCart();
-  const {total} = useCartPrice()
-  console.log(cart);
 
+ // Calculate the total price using parseFloat
+  const total = cart.reduce((acc, item) => {
+    const price = parseFloat(item.price);
+    const quantity = parseFloat(item.quantity);
+    return acc + (price * quantity);
+  }, 0);
 
   const handleCheckout = () => {
-    // storing total price in localStorage
+    // Storing total price in localStorage
     localStorage.setItem("totalPrice", total);
   };
 
@@ -29,7 +32,7 @@ const CartPage = () => {
           <p className="text-base font-medium text-gray-400">
             Empty Shopping Bag
           </p>
-          <h2 className="text-xl mt-2 ">
+          <h2 className="text-xl mt-2">
             <Link
               to="/"
               className="bg-[#01684B] text-white px-6 py-2 rounded-xl"
@@ -41,7 +44,7 @@ const CartPage = () => {
         </div>
       ) : (
         <div className="flex gap-32 flex-col md:flex-row">
-          {/* cartitem cards */}
+          {/* Cart item cards */}
           <div className="flex flex-col gap-8">
             {cart.map((item, index) => (
               <CartItemCard key={index} item={item} />
@@ -58,13 +61,13 @@ const CartPage = () => {
             </div>
 
             {/* Promo Code Section */}
-            <div className="mb-6 ">
-              <h2 className="text-lg font-semibold mb-3 ">Promo Code</h2>
+            <div className="mb-6">
+              <h2 className="text-lg font-semibold mb-3">Promo Code</h2>
               <div className="flex items-center gap-3 border-gray-300 border-dotted border p-3 rounded-xl">
                 <input
                   type="text"
                   placeholder="Enter promo code"
-                  className="w-full px-4 py-2  rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
+                  className="w-full px-4 py-2 rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
                 />
                 <button className="bg-[#01684B] text-white px-4 py-2 rounded-lg hover:bg-green-700 transition duration-200">
                   Apply
@@ -79,7 +82,7 @@ const CartPage = () => {
                 <p>Subtotal</p>
                 <div className="flex items-center">
                   <TbCurrencyTaka className="w-6 h-6 mr-1" />
-                  <p>{total }</p>
+                  <p>{total}</p>
                 </div>
               </div>
               <div className="flex justify-between mb-2">
@@ -108,7 +111,6 @@ const CartPage = () => {
             {/* Proceed to Checkout Button */}
             <div>
               <Link to="/checkout" onClick={handleCheckout}>
-              
                 <button className="w-full bg-[#01684B] text-white py-3 rounded-lg hover:bg-green-700 transition duration-200 text-lg font-semibold">
                   Proceed to Checkout
                 </button>

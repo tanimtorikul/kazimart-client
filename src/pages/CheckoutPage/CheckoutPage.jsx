@@ -1,13 +1,11 @@
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
-import useCart from "../../hooks/useCart";
 import { TbCurrencyTaka } from "react-icons/tb";
+// import useCartPrice from "../../hooks/useCartPrice";
 
 const CheckoutPage = () => {
   const { user } = useAuth();
-  const [cart] = useCart();
-  // get the price from localstorage
-  const totalPrice = localStorage.getItem("totalPrice");
+
 
   const {
     register,
@@ -159,7 +157,7 @@ const CheckoutPage = () => {
               Order Summary
             </h2>
             <div className="mb-4 flex items-center justify-center">
-              <p className="text-lg font-medium">Total Price: {totalPrice}</p>
+              <p className="text-lg font-medium">Total Price: </p>
               <TbCurrencyTaka className="ml-1" />
             </div>
           </div>

@@ -15,7 +15,7 @@ const AddCategories = () => {
   const [image, setImage] = useState(null);
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
-  const { refetch } = useCategories();
+  const { refetch, isLoading} = useCategories();
 
   const {
     register,

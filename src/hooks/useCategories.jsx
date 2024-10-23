@@ -5,7 +5,7 @@ import useAxiosPublic from "./useAxiosPublic";
 const useCategories = () => {
     const axiosPublic = useAxiosPublic();
 
-  const { data: categories = [], refetch } = useQuery({
+  const { data: categories = [], refetch, isLoading } = useQuery({
     queryKey: ["categories"], 
     queryFn: async () => {
       const response = await axiosPublic.get("/categories");
@@ -13,7 +13,7 @@ const useCategories = () => {
     },
   });
 
-  return { categories, refetch };
+  return { categories, refetch, isLoading };
 };
 
 export default useCategories;

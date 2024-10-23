@@ -17,7 +17,6 @@ const CartItemCard = ({ item }) => {
       }
     });
   };
-
   return (
     <div className="flex items-center gap-8 md:gap-24 p-2 md:p-4 border border-gray-200 shadow-lg rounded-xl">
       {/* img , name and price */}
@@ -39,7 +38,7 @@ const CartItemCard = ({ item }) => {
       </div>
       {/* quantity */}
       <div>
-        <p className="text-gray-500">{quantity}</p>
+        <p className="text-lg text-[#01684B] font-semibold">{quantity}</p>
       </div>
       {/* increase decrease button */}
       <div className="flex items-center gap-4 ">

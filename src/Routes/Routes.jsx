@@ -18,6 +18,7 @@ import Overview from "../DashboardPages/Overview";
 import AddCategories from "../DashboardPages/AddCategories";
 import AddProduct from "../DashboardPages/AddProduct";
 import ManageProducts from "../DashboardPages/ManageProducts";
+import ProtectedRoute from "./ProtectedRoute";
 
 export const router = createBrowserRouter([
   {
@@ -56,7 +57,9 @@ export const router = createBrowserRouter([
 
       {
         path: "/checkout",
-        element: <CheckoutPage />,
+        element: <ProtectedRoute>
+          <CheckoutPage />
+        </ProtectedRoute>,
       },
     ],
   },
