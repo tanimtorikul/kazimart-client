@@ -4,6 +4,7 @@ import useProducts from "../hooks/useProducts";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import { TbCurrencyTaka } from "react-icons/tb";
+import useOrders from "../hooks/useOrders";
 
 const Overview = () => {
   const { user } = useAuth();
@@ -19,7 +20,7 @@ const Overview = () => {
   });
 
   const totalEarnings = 2459;
-  const totalOrders = 24;
+  const {orders} = useOrders()
   const {allProducts} = useProducts();
 
   return (
@@ -49,7 +50,7 @@ const Overview = () => {
         {/* Total Orders Card */}
         <div className="p-6 bg-blue-100 shadow-lg rounded-lg text-center transition-transform transform hover:scale-105">
           <h2 className="text-xl font-semibold text-gray-700">Total Orders</h2>
-          <p className="text-2xl font-bold text-blue-600 mt-2">{totalOrders}</p>
+          <p className="text-2xl font-bold text-blue-600 mt-2">{orders.length}</p>
         </div>
 
         {/* All Users Card */}

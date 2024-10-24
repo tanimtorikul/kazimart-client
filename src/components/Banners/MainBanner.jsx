@@ -20,11 +20,12 @@ const MainBanner = () => {
       {banners.map((banner) => (
         <SwiperSlide key={banner._id} className="w-full flex flex-col gap-4">
           <div
-            className="hero h-96 md:h-[500px] relative"
+            className="hero max-w-[1400px] mx-auto h-96 md:h-[400px] relative"
             style={{
               backgroundImage: `url(${banner.imgUrl})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
+              backgroundRepeat:'no-repeat'
             }}
           >
             <div className="absolute inset-0 bg-gradient-to-b from-black to-transparent opacity-60"></div>

@@ -62,7 +62,7 @@ const CheckoutPage = () => {
         <form
           onSubmit={handleSubmit(onSubmit)}
           noValidate
-          className="space-y-3 w-full border p-4 rounded-lg flex"
+          className="space-y-3 w-full border p-4 rounded-lg"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Full Name */}

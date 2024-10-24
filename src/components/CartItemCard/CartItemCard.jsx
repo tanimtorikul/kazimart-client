@@ -63,7 +63,7 @@ const CartItemCard = ({ item }) => {
           className="w-28 h-28 object-cover rounded-lg border"
         />
         <div>
-          <h2 className="md:text-lg font-semibold mb-1">{name}</h2>
+          <h2 className="text-sm md:text-lg font-semibold mb-1">{name}</h2>
           <div>
             <p className="text-white px-2 py-1 rounded-lg text-xs font-semibold flex items-center bg-[#01684B]">
               {price}
@@ -74,10 +74,10 @@ const CartItemCard = ({ item }) => {
       </div>
       {/* quantity */}
       <div>
-        <p className="text-lg text-[#01684B] font-semibold">{quantity}</p>
+        <p className="md:text-lg text-[#01684B] font-semibold">{quantity}</p>
       </div>
       {/* increase decrease button */}
-      <div className="flex items-center gap-4">
+      <div className="flex flex-col md:flex-row items-center gap-4">
         <button
           onClick={handleDecrease}
           className="w-8 h-8 flex items-center justify-center text-[#01684B] bg-[#F2F2F2] rounded-full hover:bg-gray-500 hover:text-white transition duration-200"
@@ -91,13 +91,14 @@ const CartItemCard = ({ item }) => {
         >
           +
         </button>
-        <button
+      
+      </div>
+      <button
           onClick={() => handleDelete(item._id)}
           className="flex items-center justify-center w-8 h-8 text-red-500 text-xl rounded-full hover:bg-gray-600 hover:text-white transition duration-200"
         >
           <FaRegTrashCan />
         </button>
-      </div>
     </div>
   );
 };
