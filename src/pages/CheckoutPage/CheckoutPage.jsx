@@ -27,6 +27,7 @@ const CheckoutPage = () => {
       email: data.email,
       phone: data.phoneNumber,
       address: data.address,
+      note: data.note, 
       items: cart.map((item) => ({
         productId: item._id,
         productName: item.name,
@@ -34,6 +35,7 @@ const CheckoutPage = () => {
         price: item.price,
         totalPrice: item.price * item.quantity,
         image: item.imageUrl,
+        amount: item.amount
       })),
       totalItems: cart.reduce((total, item) => total + item.quantity, 0),
       subtotal: total,
@@ -60,7 +62,7 @@ const CheckoutPage = () => {
         <form
           onSubmit={handleSubmit(onSubmit)}
           noValidate
-          className="space-y-3 w-full border p-4 rounded-lg"
+          className="space-y-3 w-full border p-4 rounded-lg flex"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Full Name */}
