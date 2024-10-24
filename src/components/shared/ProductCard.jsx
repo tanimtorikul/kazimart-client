@@ -35,6 +35,7 @@ const ProductCard = ({ item }) => {
               name,
               imageUrl,
               price,
+              amount : 1,
               quantity,
             };
             axiosSecure

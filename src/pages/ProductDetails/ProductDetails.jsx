@@ -119,7 +119,7 @@ const ProductDetails = () => {
                       ৳ {product.price}
                     </p>
                   </div>
-                  <div>
+                  <div className="flex md:flex-col flex-row gap-3 items-center md:items-start">
                     <p className="text-gray-300">Total Amount:</p>
                     <h2 className="text-2xl md:text-5xl text-[#01684B] font-bold">
                       ৳ {product.price}

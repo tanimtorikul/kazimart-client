@@ -7,18 +7,17 @@ import { TbCurrencyTaka } from "react-icons/tb";
 const CartPage = () => {
   const [cart] = useCart();
 
- // Calculate the total price using parseFloat
+  // Calculate the total price using parseFloat
   const total = cart.reduce((acc, item) => {
     const price = parseFloat(item.price);
     const quantity = parseFloat(item.quantity);
-    return acc + (price * quantity);
+    return acc + price * quantity;
   }, 0);
 
   const handleCheckout = () => {
     // Storing total price in localStorage
     localStorage.setItem("totalPrice", total);
   };
-
 
   return (
     <div className="max-w-[1400px] mx-auto">
@@ -43,7 +42,7 @@ const CartPage = () => {
           </h2>
         </div>
       ) : (
-        <div className="flex gap-32 flex-col md:flex-row">
+        <div className="flex gap-12 md:gap-32 flex-col md:flex-row">
           {/* Cart item cards */}
           <div className="flex flex-col gap-8">
             {cart.map((item, index) => (
