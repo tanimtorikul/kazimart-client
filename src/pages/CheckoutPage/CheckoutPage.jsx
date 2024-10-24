@@ -1,11 +1,10 @@
 import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import { TbCurrencyTaka } from "react-icons/tb";
-// import useCartPrice from "../../hooks/useCartPrice";
-
+import useCart from "../../hooks/useCart";
 const CheckoutPage = () => {
   const { user } = useAuth();
-
+  const [cart] = useCart();
 
   const {
     register,
@@ -13,9 +12,37 @@ const CheckoutPage = () => {
     formState: { errors },
   } = useForm();
 
+  //  total price
+  const total = cart.reduce((acc, item) => {
+    const price = parseFloat(item.price);
+    const quantity = parseFloat(item.quantity);
+    return acc + price * quantity;
+  }, 0);
+
   const onSubmit = (data) => {
-    console.log(data);
-    // todo: Handle form submission here
+    const orderData = {
+      name: data.name,
+      email: data.email,
+      phone: data.phoneNumber,
+      address: data.address,
+      items: cart.map((item) => ({
+        productId: item._id,
+        productName: item.name,
+        quantity: item.quantity,
+        price: item.price,
+        totalPrice: item.price * item.quantity,
+        image: item.imageUrl,
+      })),
+      totalItems: cart.reduce((total, item) => total + item.quantity, 0),
+      subtotal: total,
+      shippingCost: 50,
+      totalPrice: total + 50,
+      paymentMethod: data.paymentMethod,
+      orderStatus: "Pending",
+      orderDate: new Date().toISOString(),
+    };
+
+    console.log(orderData);
   };
 
   return (
@@ -42,9 +69,8 @@ const CheckoutPage = () => {
                 type="text"
                 {...register("name", { required: "Full Name is required" })}
                 name="name"
-                disabled
-                defaultValue={user?.displayName}
-                className="w-full px-4 py-3 border rounded-md border-gray-300 text-gray-400"
+                defaultValue={user?.displayName || ""}
+                className="w-full px-4 py-3 border rounded-md border-gray-300"
               />
               {errors.name && (
                 <span className="text-red-500">{errors.name.message}</span>
@@ -91,9 +117,8 @@ const CheckoutPage = () => {
                 type="email"
                 {...register("email", { required: "Email is required" })}
                 name="email"
-                defaultValue={user?.email}
-                disabled
-                className="w-full px-4 py-3 text-gray-400 border rounded-md border-gray-300 "
+                defaultValue={user?.email || ""}
+                className="w-full px-4 py-3 border rounded-md border-gray-300"
               />
               {errors.email && (
                 <span className="text-red-500">{errors.email.message}</span>
@@ -134,44 +159,64 @@ const CheckoutPage = () => {
               />
             </div>
           </div>
-          
-        <div className="space-y-6 w-full ">
-          {/* Payment Options */}
-          <div className="p-6 border rounded-lg shadow-md">
-            <h2 className="text-lg font-semibold mb-4">Payment Method</h2>
-            <div className="space-y-3">
-              <label className="flex items-center">
-                <input type="radio" name="paymentMethod" className="mr-2" />
-                Cash on Delivery
-              </label>
-              <label className="flex items-center">
-                <input type="radio" name="paymentMethod" className="mr-2" />
-                Card Payment
-              </label>
-            </div>
-          </div>
 
-          {/* Order Summary */}
-          <div className="p-6 border-2 rounded-lg shadow-md">
-            <h2 className="text-lg font-semibold mb-4 text-center">
-              Order Summary
-            </h2>
-            <div className="mb-4 flex items-center justify-center">
-              <p className="text-lg font-medium">Total Price: </p>
-              <TbCurrencyTaka className="ml-1" />
+          <div className="space-y-6 w-full">
+            {/* Payment Options */}
+            <div className="p-6 border rounded-lg shadow-md">
+              <h2 className="text-lg font-semibold mb-4">Payment Method</h2>
+              <div className="space-y-3">
+                <label className="flex items-center">
+                  <input
+                    type="radio"
+                    value="Cash on Delivery"
+                    {...register("paymentMethod", {
+                      required: "Payment Method is required",
+                    })}
+                    className="mr-2"
+                  />
+                  Cash on Delivery
+                </label>
+                <label className="flex items-center">
+                  <input
+                    type="radio"
+                    value="Card Payment"
+                    {...register("paymentMethod", {
+                      required: "Payment Method is required",
+                    })}
+                    className="mr-2"
+                  />
+                  Card Payment
+                </label>
+              </div>
+              {errors.paymentMethod && (
+                <span className="text-red-500">
+                  {errors.paymentMethod.message}
+                </span>
+              )}
             </div>
-          </div>
 
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="bg-[#01684B] w-full rounded-md py-2 text-white md:text-lg"
-          >
-            Place Order
-          </button>
-        </div>
+            {/* Order Summary */}
+            <div className="p-6 border-2 rounded-lg shadow-md">
+              <h2 className="text-lg font-semibold mb-4 text-center">
+                Order Summary
+              </h2>
+              <div className="mb-4 flex items-center justify-center">
+                <p className="text-lg font-medium">Total Price: </p>
+                <TbCurrencyTaka className="ml-1" />
+                <p className="text-lg font-medium">{total + 50}</p>{" "}
+              
+              </div>
+            </div>
+
+            {/* Submit Button */}
+            <button
+              type="submit"
+              className="bg-[#01684B] w-full rounded-md py-2 text-white md:text-lg"
+            >
+              Place Order
+            </button>
+          </div>
         </form>
-
       </div>
     </div>
   );

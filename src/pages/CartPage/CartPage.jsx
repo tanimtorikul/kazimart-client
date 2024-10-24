@@ -14,11 +14,6 @@ const CartPage = () => {
     return acc + price * quantity;
   }, 0);
 
-  const handleCheckout = () => {
-    // Storing total price in localStorage
-    localStorage.setItem("totalPrice", total);
-  };
-
   return (
     <div className="max-w-[1400px] mx-auto">
       {cart.length === 0 ? (
@@ -109,7 +104,7 @@ const CartPage = () => {
 
             {/* Proceed to Checkout Button */}
             <div>
-              <Link to="/checkout" onClick={handleCheckout}>
+              <Link to="/checkout">
                 <button className="w-full bg-[#01684B] text-white py-3 rounded-lg hover:bg-green-700 transition duration-200 text-lg font-semibold">
                   Proceed to Checkout
                 </button>
