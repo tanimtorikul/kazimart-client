@@ -1,5 +1,4 @@
-import { useEffect, useState } from "react";
-import { createContext } from "react";
+import { useEffect, useState, createContext } from "react";
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
@@ -29,7 +28,7 @@ const AuthProvider = ({ children }) => {
 
   const signIn = (email, password) => {
     setLoading(true);
-    signInWithEmailAndPassword(email, password);
+    return signInWithEmailAndPassword(auth, email, password);
   };
 
   const googleSignIn = () => {
@@ -41,29 +40,28 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signOut(auth);
   };
+
   const updateUserProfile = (name, photo) => {
     return updateProfile(auth.currentUser, {
-        displayName: name, photoURL: photo
+      displayName: name,
+      photoURL: photo,
     });
-}
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
-      // console.log("current user", currentUser);
       if (currentUser) {
-       
         const userInfo = { email: currentUser.email };
         axiosPublic.post("/jwt", userInfo).then((res) => {
           console.log("Token from server:", res.data.token);
-
           if (res.data.token) {
             localStorage.setItem("access-token", res.data.token);
           }
         });
       } else {
-        localStorage.removeItem("access-token"); 
+        localStorage.removeItem("access-token");
       }
-
       setLoading(false);
     });
     return () => {
@@ -78,8 +76,9 @@ const AuthProvider = ({ children }) => {
     signIn,
     logOut,
     googleSignIn,
-    updateUserProfile
+    updateUserProfile,
   };
+
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
   );

@@ -17,14 +17,19 @@ const Login = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    signIn(data.email, data.password).then((result) => {
-      const user = result.user;
-      toast.success("Logged in successfully!");
-      navigate(location?.state ? location.state : "/");
-      console.log(user);
-    });
-    console.log(data);
+    signIn(data.email, data.password)
+      .then((result) => {
+        const user = result.user;
+        toast.success("Logged in successfully!");
+        navigate(location?.state ? location.state : "/");
+        console.log(user);
+      })
+      .catch((error) => {
+        toast.error("Login failed. " + error.message); // Show the error message
+        console.error(error);
+      });
   };
+  
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -114,8 +119,8 @@ const Login = () => {
               Use the following credentials to log in as a admin:
             </p>
             <div className="mt-2">
-              <p className="font-semibold">Email: admin@kazimart.com</p>
-              <p className="font-semibold">Password: K@zimart1234</p>
+              <p className="font-semibold">Email: admin@kazimart1.com</p>
+              <p className="font-semibold">Password: K@zimart1</p>
             </div>
           </div>
         </p>
