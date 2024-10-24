@@ -2,10 +2,12 @@ import { useForm } from "react-hook-form";
 import useAuth from "../../hooks/useAuth";
 import { TbCurrencyTaka } from "react-icons/tb";
 import useCart from "../../hooks/useCart";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 const CheckoutPage = () => {
   const { user } = useAuth();
   const [cart] = useCart();
-
+  const axiosSecure = useAxiosSecure();
   const {
     register,
     handleSubmit,
@@ -41,7 +43,11 @@ const CheckoutPage = () => {
       orderStatus: "Pending",
       orderDate: new Date().toISOString(),
     };
-
+    axiosSecure.post("/orders", orderData).then((res) => {
+      if (res.data.insertedId) {
+        toast.success(`${user.displayName}, Your Order placed successfully`);
+      }
+    });
     console.log(orderData);
   };
 
@@ -204,7 +210,6 @@ const CheckoutPage = () => {
                 <p className="text-lg font-medium">Total Price: </p>
                 <TbCurrencyTaka className="ml-1" />
                 <p className="text-lg font-medium">{total + 50}</p>{" "}
-              
               </div>
             </div>
 
