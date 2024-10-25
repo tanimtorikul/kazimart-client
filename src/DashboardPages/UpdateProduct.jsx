@@ -78,6 +78,7 @@ const UpdateProduct = () => {
       imageUrl,
       inStock,
     };
+    console.log(productData);
 
     try {
       const productRes = await axiosSecure.put(
@@ -120,7 +121,8 @@ const UpdateProduct = () => {
             />
           </div>
 
-          {/* Product Category Dropdown */}
+          {/*  Product Category Dropdown */}
+
           <div>
             <label
               htmlFor="category"
@@ -130,11 +132,10 @@ const UpdateProduct = () => {
             </label>
             <select
               name="category"
-              defaultValue={product?.category[0]}
+              defaultValue={product && product.category ? product.category.find(cat => cat !== "popular") : ""}
               className="w-full px-4 py-2 border rounded-md"
               required
             >
-              <option value="">Select category</option>
               {categories.map((category) => (
                 <option key={category._id} value={category.category}>
                   {category.category}

@@ -3,7 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { TbCurrencyTaka } from "react-icons/tb";
 import toast from "react-hot-toast";
-import useAxiosSecure from "../../hooks/useAxiosSecure"; 
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useCart from "../../hooks/useCart";
 
 const ProductCard = ({ item }) => {
@@ -13,7 +13,7 @@ const ProductCard = ({ item }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const [, refetch] = useCart();
-  const axiosSecure = useAxiosSecure(); 
+  const axiosSecure = useAxiosSecure();
 
   const handleAddToCart = (item) => {
     if (user && user.email) {
@@ -35,7 +35,7 @@ const ProductCard = ({ item }) => {
               name,
               imageUrl,
               price,
-              amount : 1,
+              amount: 1,
               quantity,
             };
             axiosSecure
@@ -43,7 +43,7 @@ const ProductCard = ({ item }) => {
               .then((res) => {
                 if (res.data.insertedId) {
                   toast.success(`${name} added to the cart`);
-                  refetch(); 
+                  refetch();
                 } else {
                   toast.error("Failed to add to the cart!");
                 }
@@ -75,7 +75,7 @@ const ProductCard = ({ item }) => {
             className="rounded-lg w-48 h-48 object-cover"
           />
           {/* Discount */}
-          {previousPrice && (
+          {previousPrice > price && (
             <div className="absolute top-2 left-2">
               <h2 className="bg-[#FF5252] text-white px-2 py-1 rounded-lg text-xs font-semibold flex items-center">
                 -{previousPrice - price}

@@ -100,7 +100,7 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-col items-center justify-center sm:flex-row">
-          <p className="mt-4 md:text-xl  text-gray-500 sm:mt-0">
+          <p className="mt-4 text-sm md:text-xl  text-gray-500 sm:mt-0">
             Developed with ❤️ by Tanim. © 2024. All Rights Reserved.
           </p>
         </div>
