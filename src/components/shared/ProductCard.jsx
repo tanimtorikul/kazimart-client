@@ -43,7 +43,7 @@ const ProductCard = ({ item }) => {
               .then((res) => {
                 if (res.data.insertedId) {
                   toast.success(`${name} added to the cart`);
-                  refetch(); // Update the cart count
+                  refetch(); 
                 } else {
                   toast.error("Failed to add to the cart!");
                 }

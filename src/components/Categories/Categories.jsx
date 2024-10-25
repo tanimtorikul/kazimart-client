@@ -5,7 +5,7 @@ import useCategories from "../../hooks/useCategories";
 import { Swiper, SwiperSlide } from "swiper/react"; 
 import "swiper/css"; 
 import "swiper/css/pagination"; 
-import { Pagination } from "swiper/modules"; 
+import { Pagination, FreeMode } from "swiper/modules"; 
 
 const Categories = () => {
   const { categories } = useCategories();
@@ -33,7 +33,8 @@ const Categories = () => {
             slidesPerView={5} 
             spaceBetween={30}
             pagination={{ clickable: true }}
-            modules={[Pagination]}
+            freeMode={true} // Continuous sliding mode
+            modules={[Pagination, FreeMode]} // Combine Pagination and FreeMode modules
             className="mySwiper"
           >
             {categories.map((category) => (

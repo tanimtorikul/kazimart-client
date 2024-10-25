@@ -27,7 +27,7 @@ const CheckoutPage = () => {
       email: data.email,
       phone: data.phoneNumber,
       address: data.address,
-      note: data.note, 
+      note: data.note,
       items: cart.map((item) => ({
         productId: item._id,
         productName: item.name,
@@ -35,7 +35,7 @@ const CheckoutPage = () => {
         price: item.price,
         totalPrice: item.price * item.quantity,
         image: item.imageUrl,
-        amount: item.amount
+        amount: item.amount,
       })),
       totalItems: cart.reduce((total, item) => total + item.quantity, 0),
       subtotal: total,

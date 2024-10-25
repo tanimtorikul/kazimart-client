@@ -10,10 +10,16 @@ import { MdCategory } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import useAdmin from "../../hooks/useAdmin";
 import { RiGalleryView } from "react-icons/ri";
+import Spinner from "../../utlis/Spinner";
 
 const DashboardSideBar = () => {
-  const [isAdmin] = useAdmin();
+  const [isAdmin, isLoading] = useAdmin();
 
+  console.log("isAdmin:", isAdmin); 
+
+  if (isLoading) {
+    return <div><Spinner/></div>
+  }
   return (
     <div className="w-24 md:w-64 bg-[#005555] min-h-screen text-white">
       <div className="p-2 md:p-6">
@@ -133,7 +139,7 @@ const DashboardSideBar = () => {
                 </li>
                 <li>
                   <NavLink
-                    to="/dashboard/promo-banner"
+                    to="/dashboard/promo"
                     className={({ isActive }) =>
                       `flex items-center px-4 py-2 rounded transition-colors ${
                         isActive

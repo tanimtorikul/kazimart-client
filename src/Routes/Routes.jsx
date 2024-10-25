@@ -19,6 +19,8 @@ import AddCategories from "../DashboardPages/AddCategories";
 import AddProduct from "../DashboardPages/AddProduct";
 import ManageProducts from "../DashboardPages/ManageProducts";
 import ProtectedRoute from "./ProtectedRoute";
+import Promo from "../DashboardPages/Promo";
+import UpdateProduct from "../DashboardPages/UpdateProduct";
 
 export const router = createBrowserRouter([
   {
@@ -57,9 +59,11 @@ export const router = createBrowserRouter([
 
       {
         path: "/checkout",
-        element: <ProtectedRoute>
-          <CheckoutPage />
-        </ProtectedRoute>,
+        element: (
+          <ProtectedRoute>
+            <CheckoutPage />
+          </ProtectedRoute>
+        ),
       },
     ],
   },
@@ -80,6 +84,11 @@ export const router = createBrowserRouter([
         element: <AddProduct />,
       },
       {
+        path: "update-product/:productId",
+        element: <UpdateProduct />,
+      },
+
+      {
         path: "manage-products",
         element: <ManageProducts />,
       },
@@ -90,6 +99,10 @@ export const router = createBrowserRouter([
       {
         path: "main-banner",
         element: <Banners />,
+      },
+      {
+        path: "promo",
+        element: <Promo />,
       },
       {
         path: "categories",

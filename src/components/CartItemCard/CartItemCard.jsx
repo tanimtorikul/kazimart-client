@@ -55,14 +55,15 @@ const CartItemCard = ({ item }) => {
 
   return (
     <div className="flex items-center gap-8 md:gap-24 p-2 md:p-4 border border-gray-200 shadow-lg rounded-xl">
-      {/* img, name, and price */}
+      <div className="flex gap-20 items-center justify-center">
+        {/* img, name, and price */}
       <div className="flex items-center gap-4">
         <img
           src={imageUrl}
           alt={name}
           className="w-28 h-28 object-cover rounded-lg border"
         />
-        <div>
+        <div className="w-20 md:w-40">
           <h2 className="text-sm md:text-lg font-semibold mb-1">{name}</h2>
           <div>
             <p className="text-white px-2 py-1 rounded-lg text-xs font-semibold flex items-center bg-[#01684B]">
@@ -91,14 +92,14 @@ const CartItemCard = ({ item }) => {
         >
           +
         </button>
-      
+      </div>
       </div>
       <button
-          onClick={() => handleDelete(item._id)}
-          className="flex items-center justify-center w-8 h-8 text-red-500 text-xl rounded-full hover:bg-gray-600 hover:text-white transition duration-200"
-        >
-          <FaRegTrashCan />
-        </button>
+        onClick={() => handleDelete(item._id)}
+        className="flex items-center justify-center w-8 h-8 text-red-500 text-xl rounded-full hover:bg-gray-600 hover:text-white transition duration-200"
+      >
+        <FaRegTrashCan />
+      </button>
     </div>
   );
 };

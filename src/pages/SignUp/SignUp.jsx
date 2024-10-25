@@ -43,7 +43,7 @@ const SignUp = () => {
     <div className="flex flex-col justify-center md:min-h-[700px] items-center py-4 md:py-0">
       <div className="flex flex-col md:max-w-2xl rounded-md py-2 px-10 bg-white shadow-2xl text-gray-900">
         <div className="mb-2 text-center">
-          <img src={logo} alt="Kazimart Logo" className="w-48 h-auto mx-auto" />
+          <img src={logo} alt="Kazimart Logo" className="w-24 md:w-48 h-auto mx-auto" />
         </div>
         <form
           onSubmit={handleSubmit(onSubmit)}

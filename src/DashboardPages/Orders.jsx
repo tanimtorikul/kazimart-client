@@ -9,7 +9,7 @@ const Orders = () => {
     <div>
       <h2 className="text-xl font-semibold mb-4">
         All Orders{" "}
-        <span className="bg-[#c7cbcf] text-xs py-2 px-3 rounded-lg">
+        <span className="bg-[#c7cbcf] text-xs py-1 px-3 rounded-lg">
           {orders.length}
         </span>
       </h2>
@@ -17,18 +17,18 @@ const Orders = () => {
         <Spinner />
       ) : (
         <table className="min-w-full bg-white border border-gray-200 rounded-lg shadow-sm">
-          <thead className="bg-[#F2FCFD] border">
+          <thead className="bg-[#F2FCFD] border text-sm">
             <tr>
-              <th className="py-2 px-4 text-center">SL</th>
-              <th className="py-2 px-4 text-center">Customer Information</th>
-              <th className="py-2 px-4 text-center">Location</th>
-              <th className="py-2 px-4 text-center">Items</th>
-              <th className="py-2 px-4 text-center">Total Price</th>
-              <th className="py-2 px-4 text-center">Payment Method</th>
-              <th className="py-2 px-4 text-center">Status</th>
-              <th className="py-2 px-4 text-center">Order Date</th>
-              <th className="py-2 px-4 text-center">Additional Note</th>
-              <th className="py-2 px-4 hidden sm:table-cell text-center">
+              <th className="py-1 px-4 text-center">SL</th>
+              <th className="py-1 px-4 text-center">Customer Information</th>
+              <th className="py-1 px-4 text-center">Location</th>
+              <th className="py-1 px-4 text-center">Items</th>
+              <th className="py-1 px-4 text-center">Total Price</th>
+              <th className="py-1 px-4 text-center">Payment Method</th>
+              <th className="py-1 px-4 text-center">Status</th>
+              <th className="py-1 px-4 text-center">Order Date</th>
+              <th className="py-1 px-4 text-center">Additional Note</th>
+              <th className="py-1 px-4 hidden sm:table-cell text-center">
                 Action
               </th>
             </tr>
@@ -36,10 +36,10 @@ const Orders = () => {
           <tbody>
             {orders.map((order, index) => (
               <tr key={order._id}>
-                <td className="py-2 px-4 text-center border-b border-gray-200">
+                <td className="py-1 px-4 text-center border-b border-gray-200">
                   {index + 1}
                 </td>
-                <td className="py-2 px-4 text-center border-b border-gray-200">
+                <td className="py-1 px-4 text-center border-b border-gray-200">
                   <span className="block font-medium">{order.name}</span>
                   <span className="block text-xs text-gray-600">
                     {order.email}
@@ -49,11 +49,11 @@ const Orders = () => {
                   </span>
                 </td>
 
-                <td className="py-2 px-4 text-center border-b border-gray-200">
+                <td className="py-1 px-4 text-sm text-center border-b border-gray-200">
                   {order.address}
                 </td>
 
-                <td className="py-2 px-4 text-center border-b border-gray-200">
+                <td className="py-1 px-4 text-center border-b border-gray-200">
                   {order.items.map((item) => (
                     <div
                       key={item.productId}
@@ -71,32 +71,32 @@ const Orders = () => {
                   ))}
                 </td>
 
-                <td className="py-2 px-4 text-center border-b border-gray-200">
+                <td className="py-1 px-4 text-center border-b border-gray-200">
                   <span className="font-medium text-lg">
                     {order.totalPrice}
                   </span>
                   <TbCurrencyTaka className="inline-block text-lg" />
                 </td>
 
-                <td className="py-2 px-4 text-center border-b border-gray-200">
+                <td className="py-1 px-4 text-sm text-center border-b border-gray-200">
                   {order.paymentMethod}
                 </td>
 
-                <td className="py-2 px-4 text-center border-b border-gray-200">
+                <td className="py-1 px-4 text-sm text-center border-b border-gray-200">
                   {order.orderStatus}
                 </td>
 
-                <td className="py-2 px-4 text-center border-b border-gray-200">
+                <td className="py-1 px-4 text-sm text-center border-b border-gray-200">
                   {new Date(order.orderDate).toLocaleDateString()}
                 </td>
 
-                <td className="py-2 px-4 text-center border-b border-gray-200">
+                <td className="ppy-1 px-4 text-sm text-center border-b border-gray-200">
                   {order.note ? order.note : "N/A"}
                 </td>
 
-                <td className="py-2 px-4 text-center border-b border-gray-200">
+                <td className="py-1 px-4 text-sm text-center border-b border-gray-200">
                   <select
-                    className="border border-gray-300 rounded px-2 py-1 text-sm"
+                    className="py-1 px-4 text-sm text-center border-b border-gray-200"
                     name="action"
                     id="action"
                   >

@@ -48,7 +48,7 @@ const CartPage = () => {
             {/* Delivery Option */}
             <div className="mb-6">
               <h2 className="text-lg font-semibold mb-3">Delivery Option</h2>
-              <select className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 outline-none">
+              <select className="w-full md:px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 outline-none">
                 <option>Home Delivery</option>
                 <option>Self Pickup</option>
               </select>

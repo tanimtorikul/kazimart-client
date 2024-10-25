@@ -57,6 +57,7 @@ const ProductDetails = () => {
         name: product.name,
         imageUrl: product.imageUrl,
         price: product.price,
+        amount: 1,
         quantity: product.quantity,
       };
       axiosSecure
@@ -77,6 +78,7 @@ const ProductDetails = () => {
       navigate("/login", { state: { from: location } });
     }
   };
+  
 
   return (
     <div className="max-w-[1400px] mx-auto px-4">
