@@ -21,6 +21,7 @@ import ManageProducts from "../DashboardPages/ManageProducts";
 import ProtectedRoute from "./ProtectedRoute";
 import Promo from "../DashboardPages/Promo";
 import UpdateProduct from "../DashboardPages/UpdateProduct";
+import UpdateCategory from "../DashboardPages/UpdateCategory";
 
 export const router = createBrowserRouter([
   {
@@ -107,6 +108,10 @@ export const router = createBrowserRouter([
       {
         path: "categories",
         element: <AddCategories />,
+      },
+      {
+        path: "update-category/:categoryId",
+        element: <UpdateCategory />,
       },
       {
         path: "users",

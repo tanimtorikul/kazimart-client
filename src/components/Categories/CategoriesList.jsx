@@ -5,6 +5,7 @@ import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 import { MdEdit } from "react-icons/md";
 import Spinner from "../../utlis/Spinner";
+import { Link } from "react-router-dom";
 
 const CategoriesList = () => {
   const { categories, refetch, isLoading } = useCategories();
@@ -68,14 +69,13 @@ const CategoriesList = () => {
                   </td>
                   <td className="py-2 px-2 text-center">{category.category}</td>
                   <td className="py-3 px-5 text-center">
-                    <button
-                      onClick={() =>
-                        handleEdit(category._id, category.category)
-                      }
+                  <Link to={`/dashboard/update-category/${category._id}`}>
+                  <button
+                      
                       className="border-blue-500 text-blue-500 border px-1 py-1 rounded md:ml-3"
                     >
                       <MdEdit />
-                    </button>
+                    </button></Link>
                     <button
                       onClick={() =>
                         handleDelete(category._id, category.category)
