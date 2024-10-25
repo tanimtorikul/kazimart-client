@@ -5,7 +5,7 @@ import useProducts from "../../hooks/useProducts";
 const PopularProducts = () => {
   const { allProducts } = useProducts();
   const popularItems = allProducts.filter((item) =>
-    item.category.includes("Popular")
+    item.category.includes("popular")
   );
 
   return (
