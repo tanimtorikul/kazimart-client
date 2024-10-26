@@ -20,7 +20,7 @@ const OrdersOverview = () => {
       {/* Orders Summary Section */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
         {/* Pending Orders Card */}
-        <div className="bg-white p-8 rounded-lg shadow">
+        <div className="bg-white border p-8 rounded-lg shadow">
           <h2 className="text-sm font-semibold text-gray-600">Pending</h2>
           <p className="text-2xl font-bold text-gray-800">
             {orderCounts.Pending}
@@ -28,7 +28,7 @@ const OrdersOverview = () => {
         </div>
 
         {/* Processing Orders Card */}
-        <div className="bg-white p-8 rounded-lg shadow">
+        <div className="bg-white border p-8 rounded-lg shadow">
           <h2 className="text-sm font-semibold text-gray-600">Processing</h2>
           <p className="text-2xl font-bold text-gray-800">
             {orderCounts.Processing}
@@ -36,7 +36,7 @@ const OrdersOverview = () => {
         </div>
 
         {/* Shipped Orders Card */}
-        <div className="bg-white p-8 rounded-lg shadow">
+        <div className="bg-white border p-8 rounded-lg shadow">
           <h2 className="text-sm font-semibold text-gray-600">Shipped</h2>
           <p className="text-2xl font-bold text-gray-800">
             {orderCounts.Shipped}
@@ -44,7 +44,7 @@ const OrdersOverview = () => {
         </div>
 
         {/* Delivered Orders Card */}
-        <div className="bg-white p-8 rounded-lg shadow">
+        <div className="bg-white border p-8 rounded-lg shadow">
           <h2 className="text-sm font-semibold text-gray-600">Delivered</h2>
           <p className="text-2xl font-bold text-gray-800">
             {orderCounts.Delivered}
@@ -52,13 +52,14 @@ const OrdersOverview = () => {
         </div>
 
         {/* Cancelled Orders Card */}
-        <div className="bg-white p-8 rounded-lg shadow">
+        <div className="bg-white border p-8 rounded-lg shadow">
           <h2 className="text-sm font-semibold text-gray-600">Cancelled</h2>
           <p className="text-2xl font-bold text-gray-800">
             {orderCounts.Cancelled}
           </p>
         </div>
       </div>
+      
     </div>
   );
 };

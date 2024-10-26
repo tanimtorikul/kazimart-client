@@ -2,10 +2,24 @@ import useAdmin from "../hooks/useAdmin";
 import useAuth from "../hooks/useAuth";
 import OrdersOverview from "../components/OrdersOverview/OrdersOverview";
 import AdminSummary from "../components/AdminSummary/AdminSummary";
-
+import useOrders from "../hooks/useOrders";
+import OrdersDoughnutChart from "../components/OrdersOverview/OrdersDoughnutChart";
 const Overview = () => {
   const { user } = useAuth();
   const [isAdmin] = useAdmin();
+  const { orders } = useOrders();
+
+  const orderCounts = {
+    Pending: 0,
+    Processing: 0,
+    Shipped: 0,
+    Delivered: 0,
+    Cancelled: 0,
+  };
+
+  orders.forEach((order) => {
+    orderCounts[order.orderStatus] += 1;
+  });
 
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
@@ -24,6 +38,8 @@ const Overview = () => {
           <OrdersOverview />
           {/* admin's overview summary */}
           <AdminSummary />
+          {/* Include the Pie Chart */}
+          <OrdersDoughnutChart orderCounts={orderCounts} />
         </>
       )}
     </div>
