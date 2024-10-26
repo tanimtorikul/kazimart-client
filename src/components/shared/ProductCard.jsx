@@ -75,7 +75,7 @@ const ProductCard = ({ item }) => {
             className="rounded-lg w-48 h-48 object-cover"
           />
           {/* Discount */}
-          {previousPrice > price && (
+          {previousPrice && previousPrice > price && (
             <div className="absolute top-2 left-2">
               <h2 className="bg-[#FF5252] text-white px-2 py-1 rounded-lg text-xs font-semibold flex items-center">
                 -{previousPrice - price}

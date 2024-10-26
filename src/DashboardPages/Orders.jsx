@@ -16,7 +16,7 @@ const Orders = () => {
       if (response.data.modifiedCount > 0) {
         toast.success("Status changed");
         refetch();
-      }
+      } 
     } catch (error) {
       console.error("Error updating order status:", error);
     }
