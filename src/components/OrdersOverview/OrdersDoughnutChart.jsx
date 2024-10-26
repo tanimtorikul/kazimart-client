@@ -6,7 +6,6 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { Doughnut } from "react-chartjs-2";
 
 Chart.register(DoughnutController, ArcElement, Tooltip, Legend);
 
@@ -73,7 +72,7 @@ const OrdersDoughnutChart = ({ orderCounts }) => {
   return (
     <div className="mb-8">
       <h2 className="text-lg font-semibold text-gray-800 my-4">
-        Order Status Distribution
+        Order statistics
       </h2>
       <div style={{ width: "500px", height: "300px" }}>
         <canvas ref={chartRef}></canvas>

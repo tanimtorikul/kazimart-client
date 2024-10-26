@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import useProducts from "../../hooks/useProducts";
 import ProductCard from "../../components/shared/ProductCard";
 import Spinner from "../../utlis/Spinner";
+import { Helmet } from "react-helmet-async";
 
 const Shop = () => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -33,6 +34,9 @@ const Shop = () => {
 
   return (
     <div className="px-4 py-6">
+       <Helmet>
+        <title>Shop</title>
+      </Helmet>
       {
         isLoading ? (
           <Spinner />

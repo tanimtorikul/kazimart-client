@@ -8,6 +8,7 @@ import uploadImg from "../assets/uploadimg.png";
 import toast from "react-hot-toast";
 import useBanners from "../hooks/useBanners";
 import Spinner from "../utlis/Spinner";
+import { Helmet } from "react-helmet-async";
 
 const cloud_name = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
 const upload_preset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
@@ -70,6 +71,9 @@ const Banners = () => {
 
   return (
     <div className="w-72 md:w-full">
+       <Helmet>
+        <title>Manage Main Banners</title>
+      </Helmet>
      {
       isLoading ? <Spinner/>
       : <div>

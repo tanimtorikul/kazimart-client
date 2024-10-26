@@ -3,6 +3,7 @@ import { FaTrashAlt } from "react-icons/fa";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import Spinner from "../utlis/Spinner";
+import { Helmet } from "react-helmet-async";
 
 const AllUser = () => {
   const axiosSecure = useAxiosSecure();
@@ -38,7 +39,9 @@ const AllUser = () => {
 
   return (
     <div className="p-8 bg-white shadow-lg rounded-lg">
-      {/* Title */}
+      <Helmet>
+        <title>Manage Users</title>
+      </Helmet>
       <h2 className="text-3xl font-semibold text-gray-800 text-center mb-8">
         Manage Users
       </h2>

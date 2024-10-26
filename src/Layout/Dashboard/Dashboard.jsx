@@ -22,7 +22,7 @@ const Dashboard = () => {
             </div>
           )}
 
-          <div className="flex-grow p-4 bg-[#F1F5F9]">
+          <div className="flex-grow px-4 py- bg-[#F1F5F9]">
             <Outlet />
           </div>
           

@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 import toast from "react-hot-toast";
 import Spinner from "../utlis/Spinner";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const ManageProducts = () => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -25,7 +26,6 @@ const ManageProducts = () => {
   const numberOfPages = Math.ceil(productsCount / itemsPerPage);
   const pages = [...Array(numberOfPages).keys()];
 
-  // Scroll to top on page change
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentPage]);
@@ -60,6 +60,9 @@ const ManageProducts = () => {
 
   return (
     <div className="overflow-x-auto py-4">
+       <Helmet>
+        <title>Manage Products</title>
+      </Helmet>
       <h2 className="text-2xl">Product List</h2>
 
       <div className="flex justify-between my-4">

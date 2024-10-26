@@ -4,6 +4,7 @@ import OrdersOverview from "../components/OrdersOverview/OrdersOverview";
 import AdminSummary from "../components/AdminSummary/AdminSummary";
 import useOrders from "../hooks/useOrders";
 import OrdersDoughnutChart from "../components/OrdersOverview/OrdersDoughnutChart";
+import { Helmet } from "react-helmet-async";
 const Overview = () => {
   const { user } = useAuth();
   const [isAdmin] = useAdmin();
@@ -23,6 +24,9 @@ const Overview = () => {
 
   return (
     <div className="p-6 bg-gray-50 min-h-screen">
+      <Helmet>
+        <title>Dashboard</title>
+      </Helmet>
       <p className="text-gray-600 text-sm md:text-lg">
         Hi, {user ? user.displayName.split(" ")[0] : "User"}! Welcome to the{" "}
         {isAdmin ? "Admin" : "User"} Dashboard.

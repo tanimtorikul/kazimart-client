@@ -5,6 +5,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import useCategories from "../hooks/useCategories"; // Import your useCategories hook
 import Spinner from "../utlis/Spinner";
+import { Helmet } from "react-helmet-async";
 
 const cloud_name = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
 const upload_preset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
@@ -92,6 +93,9 @@ const UpdateCategory = () => {
 
   return (
     <div className="container mx-auto p-4">
+       <Helmet>
+        <title>Update Category</title>
+      </Helmet>
       <h2 className="text-2xl md:text-3xl font-semibold text-center mb-12">
         Update Category
       </h2>

@@ -6,6 +6,7 @@ import useAxiosSecure from "../hooks/useAxiosSecure";
 import { useState } from "react";
 import CategoriesList from "../components/Categories/CategoriesList";
 import useCategories from "../hooks/useCategories";
+import { Helmet } from "react-helmet-async";
 
 const cloud_name = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
 const upload_preset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
@@ -69,6 +70,9 @@ const AddCategories = () => {
 
   return (
     <div className="">
+      <Helmet>
+        <title>Add Categories</title>
+      </Helmet>
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">
         Add Category
       </h2>

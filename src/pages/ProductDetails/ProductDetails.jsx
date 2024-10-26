@@ -7,6 +7,7 @@ import useCart from "../../hooks/useCart";
 import toast from "react-hot-toast";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Spinner from "../../utlis/Spinner";
+import { Helmet } from "react-helmet-async";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -82,6 +83,9 @@ const ProductDetails = () => {
 
   return (
     <div className="max-w-[1400px] mx-auto px-4">
+       <Helmet>
+        <title>{product.name}</title>
+      </Helmet>
       {isLoading ? (
         <Spinner />
       ) : (

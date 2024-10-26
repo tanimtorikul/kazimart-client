@@ -3,6 +3,7 @@ import useOrders from "../hooks/useOrders";
 import Spinner from "../utlis/Spinner";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+import { Helmet } from "react-helmet-async";
 
 const Orders = () => {
   const { orders, isLoading, refetch } = useOrders();
@@ -24,6 +25,9 @@ const Orders = () => {
 
   return (
     <div>
+       <Helmet>
+        <title>Manage Orders</title>
+      </Helmet>
       <h2 className="text-xl font-semibold mb-4">
         All Orders{" "}
         <span className="bg-[#c7cbcf] text-xs py-1 px-3 rounded-lg">
