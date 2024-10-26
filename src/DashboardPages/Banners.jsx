@@ -69,7 +69,7 @@ const Banners = () => {
   };
 
   return (
-    <div className="">
+    <div className="w-72 md:w-full">
      {
       isLoading ? <Spinner/>
       : <div>
@@ -119,10 +119,10 @@ const Banners = () => {
               </label>
               <input
                 type="text"
-                {...register("title", { required: "Banner Title is required" })} // Register title
+                {...register("title", { required: "Banner Title is required" })}
                 name="title"
                 placeholder="Enter Banner Title"
-                className="w-full px-4 py-3 border rounded-md border-gray-300 text-gray-900"
+                className="w-48 md:w-full px-4 py-3 border rounded-md border-gray-300 text-gray-900"
               />
               {errors.title && (
                 <span className="text-red-500">{errors.title.message}</span>
@@ -143,7 +143,7 @@ const Banners = () => {
                 })}
                 name="description"
                 placeholder="Enter Banner Description"
-                className="w-full px-3 py-3 border rounded-md border-gray-300 text-gray-900"
+                className="w-48 md:w-full px-3 py-3 border rounded-md border-gray-300 text-gray-900"
                 rows="2"
               />
               {errors.description && (
@@ -157,7 +157,7 @@ const Banners = () => {
             <div className="md:col-span-2">
               <button
                 type="submit"
-                className="bg-[#01684B] py-4 px-10 rounded-md text-white md:text-lg"
+                className="bg-[#01684B] py-4 px-4 md:px-10 rounded-md text-white text-sm md:text-lg"
               >
                 Add Banner
               </button>

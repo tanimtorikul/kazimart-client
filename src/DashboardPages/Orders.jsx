@@ -1,9 +1,26 @@
 import { TbCurrencyTaka } from "react-icons/tb";
 import useOrders from "../hooks/useOrders";
 import Spinner from "../utlis/Spinner";
+import useAxiosSecure from "../hooks/useAxiosSecure";
+import toast from "react-hot-toast";
 
 const Orders = () => {
-  const { orders, isLoading } = useOrders();
+  const { orders, isLoading, refetch } = useOrders();
+  const axiossecure = useAxiosSecure();
+  const updateOrderStatus = async (orderId, newStatus) => {
+    try {
+      const response = await axiossecure.patch(`/orders/${orderId}`, {
+        orderStatus: newStatus,
+      });
+
+      if (response.data.modifiedCount > 0) {
+        toast.success("Status changed");
+        refetch();
+      }
+    } catch (error) {
+      console.error("Error updating order status:", error);
+    }
+  };
 
   return (
     <div>
@@ -90,7 +107,7 @@ const Orders = () => {
                   {new Date(order.orderDate).toLocaleDateString()}
                 </td>
 
-                <td className="ppy-1 px-4 text-sm text-center border-b border-gray-200">
+                <td className="py-1 px-4 text-sm text-center border-b border-gray-200">
                   {order.note ? order.note : "N/A"}
                 </td>
 
@@ -99,6 +116,9 @@ const Orders = () => {
                     className="py-1 px-4 text-sm text-center border-b border-gray-200"
                     name="action"
                     id="action"
+                    onChange={(e) =>
+                      updateOrderStatus(order._id, e.target.value)
+                    }
                   >
                     <option value="Pending">Pending</option>
                     <option value="Processing">Processing</option>

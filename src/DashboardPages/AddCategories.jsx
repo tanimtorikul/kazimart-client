@@ -15,7 +15,7 @@ const AddCategories = () => {
   const [image, setImage] = useState(null);
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
-  const { refetch, isLoading} = useCategories();
+  const { refetch, isLoading } = useCategories();
 
   const {
     register,
@@ -78,9 +78,9 @@ const AddCategories = () => {
           noValidate
           className="space-y-6"
         >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="flex flex-col md:flex-row gap-6 md:gap-24">
             {/* Category Name */}
-            <div>
+            <div className="flex-1">
               <label
                 htmlFor="name"
                 className="block mb-2 text-lg font-medium text-gray-700"
@@ -92,7 +92,7 @@ const AddCategories = () => {
                 {...register("name", { required: "Category Name is required" })}
                 name="name"
                 placeholder="Enter Category Name"
-                className="md:w-1/2 px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-200"
+                className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-200"
               />
               {errors.name && (
                 <span className="text-red-500">{errors.name.message}</span>
@@ -100,7 +100,7 @@ const AddCategories = () => {
             </div>
 
             {/* Image Upload */}
-            <div>
+            <div className="flex-1">
               <p className="mb-2 text-lg font-medium text-gray-700">
                 Category Image{" "}
                 <span className="text-sm text-red-600">* ( Ratio 3:1 )</span>
@@ -110,7 +110,7 @@ const AddCategories = () => {
                 className="flex items-center cursor-pointer"
               >
                 <img
-                  className="w-24 md:w-48 md:h-24 object-contain border-2 border-dashed border-gray-300 rounded-lg"
+                  className="w-full h-auto max-w-[8rem] md:max-w-[12rem] object-contain border-2 border-gray-300 rounded-lg"
                   src={image ? URL.createObjectURL(image) : uploadImg}
                   alt="Uploaded Category"
                 />
@@ -129,7 +129,7 @@ const AddCategories = () => {
           </div>
 
           {/* Submit Button */}
-          <div className="flex justify-center">
+          <div className="flex md:justify-end">
             <button
               type="submit"
               className="bg-[#01684B] py-2 md:py-4 px-4 md:px-10 rounded-md text-white text-lg hover:bg-green-600 transition duration-200"
