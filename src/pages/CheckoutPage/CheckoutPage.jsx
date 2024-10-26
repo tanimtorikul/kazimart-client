@@ -4,6 +4,7 @@ import { TbCurrencyTaka } from "react-icons/tb";
 import useCart from "../../hooks/useCart";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
+
 const CheckoutPage = () => {
   const { user } = useAuth();
   const [cart] = useCart();
@@ -14,7 +15,7 @@ const CheckoutPage = () => {
     formState: { errors },
   } = useForm();
 
-  //  total price
+  // Calculate total price
   const total = cart.reduce((acc, item) => {
     const price = parseFloat(item.price);
     const quantity = parseFloat(item.quantity);
@@ -58,19 +59,16 @@ const CheckoutPage = () => {
       <h1 className="md:text-xl font-semibold mb-6">Checkout</h1>
 
       <div className="flex flex-col md:flex-row gap-12">
-        {/* Checkout Form */}
+        {/* Left Column: Contact Form */}
         <form
           onSubmit={handleSubmit(onSubmit)}
           noValidate
-          className="space-y-3 w-full border p-4 rounded-lg"
+          className="space-y-3 w-full md:w-2/3 border p-4 rounded-lg"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {/* Full Name */}
             <div>
-              <label
-                htmlFor="name"
-                className="block mb-2 md:text-lg font-medium"
-              >
+              <label htmlFor="name" className="block mb-2 md:text-lg font-medium">
                 Full Name
               </label>
               <input
@@ -80,17 +78,12 @@ const CheckoutPage = () => {
                 defaultValue={user?.displayName || ""}
                 className="w-full px-4 py-3 border rounded-md border-gray-300"
               />
-              {errors.name && (
-                <span className="text-red-500">{errors.name.message}</span>
-              )}
+              {errors.name && <span className="text-red-500">{errors.name.message}</span>}
             </div>
 
             {/* Phone Number */}
             <div>
-              <label
-                htmlFor="phoneNumber"
-                className="block mb-2 md:text-lg font-medium"
-              >
+              <label htmlFor="phoneNumber" className="block mb-2 md:text-lg font-medium">
                 Phone Number
               </label>
               <input
@@ -107,18 +100,13 @@ const CheckoutPage = () => {
                 className="w-full px-4 py-3 border rounded-md border-gray-300 text-gray-900"
               />
               {errors.phoneNumber && (
-                <span className="text-red-500">
-                  {errors.phoneNumber.message}
-                </span>
+                <span className="text-red-500">{errors.phoneNumber.message}</span>
               )}
             </div>
 
             {/* Email */}
             <div>
-              <label
-                htmlFor="email"
-                className="block mb-2 md:text-lg font-medium"
-              >
+              <label htmlFor="email" className="block mb-2 md:text-lg font-medium">
                 Email Address
               </label>
               <input
@@ -128,17 +116,12 @@ const CheckoutPage = () => {
                 defaultValue={user?.email || ""}
                 className="w-full px-4 py-3 border rounded-md border-gray-300"
               />
-              {errors.email && (
-                <span className="text-red-500">{errors.email.message}</span>
-              )}
+              {errors.email && <span className="text-red-500">{errors.email.message}</span>}
             </div>
 
             {/* Address */}
             <div>
-              <label
-                htmlFor="address"
-                className="block mb-2 md:text-lg font-medium"
-              >
+              <label htmlFor="address" className="block mb-2 md:text-lg font-medium">
                 Address
               </label>
               <input
@@ -148,9 +131,7 @@ const CheckoutPage = () => {
                 placeholder="Enter Your Address"
                 className="w-full px-4 py-3 border rounded-md border-gray-300 text-gray-900"
               />
-              {errors.address && (
-                <span className="text-red-500">{errors.address.message}</span>
-              )}
+              {errors.address && <span className="text-red-500">{errors.address.message}</span>}
             </div>
 
             {/* Additional Note */}
@@ -168,62 +149,58 @@ const CheckoutPage = () => {
             </div>
           </div>
 
-          <div className="space-y-6 w-full">
-            {/* Payment Options */}
-            <div className="p-6 border rounded-lg shadow-md">
-              <h2 className="text-lg font-semibold mb-4">Payment Method</h2>
-              <div className="space-y-3">
-                <label className="flex items-center">
-                  <input
-                    type="radio"
-                    value="Cash on Delivery"
-                    {...register("paymentMethod", {
-                      required: "Payment Method is required",
-                    })}
-                    className="mr-2"
-                  />
-                  Cash on Delivery
-                </label>
-                <label className="flex items-center">
-                  <input
-                    type="radio"
-                    value="Card Payment"
-                    {...register("paymentMethod", {
-                      required: "Payment Method is required",
-                    })}
-                    className="mr-2"
-                  />
-                  Card Payment
-                </label>
-              </div>
-              {errors.paymentMethod && (
-                <span className="text-red-500">
-                  {errors.paymentMethod.message}
-                </span>
-              )}
+          {/* Payment Method */}
+          <div className="p-6 border rounded-lg shadow-md">
+            <h2 className="text-lg font-semibold mb-4">Payment Method</h2>
+            <div className="space-y-3">
+              <label className="flex items-center">
+                <input
+                  type="radio"
+                  value="Cash on Delivery"
+                  {...register("paymentMethod", {
+                    required: "Payment Method is required",
+                  })}
+                  className="mr-2"
+                />
+                Cash on Delivery
+              </label>
+              <label className="flex items-center">
+                <input
+                  type="radio"
+                  value="Card Payment"
+                  {...register("paymentMethod", {
+                    required: "Payment Method is required",
+                  })}
+                  className="mr-2"
+                />
+                Card Payment
+              </label>
             </div>
-
-            {/* Order Summary */}
-            <div className="p-6 border-2 rounded-lg shadow-md">
-              <h2 className="text-lg font-semibold mb-4 text-center">
-                Order Summary
-              </h2>
-              <div className="mb-4 flex items-center justify-center">
-                <p className="text-lg font-medium">Total Price: </p>
-                <TbCurrencyTaka className="ml-1" />
-                <p className="text-lg font-medium">{total + 50}</p>{" "}
-              </div>
-            </div>
-
-            {/* Submit Button */}
-            <button
-              type="submit"
-              className="bg-[#01684B] w-full rounded-md py-2 text-white md:text-lg"
-            >
-              Place Order
-            </button>
+            {errors.paymentMethod && (
+              <span className="text-red-500">{errors.paymentMethod.message}</span>
+            )}
           </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="bg-[#01684B] w-full rounded-md py-2 text-white md:text-lg"
+          >
+            Place Order
+          </button>
         </form>
+
+        {/* Right Column: Order Summary */}
+        <div className="space-y-6 w-full md:w-1/3">
+          <div className="p-6 border-2 rounded-lg shadow-md">
+            <h2 className="text-lg font-semibold mb-4 text-center">Order Summary</h2>
+            <div className="mb-4 flex items-center justify-center">
+              <p className="text-lg font-medium">Total Price: </p>
+              <TbCurrencyTaka className="ml-1" />
+              <p className="text-lg font-medium">{total + 50}</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );
