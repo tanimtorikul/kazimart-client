@@ -5,11 +5,14 @@ import AdminSummary from "../components/AdminSummary/AdminSummary";
 import useOrders from "../hooks/useOrders";
 import OrdersDoughnutChart from "../components/OrdersOverview/OrdersDoughnutChart";
 import { Helmet } from "react-helmet-async";
+import UserOrders from "./UserOrders";
+
 const Overview = () => {
   const { user } = useAuth();
   const [isAdmin] = useAdmin();
   const { orders } = useOrders();
 
+  // Initialize order counts
   const orderCounts = {
     Pending: 0,
     Processing: 0,
@@ -18,8 +21,11 @@ const Overview = () => {
     Cancelled: 0,
   };
 
+  // Count orders by status
   orders.forEach((order) => {
-    orderCounts[order.orderStatus] += 1;
+    if (orderCounts.hasOwnProperty(order.orderStatus)) {
+      orderCounts[order.orderStatus] += 1;
+    }
   });
 
   return (
@@ -33,18 +39,20 @@ const Overview = () => {
       </p>
       <div className="mb-4">
         <h1 className="text-sm md:text-lg font-semibold text-gray-800 mb-2">
-          {isAdmin ? "Orders Analytics" : "User Overview"}
+          {isAdmin ? "Orders Analytics" : ""}
         </h1>
       </div>
-      {isAdmin && (
+      {isAdmin ? (
         <>
-          {/* all orders overview */}
+          {/* All orders overview */}
           <OrdersOverview />
-          {/* admin's overview summary */}
+          {/* Admin's overview summary */}
           <AdminSummary />
           {/* Include the Pie Chart */}
           <OrdersDoughnutChart orderCounts={orderCounts} />
         </>
+      ) : (
+        <UserOrders />
       )}
     </div>
   );
