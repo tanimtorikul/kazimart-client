@@ -1,19 +1,26 @@
-import { useEffect, useRef } from 'react';
-import { Chart, DoughnutController, ArcElement, Tooltip, Legend } from 'chart.js';
+import { useEffect, useRef } from "react";
+import {
+  Chart,
+  DoughnutController,
+  ArcElement,
+  Tooltip,
+  Legend,
+} from "chart.js";
+import { Doughnut } from "react-chartjs-2";
 
 Chart.register(DoughnutController, ArcElement, Tooltip, Legend);
 
-const OrdersPiechart = ({ orderCounts }) => {
+const OrdersDoughnutChart = ({ orderCounts }) => {
   const chartRef = useRef(null);
   const chartInstanceRef = useRef(null);
 
   useEffect(() => {
     const data = {
-      labels: Object.keys(orderCounts), 
+      labels: Object.keys(orderCounts),
       datasets: [
         {
-          label: 'Order Status Distribution',
-          data: Object.values(orderCounts), 
+          label: "Order Status Distribution",
+          data: Object.values(orderCounts),
           backgroundColor: [
             "#5899E9",
             "#036BB7",
@@ -30,22 +37,23 @@ const OrdersPiechart = ({ orderCounts }) => {
     }
 
     chartInstanceRef.current = new Chart(chartRef.current, {
-      type: 'doughnut', 
+      type: "doughnut",
       data: data,
       options: {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
           legend: {
-            position: 'right',
+            position: "right",
             labels: {
               usePointStyle: true,
-              pointStyle: 'rounded',
+              pointStyle: "rounded",
               generateLabels: (chart) => {
-                const original = Chart.overrides.doughnut.plugins.legend.labels.generateLabels;
+                const original =
+                  Chart.overrides.doughnut.plugins.legend.labels.generateLabels;
                 const labels = original.call(this, chart);
                 labels.forEach((label, index) => {
-                  label.text += ` (${data.datasets[0].data[index]})`; 
+                  label.text += ` (${data.datasets[0].data[index]})`;
                 });
                 return labels;
               },
@@ -60,16 +68,18 @@ const OrdersPiechart = ({ orderCounts }) => {
         chartInstanceRef.current.destroy();
       }
     };
-  }, [orderCounts]); 
+  }, [orderCounts]);
 
   return (
     <div className="mb-8">
-      <h2 className="text-lg font-semibold text-gray-800 my-4">Order Status Distribution</h2>
-      <div style={{ width: '500px', height: '300px' }}>
+      <h2 className="text-lg font-semibold text-gray-800 my-4">
+        Order Status Distribution
+      </h2>
+      <div style={{ width: "500px", height: "300px" }}>
         <canvas ref={chartRef}></canvas>
       </div>
     </div>
   );
 };
 
-export default OrdersPiechart;
+export default OrdersDoughnutChart;
