@@ -22,6 +22,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import Promo from "../DashboardPages/Promo";
 import UpdateProduct from "../DashboardPages/UpdateProduct";
 import UpdateCategory from "../DashboardPages/UpdateCategory";
+import OrderSuccessful from "../pages/CheckoutPage/OrderSuccessful";
 
 export const router = createBrowserRouter([
   {
@@ -65,6 +66,12 @@ export const router = createBrowserRouter([
             <CheckoutPage />
           </ProtectedRoute>
         ),
+      },
+      {
+        path: "/order-successful",
+        element: <PrivateRoute>
+          <OrderSuccessful />
+        </PrivateRoute>,
       },
     ],
   },

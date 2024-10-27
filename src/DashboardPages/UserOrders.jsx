@@ -10,7 +10,6 @@ const UserOrders = () => {
   return (
     <div className="max-w-9xl mx-auto p-4">
       <h2 className="text-2xl font-semibold text-gray-800 mb-4">Your Orders</h2>{" "}
-      {/* Reduced font size */}
       {userOrders.length === 0 ? (
         <p className="text-center text-gray-500">You have no orders yet.</p>
       ) : (

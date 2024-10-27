@@ -51,7 +51,7 @@ const CheckoutPage = () => {
     axiosSecure.post("/orders", orderData).then((res) => {
       if (res.data.insertedId) {
         toast.success(`${user.displayName}, Your Order placed successfully`);
-        navigate("/shop");
+        navigate("/order-successful");
       }
     });
     console.log(orderData);

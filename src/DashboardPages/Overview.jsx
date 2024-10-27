@@ -12,7 +12,6 @@ const Overview = () => {
   const [isAdmin] = useAdmin();
   const { orders } = useOrders();
 
-  // Initialize order counts
   const orderCounts = {
     Pending: 0,
     Processing: 0,
@@ -21,9 +20,8 @@ const Overview = () => {
     Cancelled: 0,
   };
 
-  // Count orders by status
   orders.forEach((order) => {
-    if (orderCounts.hasOwnProperty(order.orderStatus)) {
+    if (orderCounts[order.orderStatus] !== undefined) {
       orderCounts[order.orderStatus] += 1;
     }
   });
@@ -37,18 +35,13 @@ const Overview = () => {
         Hi, {user ? user.displayName.split(" ")[0] : "User"}! Welcome to the{" "}
         {isAdmin ? "Admin" : "User"} Dashboard.
       </p>
-      <div className="mb-4">
-        <h1 className="text-sm md:text-lg font-semibold text-gray-800 mb-2">
-          {isAdmin ? "Orders Analytics" : ""}
-        </h1>
-      </div>
       {isAdmin ? (
         <>
-          {/* All orders overview */}
-          <OrdersOverview />
           {/* Admin's overview summary */}
           <AdminSummary />
-          {/* Include the Pie Chart */}
+          {/* All orders overview */}
+          <OrdersOverview />
+          {/* DoughnutChart */}
           <OrdersDoughnutChart orderCounts={orderCounts} />
         </>
       ) : (

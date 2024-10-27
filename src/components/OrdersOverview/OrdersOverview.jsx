@@ -17,8 +17,10 @@ const OrdersOverview = () => {
 
   return (
     <div>
-      {/* Orders Summary Section */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 mb-8">
+      <h2 className="text-lg font-semibold text-gray-800 my-4">
+        Order Analytics
+      </h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 my-6">
         {/* Pending Orders Card */}
         <div className="bg-white border p-8 rounded-lg shadow">
           <h2 className="text-sm font-semibold text-gray-600">Pending</h2>
@@ -59,7 +61,6 @@ const OrdersOverview = () => {
           </p>
         </div>
       </div>
-      
     </div>
   );
 };
