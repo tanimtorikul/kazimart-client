@@ -26,15 +26,13 @@ const Categories = () => {
             </Link>
           ))}
         </div>
-
-        {/* Swiper for larger screens */}
         <div className="hidden md:block">
           <Swiper
             slidesPerView={5} 
             spaceBetween={30}
             pagination={{ clickable: true }}
-            freeMode={true} // Continuous sliding mode
-            modules={[Pagination, FreeMode]} // Combine Pagination and FreeMode modules
+            freeMode={true} 
+            modules={[Pagination, FreeMode]} 
             className="mySwiper"
           >
             {categories.map((category) => (

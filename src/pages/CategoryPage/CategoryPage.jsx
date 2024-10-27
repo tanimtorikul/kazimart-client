@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import useProducts from "../../hooks/useProducts";
 import ProductCard from "../../components/shared/ProductCard";
+import cartImg from '../../assets/emptycart.png';
 
 const CategoryPage = () => {
   const { category } = useParams();
   const [filteredProducts, setFilteredProducts] = useState([]);
   const { allProducts } = useProducts();
 
-  // filter the specific category based on category name
+  // Filter the specific category based on category name
   useEffect(() => {
     const filtered = allProducts.filter((product) =>
       product.category[0]?.toLowerCase().includes(category.toLowerCase())
@@ -16,31 +17,45 @@ const CategoryPage = () => {
     setFilteredProducts(filtered);
   }, [category, allProducts]);
 
-  // to go to top of the page
+  // To go to the top of the page
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
 
   return (
     <div>
-      <div className="max-w-[1400px] mx-auto bg-[#01684B] my-2 py-6 rounded-xl text-white">
-        <h2 className="capitalize text-2xl font-bold text-center">
-          {/* category name */}
-          {category}
-        </h2>
-        <p className="my-4 text-center">
-          {/* dummy text */}
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestiae
-          officia sapiente nostrum magni reprehenderit, modi eius consequuntur
-          neque aperiam eos!
-        </p>
+      <div className="max-w-[1400px] mx-auto my-2 rounded-xl">
+        
       </div>
 
       {/* Product Cards */}
-      <div className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-5 gap-4">
-        {filteredProducts?.map((product) => (
-          <ProductCard key={product._id} item={product} />
-        ))}
+      <div className="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-5 gap-4 py-4">
+        {filteredProducts.length > 0 ? (
+          filteredProducts.map((product) => (
+            <ProductCard key={product._id} item={product} />
+          ))
+        ) : (
+          <div className="flex justify-center items-center col-span-2 md:col-span-5">
+            <div className="flex flex-col items-center space-y-8">
+              <img
+                src={cartImg}
+                alt="Empty Cart"
+                className="w-24 md:w-48 mx-auto my-4"
+              />
+              <h2 className="capitalize md:text-2xl text-center">
+          Currently no products in {category}
+        </h2>
+              <h2 className="text-xl mt-2">
+                <Link
+                  to="/shop"
+                  className="bg-[#01684B] text-white px-6 py-2 rounded-xl"
+                >
+                  Lets Shop Others
+                </Link>
+              </h2>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );

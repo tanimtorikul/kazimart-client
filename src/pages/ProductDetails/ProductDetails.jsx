@@ -1,5 +1,5 @@
 import { useParams, useNavigate, useLocation } from "react-router-dom";
-import { FaCartShopping, FaStar } from "react-icons/fa6";
+import { FaCartShopping } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import useProducts from "../../hooks/useProducts";
 import useAuth from "../../hooks/useAuth";
@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Spinner from "../../utlis/Spinner";
 import { Helmet } from "react-helmet-async";
+import ReactImageMagnify from "react-image-magnify";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -31,7 +32,7 @@ const ProductDetails = () => {
     };
 
     getProductDetails();
-  }, [id, fetchProductById]);
+  }, [id]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -79,11 +80,10 @@ const ProductDetails = () => {
       navigate("/login", { state: { from: location } });
     }
   };
-  
 
   return (
     <div className="max-w-[1400px] mx-auto px-4">
-       <Helmet>
+      <Helmet>
         <title>{product?.name}</title>
       </Helmet>
       {isLoading ? (
@@ -94,10 +94,29 @@ const ProductDetails = () => {
             <div className="max-w-[1200px] mx-auto my-8 px-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                 <div className="flex justify-center">
-                  <img
-                    src={product.imageUrl}
-                    alt={product.name}
-                    className="rounded-lg border-2 shadow-lg max-h-[300px] md:max-h-[500px] object-cover"
+                  <ReactImageMagnify
+                    {...{
+                      smallImage: {
+                        alt: product.name,
+                        isFluidWidth: true,
+                        src: product.imageUrl,
+                      },
+                      largeImage: {
+                        src: product.imageUrl,
+                        width: 700, 
+                        height: 700,
+                      },
+                      enlargedImagePosition: "over", 
+                      enlargedImageContainerDimensions: {
+                        width: "100%", 
+                        height: "100%", 
+                      },
+                      lensStyle: {
+                        backgroundColor: "rgba(255, 255, 255, 0.3)",
+                        border: "1px solid #ddd",
+                      },
+                    }}
+                    className="rounded-lg border border-gray-300 shadow-lg max-h-[300px] md:max-h-[500px] object-cover"
                   />
                 </div>
 
@@ -174,8 +193,6 @@ const ProductDetails = () => {
                   Reviews
                 </button>
               </div>
-              {/* 
-              based on active tab */}
               {activeTab === "description" ? (
                 <div>
                   <p>{product.description}</p>
