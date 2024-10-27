@@ -4,36 +4,67 @@ import Spinner from "../utlis/Spinner";
 import useAxiosSecure from "../hooks/useAxiosSecure";
 import toast from "react-hot-toast";
 import { Helmet } from "react-helmet-async";
+import { useState } from "react";
 
 const Orders = () => {
-  const { orders, isLoading, refetch } = useOrders();
+  const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerPage] = useState(7);
+  const [search, setSearch] = useState("");
+  const { orders, allOrders, isLoading, ordersCount, refetch } = useOrders(
+    currentPage,
+    itemsPerPage,
+    search
+  );
   const axiossecure = useAxiosSecure();
+  const numberOfPages = Math.ceil(ordersCount / itemsPerPage);
+  const pages = [...Array(numberOfPages).keys()];
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const searchText = e.target.search.value;
+    setSearch(searchText);
+  };
+
   const updateOrderStatus = async (orderId, newStatus) => {
     try {
-      const response = await axiossecure.patch(`/orders/${orderId}`, {
+      const response = await axiossecure.patch(`/allorders/${orderId}`, {
         orderStatus: newStatus,
       });
 
       if (response.data.modifiedCount > 0) {
         toast.success("Status changed");
         refetch();
-      } 
+      }
     } catch (error) {
-      console.error("Error updating order status:", error);
+      console.error(error);
     }
   };
 
   return (
     <div>
-       <Helmet>
+      <Helmet>
         <title>Manage Orders</title>
       </Helmet>
       <h2 className="text-xl font-semibold mb-4">
         All Orders{" "}
         <span className="bg-[#c7cbcf] text-xs py-1 px-3 rounded-lg">
-          {orders.length}
+          {allOrders.length}
         </span>
       </h2>
+      <form onSubmit={handleSearch} className="flex items-center md:justify-end my-4">
+        <input
+          name="search"
+          type="search"
+          placeholder="Search products..."
+          className="rounded-l-lg px-4 py-2"
+        />
+        <button
+          type="submit"
+          className="px-4 py-2 bg-[#01684B] text-white rounded-r-lg hover:bg-[#014C36]"
+        >
+          Search
+        </button>
+      </form>
       {isLoading ? (
         <Spinner />
       ) : (
@@ -136,6 +167,24 @@ const Orders = () => {
           </tbody>
         </table>
       )}
+      {/* Pagination */}
+      <div className="flex justify-center mt-4">
+        <nav className="inline-flex space-x-1">
+          {pages.map((page) => (
+            <button
+              key={page}
+              onClick={() => setCurrentPage(page)}
+              className={`px-4 py-2 border rounded ${
+                currentPage === page
+                  ? "bg-[#01684B] text-white"
+                  : "bg-white text-[#01684B] hover:bg-[#01684B] hover:text-white"
+              }`}
+            >
+              {page + 1}
+            </button>
+          ))}
+        </nav>
+      </div>
     </div>
   );
 };

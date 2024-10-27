@@ -1,7 +1,7 @@
 import useOrders from "../../hooks/useOrders";
 
 const OrdersOverview = () => {
-  const { orders } = useOrders();
+  const { allOrders } = useOrders();
 
   const orderCounts = {
     Pending: 0,
@@ -11,7 +11,7 @@ const OrdersOverview = () => {
     Cancelled: 0,
   };
 
-  orders.forEach((order) => {
+  allOrders.forEach((order) => {
     orderCounts[order.orderStatus] += 1;
   });
 

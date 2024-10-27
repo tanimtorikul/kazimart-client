@@ -103,13 +103,13 @@ const ProductDetails = () => {
                       },
                       largeImage: {
                         src: product.imageUrl,
-                        width: 700, 
+                        width: 700,
                         height: 700,
                       },
-                      enlargedImagePosition: "over", 
+                      enlargedImagePosition: "over",
                       enlargedImageContainerDimensions: {
-                        width: "100%", 
-                        height: "100%", 
+                        width: "100%",
+                        height: "100%",
                       },
                       lensStyle: {
                         backgroundColor: "rgba(255, 255, 255, 0.3)",

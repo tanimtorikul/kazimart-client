@@ -10,7 +10,7 @@ import UserOrders from "./UserOrders";
 const Overview = () => {
   const { user } = useAuth();
   const [isAdmin] = useAdmin();
-  const { orders } = useOrders();
+  const { allOrders } = useOrders();
 
   const orderCounts = {
     Pending: 0,
@@ -20,7 +20,7 @@ const Overview = () => {
     Cancelled: 0,
   };
 
-  orders.forEach((order) => {
+  allOrders.forEach((order) => {
     if (orderCounts[order.orderStatus] !== undefined) {
       orderCounts[order.orderStatus] += 1;
     }

@@ -6,7 +6,7 @@ import useProducts from "../../hooks/useProducts";
 
 const AdminSummary = () => {
   const axiosSecure = useAxiosSecure();
-  const { orders } = useOrders();
+  const { allOrders } = useOrders();
   const { data: users = [] } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
@@ -15,7 +15,7 @@ const AdminSummary = () => {
     },
   });
   const totalEarnings = () => {
-    return orders
+    return allOrders
       .filter((order) => order.orderStatus === "Delivered")
       .reduce((acc, order) => acc + parseFloat(order.totalPrice || 0), 0);
   };
@@ -29,7 +29,7 @@ const AdminSummary = () => {
         {/* Total Orders Card */}
         <div className="bg-[#43B10F] p-6 rounded-lg shadow">
           <h2 className="text-lg font-semibold text-white">Total Orders</h2>
-          <p className="text-3xl font-bold text-white">{orders.length}</p>
+          <p className="text-3xl font-bold text-white">{allOrders.length}</p>
         </div>
 
         {/* Total Earnings Card */}

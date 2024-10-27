@@ -2,25 +2,26 @@ import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 function PromoBanner() {
   const [banners, setBanners] = useState([]);
+  const axiosPublic = useAxiosPublic();
 
   useEffect(() => {
     const fetchBanners = async () => {
       try {
-        const res = await fetch("banners.json");
-        const data = await res.json();
-        setBanners(data);
+        const res = await axiosPublic.get("/promo");
+        setBanners(res.data);
       } catch (error) {
         console.log(error);
       }
     };
     fetchBanners();
-  }, []);
+  }, [axiosPublic]);
 
   return (
-    <div className="max-w-[1400px] mx-auto"> 
+    <div className="max-w-[1400px] mx-auto">
       <Swiper
         speed={1000}
         autoplay={{ delay: 2000, disableOnInteraction: false }}

@@ -48,7 +48,7 @@ const CheckoutPage = () => {
       orderStatus: "Pending",
       orderDate: new Date().toISOString(),
     };
-    axiosSecure.post("/orders", orderData).then((res) => {
+    axiosSecure.post("/allorders", orderData).then((res) => {
       if (res.data.insertedId) {
         toast.success(`${user.displayName}, Your Order placed successfully`);
         navigate("/order-successful");

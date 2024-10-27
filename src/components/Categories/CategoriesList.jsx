@@ -64,7 +64,7 @@ const CategoriesList = () => {
                   <td className="py-3 px-5 flex justify-center">
                     <img
                       src={category.imgUrl}
-                      className="w-16 h-8 md:w-32 md:h-16 object-cover"
+                      className="w-16 h-16 md:w-32 md:h-16 object-contain"
                     />
                   </td>
                   <td className="py-2 px-2 text-center">{category.category}</td>
