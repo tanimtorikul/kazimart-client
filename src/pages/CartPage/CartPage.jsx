@@ -3,17 +3,19 @@ import useCart from "../../hooks/useCart";
 import cartImg from "../../assets/emptycart.png";
 import CartItemCard from "../../components/CartItemCard/CartItemCard";
 import { TbCurrencyTaka } from "react-icons/tb";
+import { useEffect } from "react";
 
 const CartPage = () => {
   const [cart] = useCart();
 
-  // Calculate the total price using parseFloat
   const total = cart.reduce((acc, item) => {
     const price = parseFloat(item.price);
     const quantity = parseFloat(item.quantity);
     return acc + price * quantity;
   }, 0);
-
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
   return (
     <div className="max-w-[1400px] mx-auto">
       {cart.length === 0 ? (

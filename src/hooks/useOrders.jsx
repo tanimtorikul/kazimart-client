@@ -9,7 +9,7 @@ const useOrders = (currentPage, itemsPerPage, search) => {
   // all orders with pagination and search
   const {
     data: orders = [],
-
+    refetch,
     isLoading,
   } = useQuery({
     queryKey: ["orders", currentPage, itemsPerPage, search],
@@ -30,7 +30,7 @@ const useOrders = (currentPage, itemsPerPage, search) => {
   });
 
   // all orders
-  const { data: allOrders = [], refetch } = useQuery({
+  const { data: allOrders = [],  } = useQuery({
     queryKey: ["allOrders"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/allorders`);

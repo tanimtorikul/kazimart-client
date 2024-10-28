@@ -23,6 +23,7 @@ import Promo from "../DashboardPages/Promo";
 import UpdateProduct from "../DashboardPages/UpdateProduct";
 import UpdateCategory from "../DashboardPages/UpdateCategory";
 import OrderSuccessful from "../pages/CheckoutPage/OrderSuccessful";
+import About from "../pages/About/About";
 
 export const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ export const router = createBrowserRouter([
       {
         path: "/cart",
         element: <CartPage />,
+      },
+      {
+        path: "/about",
+        element: <About />,
       },
 
       {

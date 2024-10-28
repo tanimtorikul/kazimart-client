@@ -25,7 +25,7 @@ const AdminSummary = () => {
       <h2 className="text-lg font-semibold text-gray-800 my-4">
         Overall Statistics
       </h2>
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
         {/* Total Orders Card */}
         <div className="bg-[#43B10F] p-6 rounded-lg shadow">
           <h2 className="text-lg font-semibold text-white">Total Orders</h2>

@@ -1,5 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import useOrders from '../../hooks/useOrders';
+import { useEffect } from 'react';
 
 const OrderSuccessful = () => {
     const navigate = useNavigate();
@@ -15,6 +16,9 @@ const OrderSuccessful = () => {
     const handleBackHome = () => {
         navigate('/');
     };
+    useEffect(()=>{
+        window.scrollTo(0, 0)
+    })
 
     return (
         <div className="flex flex-col items-center justify-center p-4">
