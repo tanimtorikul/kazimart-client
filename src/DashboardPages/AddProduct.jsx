@@ -5,6 +5,8 @@ import toast from "react-hot-toast";
 import uploadImg from "../assets/uploadimg.png";
 import useCategories from "../hooks/useCategories";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import ProductDescriptionEditor from "../components/shared/ProductDescriptionEditor";
+import { useNavigate } from "react-router-dom";
 
 const cloud_name = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
 const upload_preset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
@@ -15,7 +17,7 @@ const AddProduct = () => {
   const [isPopular, setIsPopular] = useState(false);
   const [inStock, setInStock] = useState(true);
   const axiosSecure = useAxiosSecure();
-
+  const [description, setDescription] = useState(""); 
   const { categories } = useCategories();
   const {
     register,
@@ -23,6 +25,8 @@ const AddProduct = () => {
     formState: { errors },
     setError,
   } = useForm();
+  const navigate = useNavigate()
+
 
   const onSubmit = async (data) => {
     if (!image) {
@@ -47,30 +51,29 @@ const AddProduct = () => {
       if (res.data.secure_url) {
         const categoryArray = [data.category];
 
-        // if "Popular" is checked then adding it to the category array
+        // if "Popular" is checked, then add it to the category array
         if (isPopular) {
           categoryArray.push("popular");
         }
 
-        // product data including all fields
         const productData = {
           name: data.name,
           price: data.price,
           previousPrice: data.previousPrice,
           quantity: data.quantity,
-          description: data.description,
+          description: description, 
           category: categoryArray,
           imageUrl: res.data.secure_url,
           inStock: inStock,
         };
+
         const productRes = await axiosSecure.post("/products", productData);
         if (productRes.data.insertedId) {
           toast.success("Product added successfully!");
           setImage(null);
+          setDescription("");
+          navigate('/dashboard/manage-products')
         }
-
-        // console.log("product: ", productData);
-        toast.success("Product added successfully!");
       }
     } catch (error) {
       console.error(error);
@@ -188,26 +191,11 @@ const AddProduct = () => {
             />
           </div>
 
-          {/* Product Description */}
-          <div>
-            <label
-              htmlFor="description"
-              className="block text-lg md:text-xl font-medium"
-            >
-              Product Description
-            </label>
-            <textarea
-              {...register("description", {
-                required: "Product description is required",
-              })}
-              placeholder="Enter product description"
-              className="w-full px-4 py-2 border rounded-md"
-              rows="3"
-            />
-            {errors.description && (
-              <span className="text-red-500">{errors.description.message}</span>
-            )}
-          </div>
+          {/* Description */}
+          <ProductDescriptionEditor 
+            value={description} 
+            onChange={setDescription}
+          />
 
           {/* Popular Checkbox */}
           <div>
@@ -292,7 +280,7 @@ const AddProduct = () => {
         <div className="w-full md:w-1/2 mx-auto">
           <button
             type="submit"
-            className="bg-[#005555] w-full text-white py-2 px-6 rounded-md text-lg md:text-xl"
+            className="bg-[#005555] w-full text-white py-2 rounded-md hover:bg-[#004545] transition"
           >
             Add Product
           </button>

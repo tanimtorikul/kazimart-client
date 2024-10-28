@@ -8,7 +8,6 @@ import toast from "react-hot-toast";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Spinner from "../../utlis/Spinner";
 import { Helmet } from "react-helmet-async";
-import ReactImageMagnify from "react-image-magnify";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -91,32 +90,13 @@ const ProductDetails = () => {
       ) : (
         product && (
           <>
-            <div className="max-w-[1200px] mx-auto my-8 px-4">
+            <div className="max-w-[1200px] mx-auto px-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div className="flex justify-center">
-                  <ReactImageMagnify
-                    {...{
-                      smallImage: {
-                        alt: product.name,
-                        isFluidWidth: true,
-                        src: product.imageUrl,
-                      },
-                      largeImage: {
-                        src: product.imageUrl,
-                        width: 700,
-                        height: 700,
-                      },
-                      enlargedImagePosition: "over",
-                      enlargedImageContainerDimensions: {
-                        width: "100%",
-                        height: "100%",
-                      },
-                      lensStyle: {
-                        backgroundColor: "rgba(255, 255, 255, 0.3)",
-                        border: "1px solid #ddd",
-                      },
-                    }}
-                    className="rounded-lg border border-gray-300 shadow-lg max-h-[300px] md:max-h-[500px] object-cover"
+                <div className="max-w-[300px] max-h-[300px] sm:max-w-[400px] sm:max-h-[400px] md:max-w-[500px] md:max-h-[500px] mx-auto">
+                  <img
+                    src={product.imageUrl}
+                    alt={product.name}
+                    className="rounded-lg border border-gray-300 shadow-lg object-cover w-full h-full"
                   />
                 </div>
 
@@ -195,7 +175,9 @@ const ProductDetails = () => {
               </div>
               {activeTab === "description" ? (
                 <div>
-                  <p>{product.description}</p>
+                  <div
+                    dangerouslySetInnerHTML={{ __html: product.description }}
+                  ></div>
                 </div>
               ) : (
                 <div>Reviews coming soon!</div>

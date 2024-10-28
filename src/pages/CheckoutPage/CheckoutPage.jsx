@@ -189,13 +189,13 @@ const CheckoutPage = () => {
               <label className="flex items-center">
                 <input
                   type="radio"
-                  value="Card Payment"
+                  value="Online Payment"
                   {...register("paymentMethod", {
                     required: "Payment Method is required",
                   })}
                   className="mr-2"
                 />
-                Card Payment
+                Online Payment
               </label>
             </div>
             {errors.paymentMethod && (

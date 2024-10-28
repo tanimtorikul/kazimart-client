@@ -5,6 +5,7 @@ import useCategories from "../hooks/useCategories";
 import { useNavigate, useParams } from "react-router-dom";
 import useProducts from "../hooks/useProducts";
 import useAxiosSecure from "../hooks/useAxiosSecure";
+import ProductDescriptionEditor from "../components/shared/ProductDescriptionEditor";
 
 const cloud_name = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME;
 const upload_preset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
@@ -19,13 +20,14 @@ const UpdateProduct = () => {
   const { fetchProductById } = useProducts();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
-
   const [product, setProduct] = useState(null);
+  const [description, setDescription] = useState("");
 
   useEffect(() => {
     const getProductDetails = async () => {
       const fetchedProduct = await fetchProductById(productId);
       setProduct(fetchedProduct);
+      setDescription(fetchedProduct?.description || ""); 
     };
 
     getProductDetails();
@@ -73,12 +75,11 @@ const UpdateProduct = () => {
       price: event.target.price.value,
       previousPrice: event.target.previousPrice.value,
       quantity: event.target.quantity.value,
-      description: event.target.description.value,
+      description, 
       category: categoryArray,
       imageUrl,
       inStock,
     };
-    console.log(productData);
 
     try {
       const productRes = await axiosSecure.put(
@@ -103,7 +104,6 @@ const UpdateProduct = () => {
       </h2>
       <form onSubmit={onSubmit} className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-12">
-          {/* Product Name */}
           <div>
             <label
               htmlFor="name"
@@ -120,8 +120,6 @@ const UpdateProduct = () => {
               required
             />
           </div>
-
-          {/*  Product Category Dropdown */}
 
           <div>
             <label
@@ -144,7 +142,6 @@ const UpdateProduct = () => {
             </select>
           </div>
 
-          {/* Product Price */}
           <div>
             <label
               htmlFor="price"
@@ -162,7 +159,6 @@ const UpdateProduct = () => {
             />
           </div>
 
-          {/* Previous Price */}
           <div>
             <label
               htmlFor="previousPrice"
@@ -179,7 +175,6 @@ const UpdateProduct = () => {
             />
           </div>
 
-          {/* Quantity */}
           <div>
             <label
               htmlFor="quantity"
@@ -197,7 +192,6 @@ const UpdateProduct = () => {
             />
           </div>
 
-          {/* Product Description */}
           <div>
             <label
               htmlFor="description"
@@ -205,17 +199,12 @@ const UpdateProduct = () => {
             >
               Product Description
             </label>
-            <textarea
-              name="description"
-              defaultValue={product?.description || ""}
-              placeholder="Enter product description"
-              className="w-full px-4 py-2 border rounded-md"
-              rows="3"
-              required
+            <ProductDescriptionEditor
+              value={description}
+              onChange={setDescription} 
             />
           </div>
 
-          {/* Popular Checkbox */}
           <div>
             <label
               htmlFor="popular"
@@ -233,7 +222,6 @@ const UpdateProduct = () => {
             <span>Mark as Popular</span>
           </div>
 
-          {/* In Stock Radio Buttons */}
           <div>
             <label className="block text-lg md:text-xl font-medium">
               Stock Status
@@ -264,7 +252,6 @@ const UpdateProduct = () => {
             </div>
           </div>
 
-          {/* Product Image Upload */}
           <div>
             <label
               htmlFor="image"
@@ -286,7 +273,6 @@ const UpdateProduct = () => {
           </div>
         </div>
 
-        {/* Submit Button */}
         <div className="w-full md:w-1/2 mx-auto">
           <button
             type="submit"

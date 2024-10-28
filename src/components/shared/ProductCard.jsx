@@ -67,7 +67,7 @@ const ProductCard = ({ item }) => {
   return (
     <div className="relative bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition duration-200 ease-in-out group">
       {/* Image  */}
-      <div className="relative flex justify-center border border-gray-100 rounded-lg">
+      <div className="relative flex justify-center border border-gray-100 rounded-lg pt-3">
         <Link to={`/product/${item._id}`} className="block">
           <img
             src={imageUrl}
@@ -76,7 +76,7 @@ const ProductCard = ({ item }) => {
           />
           {/* Discount */}
           {previousPrice && previousPrice > price && (
-            <div className="absolute top-2 left-2">
+            <div className="absolute top-3 left-3">
               <h2 className="bg-[#FF5252] text-white px-2 py-1 rounded-lg text-xs font-semibold flex items-center">
                 -{previousPrice - price}
                 <TbCurrencyTaka />
