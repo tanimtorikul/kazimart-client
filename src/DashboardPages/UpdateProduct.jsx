@@ -42,7 +42,7 @@ const UpdateProduct = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    let imageUrl = "";
+    let imageUrls = "";
 
     if (image) {
       const formData = new FormData();
@@ -55,14 +55,14 @@ const UpdateProduct = () => {
             "Content-Type": "multipart/form-data",
           },
         });
-        imageUrl = res.data.secure_url;
+        imageUrls = res.data.secure_url;
       } catch (error) {
         console.error(error);
         toast.error("Failed to upload image");
         return;
       }
     } else {
-      imageUrl = product?.imageUrl || "";
+      imageUrls = product?.imageUrls[1] || "";
     }
 
     const categoryArray = [event.target.category.value];
@@ -77,7 +77,7 @@ const UpdateProduct = () => {
       quantity: event.target.quantity.value,
       description, 
       category: categoryArray,
-      imageUrl,
+      imageUrls,
       inStock,
     };
 
@@ -266,7 +266,7 @@ const UpdateProduct = () => {
               className="border rounded-md"
             />
             <img
-              src={image ? URL.createObjectURL(image) : product?.imageUrl}
+              src={image ? URL.createObjectURL(image) : product?.imageUrls[1]}
               alt="Preview"
               className="w-1/2 mt-2"
             />

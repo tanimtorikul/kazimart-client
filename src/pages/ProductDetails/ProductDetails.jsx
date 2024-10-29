@@ -58,7 +58,7 @@ const ProductDetails = () => {
         productId: product._id,
         email: user.email,
         name: product.name,
-        imageUrls: product.imageUrls[0],
+        imageUrls: product.imageUrls,
         price: product.price,
         amount: 1,
         quantity: product.quantity,
@@ -68,6 +68,7 @@ const ProductDetails = () => {
         .then((res) => {
           if (res.data.insertedId) {
             toast.success(`${product.name} added to the cart`);
+            
             refetch();
           } else {
             toast.error("Failed to add to the cart!");

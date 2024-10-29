@@ -54,7 +54,6 @@ const AddProduct = () => {
         }
       }
 
-      // Proceed with adding product data to the database
       const productData = {
         name: data.name,
         price: data.price,
@@ -62,7 +61,7 @@ const AddProduct = () => {
         quantity: data.quantity,
         description: description,
         category: [data.category, ...(isPopular ? ["popular"] : [])],
-        imageUrls, // Save array of image URLs
+        imageUrls,
         inStock: inStock,
       };
 
@@ -252,7 +251,7 @@ const AddProduct = () => {
               htmlFor="image"
               className="block text-lg md:text-xl font-medium"
             >
-              Product Image
+              Product Image <span className="text-red-500 text-sm">*Add upto 3 images</span>
             </label>
             <div>
               <label htmlFor="image">

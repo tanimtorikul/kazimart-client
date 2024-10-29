@@ -16,6 +16,8 @@ const CheckoutPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+  console.log(cart);
+  
 
   // Calculate total price
   const total = cart.reduce((acc, item) => {
@@ -37,7 +39,7 @@ const CheckoutPage = () => {
         quantity: item.quantity,
         price: item.price,
         totalPrice: item.price * item.quantity,
-        image: item.imageUrl,
+        image: item.imageUrls[0],
         amount: item.amount,
       })),
       totalItems: cart.reduce((total, item) => total + item.quantity, 0),

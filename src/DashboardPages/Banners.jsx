@@ -48,7 +48,7 @@ const Banners = () => {
         const bannerItem = {
           title: data.title,
           description: data.description,
-          imageUrl: res.data.secure_url,
+          imgUrl: res.data.secure_url,
         };
 
         const bannerRes = await axiosSecure.post("/main-banners", bannerItem);

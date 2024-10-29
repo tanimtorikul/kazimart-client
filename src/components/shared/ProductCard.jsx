@@ -7,8 +7,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useCart from "../../hooks/useCart";
 
 const ProductCard = ({ item }) => {
-  const { imageUrls, imageUrl, previousPrice, price, name, quantity, _id } =
-    item;
+  const { imageUrls, previousPrice, price, name, quantity, _id } = item;
   const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -23,7 +22,7 @@ const ProductCard = ({ item }) => {
           const existingCartItem = res.data.find(
             (cartItem) => cartItem.productId === _id
           );
-
+  
           if (existingCartItem) {
             toast.error(`${name} is already in the cart!`);
           } else {
@@ -31,17 +30,19 @@ const ProductCard = ({ item }) => {
               productId: _id,
               email: user.email,
               name,
-              imageUrls, // updated to pass entire array if needed later
+              imageUrls, 
               price,
               amount: 1,
               quantity,
             };
+            
             axiosSecure
               .post("/carts", cartItem)
               .then((res) => {
                 if (res.data.insertedId) {
                   toast.success(`${name} added to the cart`);
                   refetch();
+                  
                 } else {
                   toast.error("Failed to add to the cart!");
                 }
@@ -61,6 +62,7 @@ const ProductCard = ({ item }) => {
       navigate("/login", { state: { from: location } });
     }
   };
+  
 
   return (
     <div className="relative bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition duration-200 ease-in-out group">

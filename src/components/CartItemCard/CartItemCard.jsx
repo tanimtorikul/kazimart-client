@@ -6,7 +6,7 @@ import useCart from "../../hooks/useCart";
 
 const CartItemCard = ({ item }) => {
   const [, refetch] = useCart();
-  const { _id, imageUrl, name, price, quantity, amount } = item;
+  const { _id, imageUrls, name, price, quantity, amount } = item;
   const axiosSecure = useAxiosSecure();
 
   const handleDelete = (id) => {
@@ -59,7 +59,7 @@ const CartItemCard = ({ item }) => {
         {/* img, name, and price */}
       <div className="flex items-center gap-4">
         <img
-          src={imageUrl}
+          src={imageUrls[1]}
           alt={name}
           className="w-28 h-28 object-cover rounded-lg border"
         />
