@@ -60,7 +60,7 @@ const CheckoutPage = () => {
 
   return (
     <div className="max-w-[1400px] mx-auto">
-      <h1 className="md:text-xl font-semibold mb-6">Checkout</h1>
+      <h1 className="md:text-xl font-semibold mb-2 md:mb-6">Checkout</h1>
 
       <div className="flex flex-col md:flex-row gap-12">
         <form
@@ -73,7 +73,7 @@ const CheckoutPage = () => {
             <div>
               <label
                 htmlFor="name"
-                className="block mb-2 md:text-lg font-medium"
+                className="block mb-2 text-sm md:text-lg font-medium"
               >
                 Full Name
               </label>
@@ -82,7 +82,7 @@ const CheckoutPage = () => {
                 {...register("name", { required: "Full Name is required" })}
                 name="name"
                 defaultValue={user?.displayName || ""}
-                className="w-full px-4 py-3 border rounded-md border-gray-300"
+                className="w-full text-sm px-3 py-2 border rounded-md border-gray-300"
               />
               {errors.name && (
                 <span className="text-red-500">{errors.name.message}</span>
@@ -93,7 +93,7 @@ const CheckoutPage = () => {
             <div>
               <label
                 htmlFor="phoneNumber"
-                className="block mb-2 md:text-lg font-medium"
+                className="block mb-2 text-sm md:text-lg font-medium"
               >
                 Phone Number
               </label>
@@ -108,7 +108,7 @@ const CheckoutPage = () => {
                 })}
                 name="phoneNumber"
                 placeholder="Enter Your Phone Number"
-                className="w-full px-4 py-3 border rounded-md border-gray-300 text-gray-900"
+                className="w-full text-sm px-3 py-2 border rounded-md border-gray-300 text-gray-900"
               />
               {errors.phoneNumber && (
                 <span className="text-red-500">
@@ -121,7 +121,7 @@ const CheckoutPage = () => {
             <div>
               <label
                 htmlFor="email"
-                className="block mb-2 md:text-lg font-medium"
+                className="block mb-2 text-sm md:text-lg font-medium"
               >
                 Email Address
               </label>
@@ -130,7 +130,7 @@ const CheckoutPage = () => {
                 {...register("email", { required: "Email is required" })}
                 name="email"
                 defaultValue={user?.email || ""}
-                className="w-full px-4 py-3 border rounded-md border-gray-300"
+                className="w-full text-sm px-3 py-2 border rounded-md border-gray-300"
               />
               {errors.email && (
                 <span className="text-red-500">{errors.email.message}</span>
@@ -141,7 +141,7 @@ const CheckoutPage = () => {
             <div>
               <label
                 htmlFor="address"
-                className="block mb-2 md:text-lg font-medium"
+                className="block mb-2 text-sm md:text-lg font-medium"
               >
                 Address
               </label>
@@ -150,7 +150,7 @@ const CheckoutPage = () => {
                 {...register("address", { required: "Address is required" })}
                 name="address"
                 placeholder="Enter Your Address"
-                className="w-full px-4 py-3 border rounded-md border-gray-300 text-gray-900"
+                className="w-full text-sm px-3 py-2 border rounded-md border-gray-300 text-gray-900"
               />
               {errors.address && (
                 <span className="text-red-500">{errors.address.message}</span>
@@ -159,14 +159,14 @@ const CheckoutPage = () => {
 
             {/* Additional Note */}
             <div className="md:col-span-2">
-              <label htmlFor="note" className="block mb-2 text-lg font-medium">
+              <label htmlFor="note" className="block mb-2 text-sm md:text-lg font-medium">
                 Additional Note
               </label>
               <textarea
                 {...register("note")}
                 name="note"
                 placeholder="Any additional information"
-                className="w-full px-4 py-3 border rounded-md border-gray-300 text-gray-900"
+                className="w-full text-sm px-3 py-2 border rounded-md border-gray-300 text-gray-900"
                 rows="2"
               />
             </div>
@@ -174,9 +174,9 @@ const CheckoutPage = () => {
 
           {/* Payment Method */}
           <div className="p-6 border rounded-lg shadow-md">
-            <h2 className="text-lg font-semibold mb-4">Payment Method</h2>
+            <h2 className="text-sm md:text-lg font-semibold mb-4">Payment Method</h2>
             <div className="space-y-3">
-              <label className="flex items-center">
+              <label className="flex items-center text-sm md:text-lg">
                 <input
                   type="radio"
                   value="Cash on Delivery"
@@ -197,8 +197,8 @@ const CheckoutPage = () => {
                   className="mr-2"
                   disabled
                 />
-                <span className="mr-2">Online Payment</span>
-                <span className="text-red-500 text-[10px]">
+                <span className="text-sm md:text-lg">Online Payment</span>
+                <span className="text-red-500 text-[10px] ml-2">
                   [Under Development]
                 </span>
               </label>

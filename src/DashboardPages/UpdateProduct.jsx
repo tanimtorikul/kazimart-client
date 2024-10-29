@@ -27,7 +27,7 @@ const UpdateProduct = () => {
     const getProductDetails = async () => {
       const fetchedProduct = await fetchProductById(productId);
       setProduct(fetchedProduct);
-      setDescription(fetchedProduct?.description || ""); 
+      setDescription(fetchedProduct?.description || "");
     };
 
     getProductDetails();
@@ -75,7 +75,7 @@ const UpdateProduct = () => {
       price: event.target.price.value,
       previousPrice: event.target.previousPrice.value,
       quantity: event.target.quantity.value,
-      description, 
+      description,
       category: categoryArray,
       imageUrls,
       inStock,
@@ -130,15 +130,32 @@ const UpdateProduct = () => {
             </label>
             <select
               name="category"
-              defaultValue={product && product.category ? product.category.find(cat => cat !== "popular") : ""}
+              defaultValue={product?.category[0] || ""}
               className="w-full px-4 py-2 border rounded-md"
               required
             >
-              {categories.map((category) => (
-                <option key={category._id} value={category.category}>
-                  {category.category}
-                </option>
-              ))}
+              {product && product.category ? (
+                <>
+                  <option value={product.category[0]}>
+                    {product.category[0]}
+                  </option>{" "}
+                  {categories
+                    .filter(
+                      (category) => category.category !== product.category[0]
+                    )
+                    .map((category) => (
+                      <option key={category._id} value={category.category}>
+                        {category.category}
+                      </option>
+                    ))}
+                </>
+              ) : (
+                categories.map((category) => (
+                  <option key={category._id} value={category.category}>
+                    {category.category}
+                  </option>
+                ))
+              )}
             </select>
           </div>
 
@@ -201,7 +218,7 @@ const UpdateProduct = () => {
             </label>
             <ProductDescriptionEditor
               value={description}
-              onChange={setDescription} 
+              onChange={setDescription}
             />
           </div>
 
