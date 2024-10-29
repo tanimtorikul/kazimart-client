@@ -20,7 +20,7 @@ const MainBanner = () => {
       {banners.map((banner) => (
         <SwiperSlide key={banner._id} className="w-full flex flex-col gap-4">
           <div
-            className="hero max-w-[1400px] mx-auto h-96 md:h-[400px] relative"
+            className="hero mx-auto md:h-[500px] relative"
             style={{
               backgroundImage: `url(${banner.imgUrl})`,
               backgroundSize: "cover",

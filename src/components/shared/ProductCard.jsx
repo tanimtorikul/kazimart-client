@@ -7,9 +7,9 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useCart from "../../hooks/useCart";
 
 const ProductCard = ({ item }) => {
-  const { imageUrl, previousPrice, price, name, quantity, _id } = item;
+  const { imageUrls, imageUrl, previousPrice, price, name, quantity, _id } =
+    item;
   const { user } = useAuth();
-  // console.log(user);
   const navigate = useNavigate();
   const location = useLocation();
   const [, refetch] = useCart();
@@ -17,7 +17,6 @@ const ProductCard = ({ item }) => {
 
   const handleAddToCart = (item) => {
     if (user && user.email) {
-      // fetching the cart first to check if the product is already in the cart
       axiosSecure
         .get(`/carts?email=${user.email}`)
         .then((res) => {
@@ -28,12 +27,11 @@ const ProductCard = ({ item }) => {
           if (existingCartItem) {
             toast.error(`${name} is already in the cart!`);
           } else {
-            // then save it in cart
             const cartItem = {
               productId: _id,
               email: user.email,
               name,
-              imageUrl,
+              imageUrls, // updated to pass entire array if needed later
               price,
               amount: 1,
               quantity,
@@ -66,14 +64,15 @@ const ProductCard = ({ item }) => {
 
   return (
     <div className="relative bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition duration-200 ease-in-out group">
-      {/* Image  */}
+      {/* Image */}
       <div className="relative flex justify-center border border-gray-100 rounded-lg pt-3">
         <Link to={`/product/${item._id}`} className="block">
           <img
-            src={imageUrl}
+            src={imageUrls[0]}
             alt={name}
-            className="rounded-lg w-48 h-48 object-cover"
+            className="rounded-lg w-48 h-48 object-cover hover:"
           />
+
           {/* Discount */}
           {previousPrice && previousPrice > price && (
             <div className="absolute top-3 left-3">
@@ -90,9 +89,7 @@ const ProductCard = ({ item }) => {
       <div className="absolute inset-0 hidden md:flex flex-col justify-end duration-500 opacity-0 group-hover:opacity-100 bg-[#01684B]/50">
         <div className="flex items-center justify-center gap-2 absolute top-1/3 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
           <button
-            onClick={() => {
-              handleAddToCart(item);
-            }}
+            onClick={() => handleAddToCart(item)}
             className="bg-white hover:bg-[#36a853] hover:border-2 hover:text-white hover:border-white transition rounded-full text-gray-900 h-10 w-10 flex items-center justify-center"
           >
             <FiShoppingCart />

@@ -108,7 +108,7 @@ const Navbar = () => {
           </button>
         </div>
         <Link to="/" className="flex justify-center space-x-3 lg:justify-start">
-          <img className="w-32" alt="" src={logo} />
+          <img className="w-20 md:w-32" alt="" src={logo} />
         </Link>
       </div>
 

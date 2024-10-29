@@ -13,11 +13,11 @@ const upload_preset = import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET;
 const cloudinary_upload_api = `https://api.cloudinary.com/v1_1/${cloud_name}/image/upload`;
 
 const AddProduct = () => {
-  const [image, setImage] = useState(null);
+  const [images, setImages] = useState([]);
   const [isPopular, setIsPopular] = useState(false);
   const [inStock, setInStock] = useState(true);
   const axiosSecure = useAxiosSecure();
-  const [description, setDescription] = useState(""); 
+  const [description, setDescription] = useState("");
   const { categories } = useCategories();
   const {
     register,
@@ -25,66 +25,66 @@ const AddProduct = () => {
     formState: { errors },
     setError,
   } = useForm();
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
 
   const onSubmit = async (data) => {
-    if (!image) {
+    if (images.length === 0) {
       setError("image", {
         type: "manual",
-        message: "Product image is required",
+        message: "Product images is required",
       });
       return;
     }
-
-    const formData = new FormData();
-    formData.append("file", image);
-    formData.append("upload_preset", upload_preset);
-
+    const imageUrls = [];
     try {
-      const res = await axios.post(cloudinary_upload_api, formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      // Loop through each image file and upload to Cloudinary
+      for (const image of images) {
+        const formData = new FormData();
+        formData.append("file", image);
+        formData.append("upload_preset", upload_preset);
 
-      if (res.data.secure_url) {
-        const categoryArray = [data.category];
+        const res = await axios.post(cloudinary_upload_api, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
 
-        // if "Popular" is checked, then add it to the category array
-        if (isPopular) {
-          categoryArray.push("popular");
+        if (res.data.secure_url) {
+          imageUrls.push(res.data.secure_url);
         }
+      }
 
-        const productData = {
-          name: data.name,
-          price: data.price,
-          previousPrice: data.previousPrice,
-          quantity: data.quantity,
-          description: description, 
-          category: categoryArray,
-          imageUrl: res.data.secure_url,
-          inStock: inStock,
-        };
+      // Proceed with adding product data to the database
+      const productData = {
+        name: data.name,
+        price: data.price,
+        previousPrice: data.previousPrice,
+        quantity: data.quantity,
+        description: description,
+        category: [data.category, ...(isPopular ? ["popular"] : [])],
+        imageUrls, // Save array of image URLs
+        inStock: inStock,
+      };
 
-        const productRes = await axiosSecure.post("/products", productData);
-        if (productRes.data.insertedId) {
-          toast.success("Product added successfully!");
-          setImage(null);
-          setDescription("");
-          navigate('/dashboard/manage-products')
-        }
+      const productRes = await axiosSecure.post("/products", productData);
+      if (productRes.data.insertedId) {
+        toast.success("Product added successfully!");
+        setImages([]);
+        setDescription("");
+        navigate("/dashboard/manage-products");
       }
     } catch (error) {
       console.error(error);
-      toast.error("Failed to upload image");
+      toast.error("Failed to upload images");
     }
   };
 
   const handleFileChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      setImage(file);
+    const files = Array.from(event.target.files);
+    if (files.length > 3) {
+      toast.error("You can upload maximum 3 images");
+    } else {
+      setImages(files);
     }
   };
 
@@ -192,8 +192,8 @@ const AddProduct = () => {
           </div>
 
           {/* Description */}
-          <ProductDescriptionEditor 
-            value={description} 
+          <ProductDescriptionEditor
+            value={description}
             onChange={setDescription}
           />
 
@@ -258,7 +258,11 @@ const AddProduct = () => {
               <label htmlFor="image">
                 <img
                   className="w-full md:w-48 md:h-48 object-cover"
-                  src={image ? URL.createObjectURL(image) : uploadImg}
+                  src={
+                    images.length > 0
+                      ? URL.createObjectURL(images[0])
+                      : uploadImg
+                  }
                   alt="Product"
                 />
                 <input
@@ -266,7 +270,7 @@ const AddProduct = () => {
                   id="image"
                   accept="image/*"
                   onChange={handleFileChange}
-                  hidden
+                  multiple
                 />
               </label>
               {errors.image && (

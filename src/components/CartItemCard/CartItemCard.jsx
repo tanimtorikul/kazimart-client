@@ -55,7 +55,7 @@ const CartItemCard = ({ item }) => {
 
   return (
     <div className="flex items-center gap-8 md:gap-24 p-2 md:p-4 border border-gray-200 shadow-lg rounded-xl">
-      <div className="flex gap-20 items-center justify-center">
+      <div className="flex gap-6 md:gap-20 items-center justify-center">
         {/* img, name, and price */}
       <div className="flex items-center gap-4">
         <img
@@ -63,10 +63,10 @@ const CartItemCard = ({ item }) => {
           alt={name}
           className="w-28 h-28 object-cover rounded-lg border"
         />
-        <div className="w-20 md:w-40">
+        <div className="">
           <h2 className="text-sm md:text-lg font-semibold mb-1">{name}</h2>
           <div>
-            <p className="text-white px-2 py-1 rounded-lg text-xs font-semibold flex items-center bg-[#01684B]">
+            <p className="text-white w-16 px-2 py-1 rounded-lg text-xs font-semibold flex items-center bg-[#01684B]">
               {price}
               <TbCurrencyTaka className="w-4 h-4 ml-1" />
             </p>

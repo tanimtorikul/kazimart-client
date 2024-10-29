@@ -22,11 +22,13 @@ const ProductDetails = () => {
   const [activeTab, setActiveTab] = useState("description");
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [mainImage, setMainImage] = useState(null);
 
   useEffect(() => {
     const getProductDetails = async () => {
       const fetchedProduct = await fetchProductById(id);
       setProduct(fetchedProduct);
+      setMainImage(fetchedProduct.imageUrls[0]);
       setIsLoading(false);
     };
 
@@ -56,7 +58,7 @@ const ProductDetails = () => {
         productId: product._id,
         email: user.email,
         name: product.name,
-        imageUrl: product.imageUrl,
+        imageUrls: product.imageUrls[0],
         price: product.price,
         amount: 1,
         quantity: product.quantity,
@@ -91,16 +93,28 @@ const ProductDetails = () => {
         product && (
           <>
             <div className="max-w-[1200px] mx-auto px-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10">
                 <div className="max-w-[300px] max-h-[300px] sm:max-w-[400px] sm:max-h-[400px] md:max-w-[500px] md:max-h-[500px] mx-auto">
                   <img
-                    src={product.imageUrl}
+                    src={mainImage}
                     alt={product.name}
-                    className="rounded-lg border border-gray-300 shadow-lg object-cover w-full h-full"
+                    className="rounded-lg border border-gray-300 shadow-lg object-cover w-full h-72"
                   />
+                  {/* Thumbnail Section */}
+                  <div className="mt-4 flex space-x-2 justify-center">
+                    {product.imageUrls.map((url, index) => (
+                      <img
+                        key={index}
+                        src={url}
+                        alt={`Thumbnail ${index + 1}`}
+                        className="rounded-lg w-16 h-16 object-cover cursor-pointer border border-gray-300 hover:border-[#01684B]"
+                        onClick={() => setMainImage(url)}
+                      />
+                    ))}
+                  </div>
                 </div>
 
-                <div className="space-y-6 flex flex-col items-center md:block">
+                <div className="space-y-3 mt-16 md:mt-0 md:space-y-6 flex flex-col items-center md:block">
                   <h2 className="text-lg md:text-2xl font-semibold text-[#002349]">
                     {product.name}
                   </h2>

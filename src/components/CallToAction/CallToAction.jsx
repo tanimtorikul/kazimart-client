@@ -20,9 +20,9 @@ const CallToAction = () => {
                 Make your online shop easier with our mobile app
               </h3>
               <p>
-                Kazimart makes online grocery shopping fast and easy. Get
-                groceries delivered and order the best of seasonal farm fresh
-                food.
+                We started our journey to bring exceptional, trendy, and quality
+                products to you. Our entire goal is to satisfy customer&apos;s
+                demands. Please stay tuned with Kazimart.
               </p>
               <button onClick={handleClick}>
                 <div className="flex gap-4">
