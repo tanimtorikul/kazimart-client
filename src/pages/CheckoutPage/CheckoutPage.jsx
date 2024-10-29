@@ -17,7 +17,6 @@ const CheckoutPage = () => {
     formState: { errors },
   } = useForm();
   console.log(cart);
-  
 
   // Calculate total price
   const total = cart.reduce((acc, item) => {
@@ -60,7 +59,7 @@ const CheckoutPage = () => {
   };
 
   return (
-    <div className="max-w-[1400px] mx-auto md:my-4">
+    <div className="max-w-[1400px] mx-auto">
       <h1 className="md:text-xl font-semibold mb-6">Checkout</h1>
 
       <div className="flex flex-col md:flex-row gap-12">
@@ -168,7 +167,7 @@ const CheckoutPage = () => {
                 name="note"
                 placeholder="Any additional information"
                 className="w-full px-4 py-3 border rounded-md border-gray-300 text-gray-900"
-                rows="4"
+                rows="2"
               />
             </div>
           </div>
@@ -196,8 +195,12 @@ const CheckoutPage = () => {
                     required: "Payment Method is required",
                   })}
                   className="mr-2"
+                  disabled
                 />
-                Online Payment
+                <span className="mr-2">Online Payment</span>
+                <span className="text-red-500 text-[10px]">
+                  [Under Development]
+                </span>
               </label>
             </div>
             {errors.paymentMethod && (
@@ -207,13 +210,25 @@ const CheckoutPage = () => {
             )}
           </div>
 
-          {/* Submit Button */}
-          <button
-            type="submit"
-            className="bg-[#01684B] w-full rounded-md py-2 text-white md:text-lg"
-          >
-            Place Order
-          </button>
+          {/* for large screens */}
+          <div className="hidden md:block">
+            <button
+              type="submit"
+              className="bg-[#01684B] w-full rounded-md py-2 text-white"
+            >
+              Place Order
+            </button>
+          </div>
+
+          {/* for mobile device*/}
+          <div className="fixed bottom-0 left-0 right-0 bg-white border-t md:hidden">
+            <button
+              type="submit"
+              className="bg-[#01684B] w-full py-2 text-white md:block"
+            >
+              Place Order
+            </button>
+          </div>
         </form>
         <div className="space-y-6 w-full md:w-1/3">
           <div className="p-6 border-2 rounded-lg shadow-md">
