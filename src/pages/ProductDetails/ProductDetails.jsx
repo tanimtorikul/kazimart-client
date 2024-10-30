@@ -10,6 +10,7 @@ import Spinner from "../../utlis/Spinner";
 import { Helmet } from "react-helmet-async";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
+import RelatedProducts from "./RelatedProducts";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -33,18 +34,20 @@ const ProductDetails = () => {
       setProduct(fetchedProduct);
       setMainImage(fetchedProduct.imageUrls[0]);
       setIsLoading(false);
-  
+
       // Fetch related products based on the product's category
       if (fetchedProduct.category) {
-        const related = await fetchRelatedProducts(fetchedProduct.category.join(',')); // Ensure it's a comma-separated string
-        console.log('related', related);
+        const related = await fetchRelatedProducts(
+          fetchedProduct.category.join(",")
+        ); // Ensure it's a comma-separated string
+        console.log("related", related);
         setRelatedProducts(related);
       }
     };
-  
+
     getProductDetails();
   }, [id]);
-  
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -212,26 +215,8 @@ const ProductDetails = () => {
             </div>
             {/* Related Products Section */}
             <div className="mt-8">
-  <h3 className="text-lg md:text-2xl font-semibold text-[#002349] mb-4">
-    Related Products
-  </h3>
-  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-    {relatedProducts.map((relatedProduct) => (
-      <div key={relatedProduct._id} className="border rounded-lg p-4">
-        <img
-          src={relatedProduct.imageUrls[0]}
-          alt={relatedProduct.name}
-          className="h-48 w-full object-cover mb-2"
-        />
-        <h4 className="font-semibold">{relatedProduct.name}</h4>
-        <p className="text-lg text-[#01684B]">
-          ৳ {relatedProduct.price}
-        </p>
-      </div>
-    ))}
-  </div>
-</div>
-
+              <RelatedProducts />
+            </div>
           </>
         )
       )}

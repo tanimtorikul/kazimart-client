@@ -148,7 +148,7 @@ const AdminSidebar = () => {
             </li>
 
             {/* Blog Management Section */}
-            <h2 className="text-[#B1E3CE] text-xs md:text-xl py-2">
+            <h2 className="text-[#B1E3CE] text-xs md:text-xl py-2 hidden md:block">
               Blog Management
             </h2>
             <li>

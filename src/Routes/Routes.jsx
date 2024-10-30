@@ -24,7 +24,9 @@ import UpdateProduct from "../DashboardPages/UpdateProduct";
 import UpdateCategory from "../DashboardPages/UpdateCategory";
 import OrderSuccessful from "../pages/CheckoutPage/OrderSuccessful";
 import About from "../pages/About/About";
-
+import AddBlog from '../components/AdminBlog/AddBlog'
+import ManageBlogs from "../components/AdminBlog/ManageBlogs";
+import Blogs from "../pages/Blogs/Blogs";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -62,6 +64,10 @@ export const router = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+      },
+      {
+        path: "/blogs",
+        element: <Blogs />,
       },
 
       {
@@ -128,6 +134,14 @@ export const router = createBrowserRouter([
       {
         path: "users",
         element: <AllUser />,
+      },
+      {
+        path: "add-blog",
+        element: <AddBlog />,
+      },
+      {
+        path: "manage-blogs",
+        element: <ManageBlogs />,
       },
     ],
   },
