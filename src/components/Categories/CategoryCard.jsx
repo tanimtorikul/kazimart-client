@@ -1,6 +1,6 @@
 const CategoryCard = ({ category }) => {
   return (
-    <div className="bg-white border-2 hover:border-green-600  rounded-3xl overflow-hidden transition-transform duration-200 transform hover:scale-105 md:hover:scale-100">
+    <div className="bg-white border-2 h-full hover:border-green-600  rounded-3xl overflow-hidden transition-transform duration-200 transform hover:scale-105 md:hover:scale-100">
       <img
         src={category.imgUrl}
         alt={category.category}

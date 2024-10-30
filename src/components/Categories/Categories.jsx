@@ -19,14 +19,14 @@ const Categories = () => {
 
       <div className="max-w-[1400px] mx-auto mt-6">
         {/* Grid layout for small screens */}
-        <div className="grid grid-cols-2 gap-4 md:hidden">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 ">
           {categories.map((category) => (
             <Link to={`/categories/${category.category}`} key={category._id}>
               <CategoryCard category={category} />
             </Link>
           ))}
         </div>
-        <div className="hidden md:block">
+        {/* <div className="hidden md:block">
           <Swiper
             slidesPerView={5} 
             spaceBetween={30}
@@ -43,7 +43,7 @@ const Categories = () => {
               </SwiperSlide>
             ))}
           </Swiper>
-        </div>
+        </div> */}
       </div>
     </div>
   );

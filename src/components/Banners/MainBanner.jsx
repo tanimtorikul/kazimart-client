@@ -39,7 +39,7 @@ const MainBanner = () => {
                 </p>
                 <Link
                   to="/shop"
-                  className="btn text-lg rounded-full shadow-md transition-colors duration-300"
+                  className="btn text-lg  rounded-full shadow-md transition-colors duration-300"
                 >
                   Shop Now
                 </Link>

@@ -43,7 +43,6 @@ const useProducts = (currentPage, itemsPerPage, asc, search) => {
     const res = await axiosPublic.get(`/products/${id}`);
     return res.data;
   };
-
   return {
     products,
     allProducts,

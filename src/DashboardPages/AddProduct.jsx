@@ -37,7 +37,6 @@ const AddProduct = () => {
     }
     const imageUrls = [];
     try {
-      // Loop through each image file and upload to Cloudinary
       for (const image of images) {
         const formData = new FormData();
         formData.append("file", image);
@@ -251,7 +250,8 @@ const AddProduct = () => {
               htmlFor="image"
               className="block text-lg md:text-xl font-medium"
             >
-              Product Image <span className="text-red-500 text-sm">*Add upto 3 images</span>
+              Product Image{" "}
+              <span className="text-red-500 text-sm">*Add upto 3 images</span>
             </label>
             <div>
               <label htmlFor="image">

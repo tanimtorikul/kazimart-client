@@ -113,8 +113,9 @@ const ProductCard = ({ item }) => {
         {/* Price */}
         <div className="flex justify-center items-center gap-4">
           {previousPrice ? (
-            <p className="ltext-lg">
-              <span className="line-through ">৳{previousPrice}</span>{" "}
+            <p className="text-lg flex">
+              <TbCurrencyTaka size={24}/>
+              <span className="line-through ">{previousPrice}</span>
               <span className="ml-2 text-lg font-bold text-green-600">
                 ৳{price}
               </span>

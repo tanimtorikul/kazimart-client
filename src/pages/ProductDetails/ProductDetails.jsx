@@ -8,10 +8,12 @@ import toast from "react-hot-toast";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Spinner from "../../utlis/Spinner";
 import { Helmet } from "react-helmet-async";
+import Zoom from "react-medium-image-zoom";
+import "react-medium-image-zoom/dist/styles.css";
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const { fetchProductById } = useProducts();
+  const { fetchProductById, fetchRelatedProducts } = useProducts();
   const { user } = useAuth();
   const [, refetch] = useCart();
   const navigate = useNavigate();
@@ -23,6 +25,7 @@ const ProductDetails = () => {
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [mainImage, setMainImage] = useState(null);
+  const [relatedProducts, setRelatedProducts] = useState([]);
 
   useEffect(() => {
     const getProductDetails = async () => {
@@ -30,11 +33,18 @@ const ProductDetails = () => {
       setProduct(fetchedProduct);
       setMainImage(fetchedProduct.imageUrls[0]);
       setIsLoading(false);
+  
+      // Fetch related products based on the product's category
+      if (fetchedProduct.category) {
+        const related = await fetchRelatedProducts(fetchedProduct.category.join(',')); // Ensure it's a comma-separated string
+        console.log('related', related);
+        setRelatedProducts(related);
+      }
     };
-
+  
     getProductDetails();
   }, [id]);
-
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -68,7 +78,6 @@ const ProductDetails = () => {
         .then((res) => {
           if (res.data.insertedId) {
             toast.success(`${product.name} added to the cart`);
-            
             refetch();
           } else {
             toast.error("Failed to add to the cart!");
@@ -96,11 +105,14 @@ const ProductDetails = () => {
             <div className="max-w-[1200px] mx-auto px-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10">
                 <div className="max-w-[300px] max-h-[300px] sm:max-w-[400px] sm:max-h-[400px] md:max-w-[500px] md:max-h-[500px] mx-auto">
-                  <img
-                    src={mainImage}
-                    alt={product.name}
-                    className="rounded-lg border border-gray-300 shadow-lg object-cover w-full h-72"
-                  />
+                  <Zoom>
+                    <img
+                      src={mainImage}
+                      alt={product.name}
+                      className="rounded-lg border border-gray-300 shadow-lg object-cover w-full h-72"
+                    />
+                  </Zoom>
+
                   {/* Thumbnail Section */}
                   <div className="mt-4 flex space-x-2 justify-center">
                     {product.imageUrls.map((url, index) => (
@@ -198,6 +210,28 @@ const ProductDetails = () => {
                 <div>Reviews coming soon!</div>
               )}
             </div>
+            {/* Related Products Section */}
+            <div className="mt-8">
+  <h3 className="text-lg md:text-2xl font-semibold text-[#002349] mb-4">
+    Related Products
+  </h3>
+  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    {relatedProducts.map((relatedProduct) => (
+      <div key={relatedProduct._id} className="border rounded-lg p-4">
+        <img
+          src={relatedProduct.imageUrls[0]}
+          alt={relatedProduct.name}
+          className="h-48 w-full object-cover mb-2"
+        />
+        <h4 className="font-semibold">{relatedProduct.name}</h4>
+        <p className="text-lg text-[#01684B]">
+          ৳ {relatedProduct.price}
+        </p>
+      </div>
+    ))}
+  </div>
+</div>
+
           </>
         )
       )}

@@ -25,6 +25,7 @@ const Banners = () => {
     handleSubmit,
     formState: { errors },
     setError,
+    reset
   } = useForm();
 
   const onSubmit = async (data) => {
@@ -55,6 +56,8 @@ const Banners = () => {
         if (bannerRes.data.insertedId) {
           refetch();
           toast.success("Banner uploaded successfully!");
+          reset();
+          setImage(null);
         }
       }
     } catch (error) {

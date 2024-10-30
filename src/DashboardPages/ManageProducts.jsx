@@ -120,7 +120,7 @@ const ManageProducts = () => {
                 </td>
                 <td className="py-3 px-5 flex justify-center">
                   <img
-                    src={product.imageUrls[1]}
+                    src={product.imageUrls[0]}
                     alt={product.name}
                     className="w-6 h-6 md:w-8 md:h-8 object-cover"
                   />

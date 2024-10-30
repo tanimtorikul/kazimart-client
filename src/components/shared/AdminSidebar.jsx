@@ -146,6 +146,41 @@ const AdminSidebar = () => {
                 <p className="md:block hidden">All Users</p>
               </NavLink>
             </li>
+
+            {/* Blog Management Section */}
+            <h2 className="text-[#B1E3CE] text-xs md:text-xl py-2">
+              Blog Management
+            </h2>
+            <li>
+              <NavLink
+                to="/dashboard/add-blog"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 rounded transition-colors ${
+                    isActive
+                      ? "text-[#47C466] bg-gray-900"
+                      : "hover:bg-[#013737]"
+                  }`
+                }
+              >
+                <GrGallery className="mr-2" />
+                <p className="md:block hidden">Add Blog</p>
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                to="/dashboard/manage-blogs"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 rounded transition-colors ${
+                    isActive
+                      ? "text-[#47C466] bg-gray-900"
+                      : "hover:bg-[#013737]"
+                  }`
+                }
+              >
+                <FaClipboardList className="mr-2" />
+                <p className="md:block hidden">Manage Blogs</p>
+              </NavLink>
+            </li>
           </ul>
         </nav>
       </div>

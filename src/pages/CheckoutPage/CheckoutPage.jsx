@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const CheckoutPage = () => {
   const { user } = useAuth();
-  const [cart] = useCart();
+  const [cart, refetch, clearCart] = useCart();
   const axiosSecure = useAxiosSecure();
   const navigate = useNavigate();
   const {
@@ -25,7 +25,7 @@ const CheckoutPage = () => {
     return acc + price * quantity;
   }, 0);
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     const orderData = {
       name: data.name,
       email: data.email,
@@ -49,13 +49,18 @@ const CheckoutPage = () => {
       orderStatus: "Pending",
       orderDate: new Date().toISOString(),
     };
-    axiosSecure.post("/allorders", orderData).then((res) => {
+
+    try {
+      const res = await axiosSecure.post("/allorders", orderData);
       if (res.data.insertedId) {
         toast.success(`${user.displayName}, Your Order placed successfully`);
+        await clearCart();
         navigate("/order-successful");
       }
-    });
-    console.log(orderData);
+    } catch (error) {
+      toast.error("Failed to place the order. Please try again.");
+      console.error("Order placement error:", error);
+    }
   };
 
   return (
@@ -81,6 +86,7 @@ const CheckoutPage = () => {
                 type="text"
                 {...register("name", { required: "Full Name is required" })}
                 name="name"
+                readOnly
                 defaultValue={user?.displayName || ""}
                 className="w-full text-sm px-3 py-2 border rounded-md border-gray-300"
               />
@@ -127,6 +133,7 @@ const CheckoutPage = () => {
               </label>
               <input
                 type="email"
+                readOnly
                 {...register("email", { required: "Email is required" })}
                 name="email"
                 defaultValue={user?.email || ""}
@@ -159,7 +166,10 @@ const CheckoutPage = () => {
 
             {/* Additional Note */}
             <div className="md:col-span-2">
-              <label htmlFor="note" className="block mb-2 text-sm md:text-lg font-medium">
+              <label
+                htmlFor="note"
+                className="block mb-2 text-sm md:text-lg font-medium"
+              >
                 Additional Note
               </label>
               <textarea
@@ -174,7 +184,9 @@ const CheckoutPage = () => {
 
           {/* Payment Method */}
           <div className="p-6 border rounded-lg shadow-md">
-            <h2 className="text-sm md:text-lg font-semibold mb-4">Payment Method</h2>
+            <h2 className="text-sm md:text-lg font-semibold mb-4">
+              Payment Method
+            </h2>
             <div className="space-y-3">
               <label className="flex items-center text-sm md:text-lg">
                 <input
