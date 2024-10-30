@@ -20,7 +20,7 @@ const MainLayout = () => {
   }, [bannersLoading, allProductsLoading]);
 
   return (
-    <div className="font-poppins">
+    <div className="font-albert">
       {loading ? (
         <div className="fixed inset-0 bg-white flex items-center justify-center z-50">
           <Spinner />
@@ -28,7 +28,7 @@ const MainLayout = () => {
       ) : (
         <>
           <Navbar />
-          <div className="px-2  md:px-0 pt-28 md:pt-36">
+          <div className="px-2  md:px-0 pt-20 md:pt-24">
             <Outlet />
           </div>
           <Footer />

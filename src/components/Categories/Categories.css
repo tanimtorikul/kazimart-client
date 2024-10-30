@@ -1,0 +1,19 @@
+
+.swiper-button-prev-custom,
+.swiper-button-next-custom {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 35px;
+  height: 35px;
+  color: #01684b;
+  cursor: pointer;
+}
+
+.swiper-button-prev-custom {
+  left: -50px; 
+}
+
+.swiper-button-next-custom {
+  right: -50px;
+}

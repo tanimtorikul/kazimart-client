@@ -19,7 +19,7 @@ const Home = () => {
       <PopularProducts/>
       <NewArrivals/>
       <Brands/>
-      <CallToAction />
+      {/* <CallToAction /> */}
     </div>
   );
 };

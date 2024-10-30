@@ -107,7 +107,7 @@ const ProductCard = ({ item }) => {
 
       {/* Info Section */}
       <div className="mt-4 text-center">
-        <h2 className="text-lg font-semibold text-gray-800">{name}</h2>
+        <h2 className="text-sm md:text-lg font-semibold text-gray-800">{name}</h2>
         <p className="text-sm text-gray-400 mt-4">{quantity}</p>
 
         {/* Price */}

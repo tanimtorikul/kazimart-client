@@ -30,8 +30,8 @@ const MainBanner = () => {
           >
             <div className="absolute inset-0 bg-gradient-to-b from-black to-transparent opacity-60"></div>
             <div className="hero-content text-neutral-content text-center relative z-10">
-              <div className="max-w-md">
-                <h1 className="mb-5 text-4xl md:text-5xl font-extrabold text-white shadow-lg">
+              <div className="max-w-3xl">
+                <h1 className="mb-8 text-3xl md:text-5xl font-extrabold text-white shadow-lg">
                   {banner.title}
                 </h1>
                 <p className="mb-5 text-lg md:text-xl text-white shadow-md">

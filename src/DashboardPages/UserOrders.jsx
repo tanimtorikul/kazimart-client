@@ -19,10 +19,6 @@ const UserOrders = () => {
               <tr>
                 <th className="py-2 px-3 text-center font-semibold text-gray-600">
                   Order ID
-                </th>{" "}
-                {/* Reduced padding */}
-                <th className="py-2 px-3 text-center font-semibold text-gray-600">
-                  Location
                 </th>
                 <th className="py-2 px-3 text-center font-semibold text-gray-600">
                   Items
@@ -49,9 +45,7 @@ const UserOrders = () => {
                 >
                   <td className="py-1 px-3 text-center text-gray-700">
                     {order._id}
-                  </td>{" "}
-                  {/* Reduced padding */}
-                  <td className="py-1 px-3 text-center">{order.address}</td>
+                  </td>
                   <td className="py-1 px-3 text-center">
                     <div className="flex flex-col">
                       {order.items.map((item) => (

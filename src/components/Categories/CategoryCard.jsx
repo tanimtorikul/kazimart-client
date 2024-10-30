@@ -1,6 +1,6 @@
 const CategoryCard = ({ category }) => {
   return (
-    <div className="h-full rounded-3xl overflow-hidden transition-transform duration-300 transform hover:scale-105 hover:shadow-lg">
+    <div className="bg-white border-2 h-64 md:h-full rounded-xl md:rounded-none  md:shadow- overflow-hidden hover:shadow-lg">
       <div className="flex justify-center p-4">
         <img
           src={category.imgUrl}
@@ -9,7 +9,7 @@ const CategoryCard = ({ category }) => {
         />
       </div>
       <div className="p-4 text-center">
-        <h3 className="text-sm font-bold text-gray-800">{category.category}</h3>
+        <h3 className="text-[12px] md:text-lg font-bold text-gray-800">{category.category}</h3>
       </div>
     </div>
   );

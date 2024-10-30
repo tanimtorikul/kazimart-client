@@ -10,7 +10,7 @@ const Dashboard = () => {
   const [isAdmin, isLoading] = useAdmin(); 
 
   return (
-    <div className="bg-gray-50 min-h-screen font-poppins">
+    <div className="bg-gray-50 min-h-screen font-albert">
       <DashboardNavbar />
       <hr />
       {isLoading ? (

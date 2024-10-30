@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        poppins: ['Poppins', 'sans-serif'], 
+        albert: ['Albert Sans', 'sans-serif'], 
       },
     },
   },
@@ -15,4 +15,3 @@ export default {
     require('daisyui'),
   ],
 }
-

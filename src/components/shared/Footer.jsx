@@ -8,131 +8,90 @@ import visa from "../../assets/visa.svg";
 
 const Footer = () => {
   return (
-    <footer className="md:mt-10">
-      <div className="container px-6 py-12 mx-auto max-w-7xl">
-        <div className="flex flex-col sm:flex-row justify-between">
-          <div className="mb-8 sm:mb-0">
-            <a href="#">
-              <img className="w-40 py-1 px-4" alt="Kazimart logo" src={logo} />
+    <div>
+      <footer className="flex flex-col md:flex-row justify-between max-w-[1400px] mx-auto px-4 py-8 border-b border-t">
+        <div className="flex flex-col items-center md:items-start space-y-4 mb-8 md:mb-0">
+          <h2 className="text-2xl font-semibold">Kazimart.</h2>
+          <p>Kalatiya, Keranigonj,</p>
+          <p>Dhaka, 1313</p>
+          <p>
+            Email:{" "}
+            <a href="mailto:kazimart786@gmail.com" className="hover:underline">
+              kazimart786@gmail.com
             </a>
-          </div>
-          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4 text-gray-700">
-            <div>
-              <p className="font-semibold">Quick Links</p>
-              <div className="flex flex-col mt-4 space-y-2">
-                <a
-                  href="#"
-                  className="text-sm transition-colors duration-200 hover:text-green-600"
-                >
-                  About Us
-                </a>
-                <a
-                  href="#"
-                  className="text-sm transition-colors duration-200 hover:text-green-600"
-                >
-                  Blog
-                </a>
-                <a
-                  href="#"
-                  className="text-sm transition-colors duration-200 hover:text-green-600"
-                >
-                  Careers
-                </a>
-              </div>
-            </div>
-            <div>
-              <p className="font-semibold">Products</p>
-              <div className="flex flex-col mt-4 space-y-2">
-                <a
-                  href="#"
-                  className="text-sm transition-colors duration-200 hover:text-green-600"
-                >
-                  Groceries
-                </a>
-                <a
-                  href="#"
-                  className="text-sm transition-colors duration-200 hover:text-green-600"
-                >
-                  Electronics
-                </a>
-                <a
-                  href="#"
-                  className="text-sm transition-colors duration-200 hover:text-green-600"
-                >
-                  Fashion
-                </a>
-              </div>
-            </div>
-            <div>
-              <p className="font-semibold">Support</p>
-              <div className="flex flex-col mt-4 space-y-2">
-                <a
-                  href="#"
-                  className="text-sm transition-colors duration-200 hover:text-green-600"
-                >
-                  Help Center
-                </a>
-                <a
-                  href="#"
-                  className="text-sm transition-colors duration-200 hover:text-green-600"
-                >
-                  Shipping & Delivery
-                </a>
-                <a
-                  href="#"
-                  className="text-sm transition-colors duration-200 hover:text-green-600"
-                >
-                  Returns & Refunds
-                </a>
-              </div>
-            </div>
-
-            <div>
-              <p className="font-semibold">Contact Us</p>
-              <div className="flex flex-col mt-4 space-y-2">
-                <a
-                  href="tel:+8801234567890"
-                  className="text-sm transition-colors duration-200 hover:text-green-600"
-                >
-                  +8801720082585
-                </a>
-                <a
-                  href="mailto:kazimart@gmail.com"
-                  className="text-sm transition-colors duration-200 hover:text-green-600"
-                >
-                  kazimart@gmail.com
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="flex justify-center items-center sm:justify-start mt-10 space-x-2">
-          <p className="font-semibold text-gray-700">We Accept:</p>
-          <img className="h-10" src={nagad} alt="" />
-          <img className="h-10" src={bkash} alt="" />
-          <img className="h-6" src={mastercard} alt="" />
-          <img className="h-4" src={visa} alt="" />
-        </div>
-
-        <div className="flex flex-col items-center justify-between mt-10 border-t border-gray-200 pt-6 space-y-6 sm:flex-row sm:space-y-0">
-          <p className="text-sm text-gray-500 md:text-left text-center">
-            Developed with ❤️ by Tanim. <br /> <span>© 2024 Kazimart.  All Rights Reserved.</span>
+          </p>
+          <p>
+            Phone:{" "}
+            <a href="#" className="hover:underline">
+              01720082585
+            </a>
           </p>
 
           <div className="flex space-x-4">
             <a
               href="https://www.facebook.com/profile.php?id=100068244396678"
-              className="hover:text-green-600"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <img className="w-6 h-6" src={facebook} alt="" />
+              <img src={facebook} alt="Facebook" className="w-6 h-6" />
             </a>
-            <a href="#" className="hover:text-green-600">
-              <img className="w-6 h-6" src={instagram} alt="" />
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={instagram} alt="Instagram" className="w-6 h-6" />
             </a>
           </div>
         </div>
+
+        <nav className="space-y-2 flex flex-col">
+          <h6 className="text-xl font-semibold">Help</h6>
+          <a className="link link-hover">Privacy Policy</a>
+          <a className="link link-hover">Returns + Exchanges</a>
+          <a className="link link-hover">Shipping</a>
+          <a className="link link-hover">Terms & Conditions</a>
+          <a className="link link-hover">FAQs</a>
+        </nav>
+
+        <nav className="space-y-2 flex flex-col">
+          <h6 className="text-xl font-semibold">About Us</h6>
+          <a className="link link-hover">Our Story</a>
+          <a className="link link-hover">Visit Our Store</a>
+          <a className="link link-hover">Contact Us</a>
+          <a className="link link-hover">About Us</a>
+        </nav>
+
+        <nav className="space-y-2 flex flex-col">
+          <h6 className="text-xl font-semibold">Signup for email</h6>
+          <div className="flex">
+            <input
+              type="email"
+              placeholder="Enter your email..."
+              className="border p-4 flex-grow rounded-l"
+            />
+            <button className="bg-black text-white p-2 rounded-r">
+              Subscribe
+            </button>
+          </div>
+        </nav>
+      </footer>
+
+      <div className="flex flex-col md:flex-row justify-between items-center max-w-[1400px] mx-auto px-4 py-4 text-sm text-gray-600">
+        <p>© 2024 Kazimart. All Rights Reserved.</p>
+        <p>
+          Developed by Tanim with{" "}
+          <span className="text-red-500 text-xl">♥</span> | © Kazimart
+        </p>
+
+        <div className="flex items-center space-x-4">
+          <img src={nagad} alt="Nagad" className="w-12 h-12" />
+          <img src={bkash} alt="Bkash" className="w-12 h-12" />
+          <img src={mastercard} alt="Mastercard" className="w-8 h-8" />
+          <img src={visa} alt="Visa" className="w-8 h-8" />
+        </div>
       </div>
-    </footer>
+    </div>
   );
 };
 
