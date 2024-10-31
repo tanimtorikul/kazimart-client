@@ -1,17 +1,23 @@
-import logo from "../../assets/kazimart.png";
+import logo from "../../assets/shopping-bag.png";
 import nagad from "../../assets/nagad.svg";
 import bkash from "../../assets/bkash.svg";
 import facebook from "../../assets/facebook.svg";
 import instagram from "../../assets/instagram.svg";
 import mastercard from "../../assets/mastercard.svg";
 import visa from "../../assets/visa.svg";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <div>
-      <footer className="flex flex-col md:flex-row justify-between max-w-[1400px] mx-auto px-4 py-8 border-b border-t">
-        <div className="flex flex-col items-center md:items-start space-y-4 mb-8 md:mb-0">
-          <h2 className="text-2xl font-semibold">Kazimart.</h2>
+    <div className="bg-[#F6F6F8]">
+      <footer className="flex flex-col md:flex-row justify-between  max-w-[1400px] mx-auto px-4 py-8 border-b-2">
+        <div className="flex flex-col items-start space-y-4 mb-8 md:mb-0">
+        <Link to="/" className="flex items-center justify-center space-x-1 md:pace-x-2 lg:justify-start">
+          <img className="w-8 md:w-10" alt="" src={logo} />
+
+          <h2 className="text-xl font-semibold">KaziMart</h2>
+        </Link>
+          
           <p>Kalatiya, Keranigonj,</p>
           <p>Dhaka, 1313</p>
           <p>

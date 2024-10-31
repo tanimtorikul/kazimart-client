@@ -6,6 +6,7 @@ import CallToAction from "../../components/CallToAction/CallToAction";
 import Categories from "../../components/Categories/Categories";
 import PopularProducts from "../../components/PopularProducts/PopularProducts";
 import NewArrivals from "../../components/NewArrivals/NewArrivals";
+import Stats from "../../components/Stats/Stats";
 
 const Home = () => {
   return (
@@ -19,7 +20,8 @@ const Home = () => {
       <PopularProducts/>
       <NewArrivals/>
       <Brands/>
-      {/* <CallToAction /> */}
+      <CallToAction />
+      <Stats/>
     </div>
   );
 };

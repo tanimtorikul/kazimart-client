@@ -25,7 +25,7 @@ const CategoryPage = () => {
   return (
     <div>
       {/* Product Cards */}
-      <div className="max-w-[1400px] mx-auto py-4">
+      <div className="max-w-[1400px] mx-auto py-4 min-h-screen">
         <h2 className="text-lg font-semibold mb-4 text-center">
           Products in {category}
         </h2>

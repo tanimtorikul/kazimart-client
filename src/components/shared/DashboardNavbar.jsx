@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import logo from "../../assets/kazimart.png";
+import logo from "../../assets/shopping-bag.png";
 import useAuth from "../../hooks/useAuth";
 import toast from "react-hot-toast";
 const DashboardNavbar = () => {
@@ -15,8 +15,13 @@ const DashboardNavbar = () => {
   };
   return (
     <div className="bg-white shadow-md px-6 flex justify-between items-center">
-      <Link to="/">
-        <img className="w-28 h-24" src={logo} alt="Kazimart Logo" />
+      <Link
+        to="/"
+        className="flex items-center justify-center space-x-1 md:pace-x-2 space-y-2 py-3 lg:justify-start"
+      >
+        <img className="w-6 md:w-10" alt="" src={logo} />
+
+        <h2 className="text-lg md:text-xl font-semibold">KaziMart</h2>
       </Link>
       <div className="relative">
         {user && (

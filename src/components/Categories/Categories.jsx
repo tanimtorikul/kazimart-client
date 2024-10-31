@@ -6,14 +6,14 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
 import { Navigation, FreeMode } from "swiper/modules";
-import "./Categories.css"; // Import custom CSS for styling
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa"; // Import Font Awesome icons from react-icons
+import "./Categories.css";
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const Categories = () => {
   const { categories } = useCategories();
 
   return (
-    <div className="my-16">
+    <div className="md:my-16">
       <SectionTitle
         heading="Categories"
         subHeading="Discover the Trends and Favorites"
@@ -21,24 +21,24 @@ const Categories = () => {
 
       <div className="max-w-[1400px] mx-auto mt-6 relative">
         {/* Grid layout for small screens */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 md:hidden">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 lg:hidden">
           {categories.map((category) => (
             <Link to={`/categories/${category.category}`} key={category._id}>
-              <CategoryCard category={category}  />
+              <CategoryCard category={category} c />
             </Link>
           ))}
         </div>
 
         {/* Swiper for large screens */}
-        <div className="hidden md:block relative">
+        <div className="hidden md:hidden lg:block relative">
           <Swiper
             modules={[Navigation, FreeMode]}
             className="mySwiper"
-            spaceBetween={0}
+            spaceBetween={10}
             slidesPerView={5}
             navigation={{
-              nextEl: '.swiper-button-next-custom',
-              prevEl: '.swiper-button-prev-custom',
+              nextEl: ".swiper-button-next-custom",
+              prevEl: ".swiper-button-prev-custom",
             }}
             pagination={{ clickable: true }}
             scrollbar={{ draggable: true }}
@@ -52,10 +52,10 @@ const Categories = () => {
             ))}
           </Swiper>
           <div className="swiper-button-prev-custom">
-            <FaChevronLeft size={40} /> 
+            <FaChevronLeft size={40} />
           </div>
           <div className="swiper-button-next-custom">
-            <FaChevronRight size={40} /> 
+            <FaChevronRight size={40} />
           </div>
         </div>
       </div>
