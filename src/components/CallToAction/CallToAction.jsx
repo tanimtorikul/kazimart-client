@@ -20,7 +20,6 @@ const CallToAction = () => {
               Enjoy Shopping with{" "}
               <strong className="text-gray-900">Less Effort</strong>
             </p>
-
             <button onClick={handleClick}>
               <div className="flex flex-col md:flex-row gap-4">
                 <img className="rounded-lg" src={appstore} alt="App Store" />

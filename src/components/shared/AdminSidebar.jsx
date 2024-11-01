@@ -8,6 +8,7 @@ import { GrGallery } from "react-icons/gr";
 import { MdCategory } from "react-icons/md";
 import { NavLink } from "react-router-dom";
 import { RiGalleryView } from "react-icons/ri";
+import { TfiWrite } from "react-icons/tfi";
 
 const AdminSidebar = () => {
   return (
@@ -39,7 +40,9 @@ const AdminSidebar = () => {
 
             {/* Product Management */}
             <li>
-              <p className="text-[#B1E3CE] hidden md:block">Product Management</p>
+              <p className="text-[#B1E3CE] hidden md:block">
+                Product Management
+              </p>
               <NavLink
                 to="/dashboard/add-product"
                 className={({ isActive }) =>
@@ -162,7 +165,7 @@ const AdminSidebar = () => {
                   }`
                 }
               >
-                <GrGallery className="mr-2" />
+                <TfiWrite className="mr-2" />
                 <p className="md:block hidden">Add Blog</p>
               </NavLink>
             </li>

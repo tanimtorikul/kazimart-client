@@ -10,7 +10,7 @@ import Spinner from "../../utlis/Spinner";
 import { Helmet } from "react-helmet-async";
 import Zoom from "react-medium-image-zoom";
 import "react-medium-image-zoom/dist/styles.css";
-import RelatedProducts from "./RelatedProducts";
+import Review from "../../components/Review/Review";
 
 const ProductDetails = () => {
   const { id } = useParams();
@@ -26,7 +26,6 @@ const ProductDetails = () => {
   const [product, setProduct] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [mainImage, setMainImage] = useState(null);
-  const [relatedProducts, setRelatedProducts] = useState([]);
 
   useEffect(() => {
     const getProductDetails = async () => {
@@ -35,14 +34,14 @@ const ProductDetails = () => {
       setMainImage(fetchedProduct.imageUrls[0]);
       setIsLoading(false);
 
-      // Fetch related products based on the product's category
-      if (fetchedProduct.category) {
-        const related = await fetchRelatedProducts(
-          fetchedProduct.category.join(",")
-        ); // Ensure it's a comma-separated string
-        console.log("related", related);
-        setRelatedProducts(related);
-      }
+      // // Fetch related products based on the product's category
+      // if (fetchedProduct.category) {
+      //   const related = await fetchRelatedProducts(
+      //     fetchedProduct.category.join(",")
+      //   ); // Ensure it's a comma-separated string
+      //   console.log("related", related);
+      //   setRelatedProducts(related);
+      // }
     };
 
     getProductDetails();
@@ -96,7 +95,7 @@ const ProductDetails = () => {
   };
 
   return (
-    <div className="max-w-[1400px] mx-auto px-4">
+    <div className="max-w-[1400px] min-h-screen mx-auto px-4">
       <Helmet>
         <title>{product?.name}</title>
       </Helmet>
@@ -210,13 +209,16 @@ const ProductDetails = () => {
                   ></div>
                 </div>
               ) : (
-                <div>Reviews coming soon!</div>
+                <div>
+                <Review productId={product._id} />
+              </div>
+              
               )}
             </div>
-            {/* Related Products Section */}
+            {/* Related Products Section
             <div className="mt-8">
               <RelatedProducts />
-            </div>
+            </div> */}
           </>
         )
       )}
