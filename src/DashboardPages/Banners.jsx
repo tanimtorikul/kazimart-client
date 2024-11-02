@@ -7,6 +7,7 @@ import { useState } from "react";
 import uploadImg from "../assets/uploadimg.png";
 import toast from "react-hot-toast";
 import useBanners from "../hooks/useBanners";
+import useProducts from "../hooks/useProducts";
 import Spinner from "../utlis/Spinner";
 import { Helmet } from "react-helmet-async";
 
@@ -16,16 +17,18 @@ const cloudinary_upload_api = `https://api.cloudinary.com/v1_1/${cloud_name}/ima
 
 const Banners = () => {
   const [image, setImage] = useState(null);
+  const [selectedProduct, setSelectedProduct] = useState(null);
   const axiosPublic = useAxiosPublic();
   const axiosSecure = useAxiosSecure();
-  const { refetch, isLoading} = useBanners();
+  const { refetch, isLoading: isBannersLoading } = useBanners();
+  const { allProducts, allProductsLoading } = useProducts();
 
   const {
     register,
     handleSubmit,
     formState: { errors },
     setError,
-    reset
+    reset,
   } = useForm();
 
   const onSubmit = async (data) => {
@@ -50,6 +53,7 @@ const Banners = () => {
           title: data.title,
           description: data.description,
           imgUrl: res.data.secure_url,
+          productId: selectedProduct,
         };
 
         const bannerRes = await axiosSecure.post("/main-banners", bannerItem);
@@ -58,6 +62,7 @@ const Banners = () => {
           toast.success("Banner uploaded successfully!");
           reset();
           setImage(null);
+          setSelectedProduct(null);
         }
       }
     } catch (error) {
@@ -74,109 +79,141 @@ const Banners = () => {
 
   return (
     <div className="w-72 md:w-full">
-       <Helmet>
+      <Helmet>
         <title>Manage Main Banners</title>
       </Helmet>
-     {
-      isLoading ? <Spinner/>
-      : <div>
-         <div className="flex gap-2">
-        <img src={BannerImg} className="w-6" alt="Banner Icon" />
-        <h2 className="font-semibold">Banner Setup</h2>
-      </div>
-      <div className="border-2 rounded-lg p-4 my-4 shadow-lg">
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          noValidate
-          className="space-y-6 w-1/2 md:w-2/3"
-        >
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {/* Image Upload */}
-            <div>
-              <p>
-                Banner Image{" "}
-                <span className="text-sm text-red-600">* ( Ratio 2:1 )</span>
-              </p>
-              <div>
-                <label htmlFor="image">
-                  <img
-                    className="w-24 md:w-96 md:h-48 object-contain"
-                    src={image ? URL.createObjectURL(image) : uploadImg}
-                    alt="Uploaded Banner"
-                  />
-
-                  <input
-                    type="file"
-                    id="image"
-                    accept="image/*"
-                    onChange={handleFileChange}
-                    hidden
-                  />
-                </label>
-                {errors.image && (
-                  <span className="text-red-500">{errors.image.message}</span>
-                )}
-              </div>
-            </div>
-
-            {/* Banner Title */}
-            <div>
-              <label htmlFor="title" className="block mb-2 text-lg font-medium">
-                Banner Title
-              </label>
-              <input
-                type="text"
-                {...register("title", { required: "Banner Title is required" })}
-                name="title"
-                placeholder="Enter Banner Title"
-                className="w-48 md:w-full px-4 py-3 border rounded-md border-gray-300 text-gray-900"
-              />
-              {errors.title && (
-                <span className="text-red-500">{errors.title.message}</span>
-              )}
-            </div>
-
-            {/* Banner Description */}
-            <div className="md:col-span-2">
-              <label
-                htmlFor="description"
-                className="block mb-2 text-lg font-medium"
-              >
-                Banner Description
-              </label>
-              <textarea
-                {...register("description", {
-                  required: "Description is required",
-                })}
-                name="description"
-                placeholder="Enter Banner Description"
-                className="w-48 md:w-full px-3 py-3 border rounded-md border-gray-300 text-gray-900"
-                rows="2"
-              />
-              {errors.description && (
-                <span className="text-red-500">
-                  {errors.description.message}
-                </span>
-              )}
-            </div>
-
-            {/* Submit Button */}
-            <div className="md:col-span-2">
-              <button
-                type="submit"
-                className="bg-[#01684B] py-4 px-4 md:px-10 rounded-md text-white text-sm md:text-lg"
-              >
-                Add Banner
-              </button>
-            </div>
+      {isBannersLoading || allProductsLoading ? (
+        <Spinner />
+      ) : (
+        <div>
+          <div className="flex gap-2">
+            <img src={BannerImg} className="w-6" alt="Banner Icon" />
+            <h2 className="font-semibold">Banner Setup</h2>
           </div>
-        </form>
-      </div>
-      <div>
-        <h2>Banners Lists</h2>
-        <BannersList />
-      </div>
-      </div>     }
+          <div className="border-2 rounded-lg p-4 my-4 shadow-lg">
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              noValidate
+              className="space-y-6 w-1/2 md:w-2/3"
+            >
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {/* Image Upload */}
+                <div>
+                  <p>
+                    Banner Image{" "}
+                    <span className="text-sm text-red-600">
+                      * ( Ratio 2:1 )
+                    </span>
+                  </p>
+                  <div>
+                    <label htmlFor="image">
+                      <img
+                        className="w-24 md:w-96 md:h-48 object-contain"
+                        src={image ? URL.createObjectURL(image) : uploadImg}
+                        alt="Uploaded Banner"
+                      />
+                      <input
+                        type="file"
+                        id="image"
+                        accept="image/*"
+                        onChange={handleFileChange}
+                        hidden
+                      />
+                    </label>
+                    {errors.image && (
+                      <span className="text-red-500">
+                        {errors.image.message}
+                      </span>
+                    )}
+                  </div>
+                </div>
+
+                {/* Banner Title */}
+                <div>
+                  <label
+                    htmlFor="title"
+                    className="block mb-2 text-lg font-medium"
+                  >
+                    Banner Title
+                  </label>
+                  <input
+                    type="text"
+                    {...register("title", {
+                      required: "Banner Title is required",
+                    })}
+                    name="title"
+                    placeholder="Enter Banner Title"
+                    className="w-48 md:w-full px-4 py-3 border rounded-md border-gray-300 text-gray-900"
+                  />
+                  {errors.title && (
+                    <span className="text-red-500">{errors.title.message}</span>
+                  )}
+                </div>
+
+                {/* Banner Description */}
+                <div className="md:col-span-2">
+                  <label
+                    htmlFor="description"
+                    className="block mb-2 text-lg font-medium"
+                  >
+                    Banner Description
+                  </label>
+                  <textarea
+                    {...register("description", {
+                      required: "Description is required",
+                    })}
+                    name="description"
+                    placeholder="Enter Banner Description"
+                    className="w-48 md:w-full px-3 py-3 border rounded-md border-gray-300 text-gray-900"
+                    rows="2"
+                  />
+                  {errors.description && (
+                    <span className="text-red-500">
+                      {errors.description.message}
+                    </span>
+                  )}
+                </div>
+                {/* set the product to redirect the product */}
+                <div className="md:col-span-2">
+                  <label
+                    htmlFor="product"
+                    className="block mb-2 text-lg font-medium"
+                  >
+                    Select Product
+                  </label>
+                  <select
+                    id="product"
+                    onChange={(e) => setSelectedProduct(e.target.value)}
+                    value={selectedProduct || ""}
+                    className="w-full px-4 py-3 border rounded-md border-gray-300 text-gray-900"
+                  >
+                    <option value="">Select a product</option>
+                    {allProducts.map((product) => (
+                      <option key={product._id} value={product._id}>
+                        {product.name}{" "}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* Submit Button */}
+                <div className="md:col-span-2">
+                  <button
+                    type="submit"
+                    className="bg-[#01684B] py-4 px-4 md:px-10 rounded-md text-white text-sm md:text-lg"
+                  >
+                    Add Banner
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div>
+            <h2>Banners Lists</h2>
+            <BannersList />
+          </div>
+        </div>
+      )}
     </div>
   );
 };

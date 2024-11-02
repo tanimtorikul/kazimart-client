@@ -5,6 +5,9 @@ import { Autoplay, EffectFade } from "swiper/modules";
 import { Link } from "react-router-dom";
 import useBanners from "../../hooks/useBanners";
 
+// If you choose to define a custom class, ensure you import your CSS file here
+// import './styles.css'; 
+
 const MainBanner = () => {
   const { banners } = useBanners();
 
@@ -20,12 +23,10 @@ const MainBanner = () => {
       {banners.map((banner) => (
         <SwiperSlide key={banner._id} className="w-full flex flex-col gap-4">
           <div
-            className="hero mx-auto md:h-[500px] relative"
+            className={`hero mx-auto w-full md:h-[600px] relative bg-banner`}
             style={{
               backgroundImage: `url(${banner.imgUrl})`,
-              backgroundSize: "cover",
-              backgroundPosition: "center",
-              backgroundRepeat:'no-repeat'
+              backgroundSize:"auto"
             }}
           >
             <div className="absolute inset-0 bg-gradient-to-b from-black to-transparent opacity-60"></div>
@@ -37,12 +38,21 @@ const MainBanner = () => {
                 <p className="mb-5 text-lg md:text-xl text-white shadow-md">
                   {banner.description}
                 </p>
-                <Link
-                  to="/shop"
-                  className="btn text-lg  rounded-full shadow-md transition-colors duration-300"
-                >
-                  Shop Now
-                </Link>
+                {banner.productId ? (
+                  <Link
+                    to={`/product/${banner.productId}`}
+                    className="btn text-lg rounded-full shadow-md transition-colors duration-300"
+                  >
+                    Shop Now
+                  </Link>
+                ) : (
+                  <Link
+                    to="/shop"
+                    className="btn text-lg rounded-full shadow-md transition-colors duration-300"
+                  >
+                    Shop Now
+                  </Link>
+                )}
               </div>
             </div>
           </div>

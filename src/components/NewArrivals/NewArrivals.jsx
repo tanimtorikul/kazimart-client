@@ -7,7 +7,7 @@ const NewArrivals = () => {
 
   const latestProducts = allProducts
     .sort((a, b) => b._id.localeCompare(a._id))
-    .slice(0, 5);
+    .slice(0, 6);
 
   return (
     <div>
