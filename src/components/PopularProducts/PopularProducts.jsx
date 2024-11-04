@@ -1,12 +1,14 @@
 import SectionTitle from "../shared/SectionTitle";
 import ProductCard from "../shared/ProductCard";
 import useProducts from "../../hooks/useProducts";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../utlis/animationVariants";
 
 const PopularProducts = () => {
   const { allProducts } = useProducts();
   const popularItems = allProducts
     .filter((item) => item.category.includes("popular"))
-    .slice(0, 6);
+    .slice(0, 5);
 
   return (
     <div className="my-16">
@@ -14,11 +16,17 @@ const PopularProducts = () => {
         heading="Popular products that we sold"
         subHeading="We provide the best quality & fresh items near your location"
       />
-      <div className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      <motion.div
+        variants={fadeIn("down", 0.1)}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{ once: false, amount: 0.2 }}
+        className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
+      >
         {popularItems.map((item) => (
           <ProductCard key={item._id} item={item} />
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };

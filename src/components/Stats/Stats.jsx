@@ -4,6 +4,8 @@ import {
   FaExchangeAlt,
   FaShieldAlt,
 } from "react-icons/fa";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../utlis/animationVariants";
 
 const Stats = () => {
   const statsData = [
@@ -30,7 +32,10 @@ const Stats = () => {
   ];
 
   return (
-    <div className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 p-6">
+    <motion.div variants={fadeIn("up", 0.1)}
+    initial="hidden"
+    whileInView={"show"}
+    viewport={{ once: false, amount: 0.2 }} className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 p-6">
       {statsData.map((stat, index) => (
         <div
           key={index}
@@ -41,7 +46,7 @@ const Stats = () => {
           <p>{stat.description}</p>
         </div>
       ))}
-    </div>
+    </motion.div>
   );
 };
 

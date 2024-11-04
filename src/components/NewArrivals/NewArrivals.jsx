@@ -1,6 +1,8 @@
 import SectionTitle from "../shared/SectionTitle";
 import ProductCard from "../shared/ProductCard";
 import useProducts from "../../hooks/useProducts";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../utlis/animationVariants";
 
 const NewArrivals = () => {
   const { allProducts } = useProducts();
@@ -15,11 +17,14 @@ const NewArrivals = () => {
         heading="Discover Our Latest Additions"
         subHeading="Quality products freshly stocked for you"
       />
-      <div className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+      <motion.div variants={fadeIn("up", 0.1)}
+        initial="hidden"
+        whileInView={"show"}
+        viewport={{ once: false, amount: 0.2 }} className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
         {latestProducts.map((product) => (
           <ProductCard key={product._id} item={product} />
         ))}
-      </div>
+      </motion.div>
     </div>
   );
 };

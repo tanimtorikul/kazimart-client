@@ -4,9 +4,18 @@ import "swiper/css/effect-fade";
 import { Autoplay, EffectFade } from "swiper/modules";
 import { Link } from "react-router-dom";
 import useBanners from "../../hooks/useBanners";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../utlis/animationVariants";
+import { useState } from "react";
 
 const MainBanner = () => {
   const { banners } = useBanners();
+
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const handleSlideChange = (swiper) => {
+    setCurrentIndex(swiper.activeIndex); 
+  };
 
   return (
     <Swiper
@@ -16,11 +25,12 @@ const MainBanner = () => {
       fadeEffect={{ crossFade: true }}
       modules={[Autoplay, EffectFade]}
       className="w-full"
+      onSlideChange={handleSlideChange} 
     >
-      {banners.map((banner) => (
+      {banners.map((banner, index) => (
         <SwiperSlide key={banner._id} className="flex flex-col">
           <div
-            className="relative w-full h-[300px] md:h-[600px] bg-cover bg-center bg-no-repeat"
+            className="relative  h-[300px] md:h-[500px] bg-cover bg-center bg-no-repeat"
             style={{
               backgroundImage: `url(${banner.imgUrl})`,
             }}
@@ -28,17 +38,27 @@ const MainBanner = () => {
             {/* Background gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
 
-            {/* Content overlay */}
+            {/* fadeIn animation */}
             <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 md:px-8 text-white z-10">
-              <h1 className="mb-4 text-3xl md:text-5xl font-bold drop-shadow-lg">
+              <motion.h1
+                className="mb-4 text-3xl md:text-5xl font-bold drop-shadow-lg"
+                variants={fadeIn("down", 0.4)} 
+                initial="hidden" 
+                animate={currentIndex === index ? "show" : "hidden"} 
+              >
                 {banner.title}
-              </h1>
-              <p className="mb-6 text-lg md:text-xl drop-shadow-md">
+              </motion.h1>
+              <motion.p
+                className="mb-6 text-lg md:text-xl drop-shadow-md"
+                variants={fadeIn("up", 0.4)} 
+                initial="hidden"
+                animate={currentIndex === index ? "show" : "hidden"} 
+              >
                 {banner.description}
-              </p>
+              </motion.p>
               <Link
                 to={banner.productId ? `/product/${banner.productId}` : "/shop"}
-                className="bg-primary-light hover:bg-primary-dark text-white text-lg font-semibold px-6 py-3 rounded-full shadow-md transition duration-300"
+                className="bg-primary-light hover:bg-primary-dark text-white text-lg font-semibold px-6 py-3 rounded-3xl shadow-md transition duration-300"
               >
                 Shop Now
               </Link>

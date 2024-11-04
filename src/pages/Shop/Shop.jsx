@@ -3,6 +3,8 @@ import useProducts from "../../hooks/useProducts";
 import ProductCard from "../../components/shared/ProductCard";
 import Spinner from "../../utlis/Spinner";
 import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../utlis/animationVariants";
 
 const Shop = () => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -74,7 +76,13 @@ const Shop = () => {
           </div>
 
           {/* Product Grid */}
-          <div className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-5 gap-4">
+          <motion.div
+            variants={fadeIn("down", 0.1)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.2 }}
+            className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-5 gap-4"
+          >
             {products.length > 0 ? (
               products.map((item) => <ProductCard key={item.id} item={item} />)
             ) : (
@@ -82,7 +90,7 @@ const Shop = () => {
                 No products found
               </p>
             )}
-          </div>
+          </motion.div>
 
           {/* Pagination */}
           <div className="flex justify-center mt-8">
