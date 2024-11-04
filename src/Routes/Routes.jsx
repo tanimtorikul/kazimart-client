@@ -27,6 +27,7 @@ import About from "../pages/About/About";
 import AddBlog from '../components/AdminBlog/AddBlog'
 import ManageBlogs from "../components/AdminBlog/ManageBlogs";
 import Blogs from "../pages/Blogs/Blogs";
+import BlogDetails from "../pages/Blogs/BlogDetails";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -65,11 +66,15 @@ export const router = createBrowserRouter([
         path: "/about",
         element: <About />,
       },
+      
       {
         path: "/blogs",
         element: <Blogs />,
       },
-
+      {
+        path: "/blog-details/:id",
+        element: <BlogDetails />,
+      },
       {
         path: "/checkout",
         element: (

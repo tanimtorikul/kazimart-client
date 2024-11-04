@@ -120,7 +120,7 @@ const Navbar = () => {
         </div>
         <Link
           to="/"
-          className="flex items-center justify-center space-x-1 md:pace-x-2 lg:justify-start"
+          className="flex items-center justify-center space-x-1 md:pace-x-2 lg:justify-start ml-2 lg:ml-0"
         >
           <img className="w-6 md:w-10" alt="" src={logo} />
 

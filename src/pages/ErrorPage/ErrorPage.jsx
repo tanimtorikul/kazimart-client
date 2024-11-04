@@ -1,4 +1,3 @@
-
 import { useNavigate } from "react-router-dom";
 
 const ErrorPage = () => {
@@ -6,19 +5,19 @@ const ErrorPage = () => {
 
   return (
     <section className="bg-white">
-        <title>404 Not Found | Kazimart</title>
-    
+      <title>404 Not Found | Kazimart</title>
+
       <div className="container flex items-center min-h-screen px-6 py-12 mx-auto">
         <div className="flex flex-col items-center max-w-sm mx-auto text-center">
-          <h1 className="mt-3 text-2xl font-semibold text-gray-800 md:text-3xl">
+          <h1 className="mt-3 font-semibold text-gray-800 text-lg md:text-3xl">
             Oops! Something Unexpected Occurred.
           </h1>
-          <p className="mt-4 text-gray-500">
+          <p className="mt-4 text-gray-500 text-[12px] md:text-lg">
             Don&apos;t worry, I am working on it. Meanwhile, explore these
             links:
           </p>
 
-          <div className="flex items-center w-full mt-6 gap-x-3 shrink-0 sm:w-auto">
+          <div className="flex items-center w-full mt-6 gap-x-2">
             <button
               onClick={() => navigate(-1)}
               className="flex items-center justify-center w-1/2 px-5 py-1 text-sm text-gray-700 transition-colors duration-200 bg-white border rounded-lg gap-x-2 sm:w-auto hover:bg-gray-100"
@@ -28,9 +27,9 @@ const ErrorPage = () => {
 
             <button
               onClick={() => navigate("/")}
-              className="flex items-center justify-center w-1/2 px-5 py-1 text-sm text-white transition-colors duration-200 bg-green-500 border rounded-lg gap-x-2 sm:w-auto hover:bg-green-600"
+              className="flex items-center justify-center w-1/2 px-5 py-1 text-sm text-white transition-colors duration-200 bg-primary-light border rounded-lg gap-x-2 sm:w-auto hover:bg-green-600"
             >
-              <span>Take Me to the Homepage</span>
+              <span>Go to homepage</span>
             </button>
           </div>
         </div>

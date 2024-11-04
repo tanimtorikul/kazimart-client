@@ -1,5 +1,5 @@
 import { useForm } from "react-hook-form";
-import uploadImg from "../assets/uploadimg.png"; 
+import uploadImg from "../assets/uploadimg.png";
 import toast from "react-hot-toast";
 import useAxiosPublic from "../hooks/useAxiosPublic";
 import useAxiosSecure from "../hooks/useAxiosSecure";
@@ -49,17 +49,21 @@ const AddCategories = () => {
       });
 
       // Upload banner image
-      const bannerRes = await axiosPublic.post(cloudinary_upload_api, bannerFormData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const bannerRes = await axiosPublic.post(
+        cloudinary_upload_api,
+        bannerFormData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
 
       if (res.data.secure_url && bannerRes.data.secure_url) {
         const categoryItem = {
           category: data.name,
           imgUrl: res.data.secure_url,
-          bannerImgUrl: bannerRes.data.secure_url, 
+          bannerImgUrl: bannerRes.data.secure_url,
         };
 
         const categoryRes = await axiosSecure.post("/categories", categoryItem);
@@ -156,7 +160,7 @@ const AddCategories = () => {
 
           <div className="flex flex-col md:flex-row gap-6 md:gap-24 border border-gray-300 rounded-md p-3">
             {/* Banner Image Upload */}
-            <div >
+            <div>
               <p className="mb-2 text-lg font-medium text-gray-700">
                 Category Banner Image{" "}
                 <span className="text-sm text-red-600">* ( Ratio 8:1 )</span>
@@ -167,7 +171,9 @@ const AddCategories = () => {
               >
                 <img
                   className="w-full h-auto max-w-[8rem] md:max-w-[12rem] object-contain border-2 border-gray-300 rounded-lg"
-                  src={bannerImage ? URL.createObjectURL(bannerImage) : uploadImg}
+                  src={
+                    bannerImage ? URL.createObjectURL(bannerImage) : uploadImg
+                  }
                   alt="Uploaded Banner"
                 />
                 <input
@@ -179,7 +185,9 @@ const AddCategories = () => {
                 />
               </label>
               {errors.bannerImage && (
-                <span className="text-red-500">{errors.bannerImage.message}</span>
+                <span className="text-red-500">
+                  {errors.bannerImage.message}
+                </span>
               )}
             </div>
           </div>

@@ -3,7 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import useProducts from "../../hooks/useProducts";
 import ProductCard from "../../components/shared/ProductCard";
 import cartImg from "../../assets/emptycart.png";
-import useCategories from "../../hooks/useCategories"; 
+import useCategories from "../../hooks/useCategories";
 
 const CategoryPage = () => {
   const { category } = useParams();
@@ -12,8 +12,7 @@ const CategoryPage = () => {
   const { categories } = useCategories();
   //  the current category object
   const currentCategory = categories?.find(
-    (cat) =>
-      cat.category?.toLowerCase() === category?.toLowerCase()
+    (cat) => cat.category?.toLowerCase() === category?.toLowerCase()
   );
 
   const bannerImgUrl = currentCategory ? currentCategory.bannerImgUrl : "";
@@ -42,8 +41,8 @@ const CategoryPage = () => {
             className="w-full h-full object-cover"
           />
           {/* overlay */}
-          <div className="absolute inset-0 bg-black opacity-40"></div>
-          <h2 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-sm md:text-lg font-semibold text-center text-white bg-opacity-60 bg-primary-light px-4 py-2">
+          <div className="absolute inset-0 bg-black opacity-20"></div>
+          <h2 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-sm md:text-lg font-semibold text-center text-white bg-opacity-60 bg-primary-dark px-4 py-2">
             Products in {category}
           </h2>
         </div>

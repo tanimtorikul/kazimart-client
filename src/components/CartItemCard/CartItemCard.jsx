@@ -54,7 +54,7 @@ const CartItemCard = ({ item }) => {
     <div className="flex items-center justify-between gap-4 p-4 border border-gray-200 shadow-lg rounded-xl">
       <div className="flex items-center gap-4 w-3/4">
         <img
-          src={imageUrls[1]}
+          src={imageUrls[0]}
           alt={name}
           className="w-20 h-20 object-cover rounded-lg border"
         />

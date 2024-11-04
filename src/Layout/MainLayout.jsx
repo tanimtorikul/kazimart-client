@@ -28,7 +28,7 @@ const MainLayout = () => {
       ) : (
         <>
           <Navbar />
-          <div className="px-2  md:px-0 pt-20 md:pt-24">
+          <div className="px-2 md:px-0 pt-16">
             <Outlet />
           </div>
           <Footer />
