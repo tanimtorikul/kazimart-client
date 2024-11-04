@@ -60,7 +60,7 @@ const Orders = () => {
         />
         <button
           type="submit"
-          className="px-4 py-2 bg-[#01684B] text-white rounded-r-lg hover:bg-[#014C36]"
+          className="px-4 py-2 bg-primary-light text-white rounded-r-lg hover:bg-[#014C36]"
         >
           Search
         </button>
@@ -176,8 +176,8 @@ const Orders = () => {
               onClick={() => setCurrentPage(page)}
               className={`px-4 py-2 border rounded ${
                 currentPage === page
-                  ? "bg-[#01684B] text-white"
-                  : "bg-white text-[#01684B] hover:bg-[#01684B] hover:text-white"
+                  ? "bg-primary-light text-white"
+                  : "bg-white text-primary-light hover:bg-primary-light hover:text-white"
               }`}
             >
               {page + 1}

@@ -116,7 +116,7 @@ const Review = ({ productId }) => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full md:w-auto px-4 py-2 bg-[#01684B] text-white rounded-lg font-semibold hover:bg-[#014d32] transition duration-150"
+                className="w-full md:w-auto px-4 py-2 bg-primary-light text-white rounded-lg font-semibold hover:bg-[#014d32] transition duration-150"
               >
                 {isSubmitting ? "Submitting..." : "Submit"}
               </button>
@@ -124,7 +124,7 @@ const Review = ({ productId }) => {
           ) : (
             <div className="text-center">
               <p className="mb-4 text-sm md:text-lg">
-                <Link to="/login" className="text-[#01684B] font-medium underline">
+                <Link to="/login" className="text-primary-light font-medium underline">
                   Login
                 </Link>{" "}
                 to submit a review.

@@ -108,7 +108,7 @@ const SignUp = () => {
           <div>
             <button
               type="submit"
-              className="bg-[#01684B] w-full rounded-md py-2 text-white md:text-lg"
+              className="bg-primary-light w-full rounded-md py-2 text-white md:text-lg"
             >
               Sign Up
             </button>

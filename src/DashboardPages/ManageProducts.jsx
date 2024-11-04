@@ -76,7 +76,7 @@ const ManageProducts = () => {
           />
           <button
             type="submit"
-            className="px-4 py-2 bg-[#01684B] text-white rounded-r-lg hover:bg-[#014C36]"
+            className="px-4 py-2 bg-primary-dark text-white rounded-r-lg hover:bg-[#014C36]"
           >
             Search
           </button>
@@ -87,7 +87,7 @@ const ManageProducts = () => {
           <select
             value={asc ? "asc" : "desc"}
             onChange={(e) => setAsc(e.target.value === "asc")}
-            className="px-4 py-2 border border-[#01684B] rounded-md"
+            className="px-4 py-2 border border-primary-light rounded-md"
           >
             <option value="asc">Low to High</option>
             <option value="desc">High to Low</option>
@@ -161,8 +161,8 @@ const ManageProducts = () => {
               onClick={() => setCurrentPage(page)}
               className={`px-4 py-2 border rounded ${
                 currentPage === page
-                  ? "bg-[#01684B] text-white"
-                  : "bg-white text-[#01684B] hover:bg-[#01684B] hover:text-white"
+                  ? "bg-primary-light text-white"
+                  : "bg-white text-primary-light hover:bg-primary-light hover:text-white"
               }`}
             >
               {page + 1}

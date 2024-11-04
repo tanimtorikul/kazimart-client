@@ -4,9 +4,9 @@ import useProducts from "../../hooks/useProducts";
 
 const PopularProducts = () => {
   const { allProducts } = useProducts();
-  const popularItems = allProducts.filter((item) =>
-    item.category.includes("popular")
-  ).slice(0,6);
+  const popularItems = allProducts
+    .filter((item) => item.category.includes("popular"))
+    .slice(0, 6);
 
   return (
     <div className="my-16">

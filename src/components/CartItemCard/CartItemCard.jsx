@@ -22,12 +22,14 @@ const CartItemCard = ({ item }) => {
     const newAmount = amount + 1;
     const newPrice = (price / amount) * newAmount;
 
-    axiosSecure.patch(`/carts/${_id}`, { amount: newAmount, price: newPrice }).then((res) => {
-      if (res.data.modifiedCount > 0) {
-        refetch();
-        toast.success(`Updated cart of ${name}`);
-      }
-    });
+    axiosSecure
+      .patch(`/carts/${_id}`, { amount: newAmount, price: newPrice })
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          refetch();
+          toast.success(`Updated cart of ${name}`);
+        }
+      });
   };
 
   const handleDecrease = () => {
@@ -35,12 +37,14 @@ const CartItemCard = ({ item }) => {
       const newAmount = amount - 1;
       const newPrice = (price / amount) * newAmount;
 
-      axiosSecure.patch(`/carts/${_id}`, { amount: newAmount, price: newPrice }).then((res) => {
-        if (res.data.modifiedCount > 0) {
-          refetch();
-          toast.success(`Updated cart of ${name}`);
-        }
-      });
+      axiosSecure
+        .patch(`/carts/${_id}`, { amount: newAmount, price: newPrice })
+        .then((res) => {
+          if (res.data.modifiedCount > 0) {
+            refetch();
+            toast.success(`Updated cart of ${name}`);
+          }
+        });
     } else {
       toast.error(`Cannot decrease ${name} below 1`);
     }
@@ -49,32 +53,38 @@ const CartItemCard = ({ item }) => {
   return (
     <div className="flex items-center justify-between gap-4 p-4 border border-gray-200 shadow-lg rounded-xl">
       <div className="flex items-center gap-4 w-3/4">
-        <img src={imageUrls[1]} alt={name} className="w-20 h-20 object-cover rounded-lg border" />
+        <img
+          src={imageUrls[1]}
+          alt={name}
+          className="w-20 h-20 object-cover rounded-lg border"
+        />
         <div className="flex-grow">
           <h2 className="text-sm md:text-lg font-semibold mb-1">{name}</h2>
-          <div className="text-white w-16 px-2 py-1 rounded-lg text-xs font-semibold flex items-center bg-[#01684B]">
+          <div className="text-white w-16 px-2 py-1 rounded-lg text-xs font-semibold flex items-center bg-primary-light">
             {price}
             <TbCurrencyTaka className="w-4 h-4 ml-1" />
           </div>
         </div>
-        <p className="text-sm md:text-lg text-[#01684B] font-semibold">{quantity}</p>
+        <p className="text-sm md:text-lg text-primary-light font-semibold">
+          {quantity}
+        </p>
         <div className="flex items-center gap-4">
           <button
             onClick={handleDecrease}
-            className="w-8 h-8 flex items-center justify-center text-[#01684B] bg-[#F2F2F2] rounded-full hover:bg-gray-500 hover:text-white transition duration-200"
+            className="w-8 h-8 flex items-center justify-center text-primary-light bg-[#F2F2F2] rounded-full hover:bg-gray-500 hover:text-white transition duration-200"
           >
             -
           </button>
-          <p className="text-lg text-[#01684B] font-semibold">{amount}</p>
+          <p className="text-lg text-primary-light font-semibold">{amount}</p>
           <button
             onClick={handleIncrease}
-            className="w-8 h-8 flex items-center justify-center text-[#01684B] bg-[#F2F2F2] rounded-full hover:bg-gray-500 hover:text-white transition duration-200"
+            className="w-8 h-8 flex items-center justify-center text-primary-light bg-[#F2F2F2] rounded-full hover:bg-gray-500 hover:text-white transition duration-200"
           >
             +
           </button>
         </div>
       </div>
-      
+
       <button
         onClick={() => handleDelete(item._id)}
         className="text-red-500 text-xl rounded-full hover:bg-gray-600 hover:text-white transition duration-200"

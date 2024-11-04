@@ -226,7 +226,7 @@ const CheckoutPage = () => {
           <div className="hidden md:block">
             <button
               type="submit"
-              className="bg-[#01684B] w-full rounded-md py-2 text-white"
+              className="bg-primary-light w-full rounded-md py-2 text-white"
             >
               Place Order
             </button>
@@ -236,7 +236,7 @@ const CheckoutPage = () => {
           <div className="fixed bottom-0 left-0 right-0 bg-white border-t md:hidden">
             <button
               type="submit"
-              className="bg-[#01684B] w-full py-2 text-white md:block"
+              className="bg-primary-light w-full py-2 text-white md:block"
             >
               Place Order
             </button>

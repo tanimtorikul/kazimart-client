@@ -14,15 +14,19 @@ const About = () => {
           At Kazimart, we aim to redefine the online shopping experience by
           providing a wide selection of high-quality products at affordable
           prices. Our mission is to bring you the convenience of a diverse
-          catalog, with everything from essential goods to the latest trends.
-          We are dedicated to customer satisfaction and support sustainable
-          practices wherever possible. Under the leadership of CEO Kazi Mustafiz,
-          Kazimart is committed to making your shopping experience seamless,
-          enjoyable, and secure. Join us as we innovate and enhance your journey
-          in the world of e-commerce.
+          catalog, with everything from essential goods to the latest trends. We
+          are dedicated to customer satisfaction and support sustainable
+          practices wherever possible. Under the leadership of CEO Kazi
+          Mustafiz, Kazimart is committed to making your shopping experience
+          seamless, enjoyable, and secure. Join us as we innovate and enhance
+          your journey in the world of e-commerce.
         </p>
         <div className="flex flex-col items-center space-y-4">
-          <img className="w-40 rounded-full" src={ceoImg} alt="CEO Kazi Mustafiz" />
+          <img
+            className="w-40 rounded-full"
+            src={ceoImg}
+            alt="CEO Kazi Mustafiz"
+          />
           <div className="space-y-1 text-center">
             <h3 className="font-semibold text-lg">Kazi Mustafiz</h3>
             <h5 className="text-[#3AA753]">CEO & Founder</h5>

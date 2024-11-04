@@ -31,7 +31,7 @@ const CartPage = () => {
           <h2 className="text-xl mt-2">
             <Link
               to="/"
-              className="bg-[#01684B] text-white px-6 py-2 rounded-xl"
+              className="bg-primary-light text-white px-6 py-2 rounded-xl"
             >
               Lets Shop
             </Link>
@@ -56,7 +56,7 @@ const CartPage = () => {
                   placeholder="Enter promo code"
                   className="w-full px-4 py-2 rounded-lg focus:ring-2 focus:ring-green-500 outline-none"
                 />
-                <button className="bg-[#01684B] text-white px-4 py-2 rounded-lg hover:bg-green-700 transition duration-200">
+                <button className="bg-primary-light text-white px-4 py-2 rounded-lg hover:bg-green-700 transition duration-200">
                   Apply
                 </button>
               </div>
@@ -98,7 +98,7 @@ const CartPage = () => {
             {/* Proceed to Checkout Button */}
             <div>
               <Link to="/checkout">
-                <button className="w-full bg-[#01684B] text-white py-3 rounded-lg hover:bg-green-700 transition duration-200 text-lg font-semibold">
+                <button className="w-full bg-primary-light text-white py-3 rounded-lg hover:bg-green-700 transition duration-200 text-lg font-semibold">
                   Proceed to Checkout
                 </button>
               </Link>

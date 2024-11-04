@@ -3,16 +3,25 @@ import { Link, useParams } from "react-router-dom";
 import useProducts from "../../hooks/useProducts";
 import ProductCard from "../../components/shared/ProductCard";
 import cartImg from "../../assets/emptycart.png";
+import useCategories from "../../hooks/useCategories"; 
 
 const CategoryPage = () => {
   const { category } = useParams();
   const [filteredProducts, setFilteredProducts] = useState([]);
   const { allProducts } = useProducts();
+  const { categories } = useCategories();
+  //  the current category object
+  const currentCategory = categories?.find(
+    (cat) =>
+      cat.category?.toLowerCase() === category?.toLowerCase()
+  );
+
+  const bannerImgUrl = currentCategory ? currentCategory.bannerImgUrl : "";
 
   // Filter the specific category based on category name
   useEffect(() => {
     const filtered = allProducts.filter((product) =>
-      product.category[0]?.toLowerCase().includes(category.toLowerCase())
+      product.category[0]?.toLowerCase().includes(category?.toLowerCase())
     );
     setFilteredProducts(filtered);
   }, [category, allProducts]);
@@ -23,12 +32,25 @@ const CategoryPage = () => {
   }, []);
 
   return (
-    <div>
+    <div className="max-w-[1400px] mx-auto min-h-screen">
+      {/* Banner Image */}
+      {bannerImgUrl && (
+        <div className="relative h-28 md:h-52">
+          <img
+            src={bannerImgUrl}
+            alt={`${category} Banner`}
+            className="w-full h-full object-cover"
+          />
+          {/* overlay */}
+          <div className="absolute inset-0 bg-black opacity-40"></div>
+          <h2 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-sm md:text-lg font-semibold text-center text-white bg-opacity-60 bg-primary-light px-4 py-2">
+            Products in {category}
+          </h2>
+        </div>
+      )}
+
       {/* Product Cards */}
-      <div className="max-w-[1400px] mx-auto py-4 min-h-screen">
-        <h2 className="text-lg font-semibold mb-4 text-center">
-          Products in {category}
-        </h2>
+      <div>
         <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
           {filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
@@ -40,15 +62,15 @@ const CategoryPage = () => {
                 <img
                   src={cartImg}
                   alt="Empty Cart"
-                  className="w-24 md:w-48 mx-auto my-4"
+                  className="w-16 md:w-48 mx-auto my-4"
                 />
-                <h2 className="capitalize md:text-2xl text-center">
+                <h2 className="capitalize text-sm md:text-2xl text-center">
                   Currently no products in {category}
                 </h2>
                 <h2 className="text-xl mt-2">
                   <Link
                     to="/shop"
-                    className="bg-[#01684B] text-white px-6 py-2 rounded-xl"
+                    className="bg-primary-light text-white px-6 py-2 rounded-xl text-sm"
                   >
                     Lets Shop Others
                   </Link>

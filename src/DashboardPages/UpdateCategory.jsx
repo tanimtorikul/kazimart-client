@@ -20,7 +20,7 @@ const UpdateCategory = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // to find the category id
+    // Find the category by ID
     if (categories.length > 0) {
       const foundCategory = categories.find((cat) => cat._id === categoryId);
       if (foundCategory) {
@@ -93,65 +93,67 @@ const UpdateCategory = () => {
 
   return (
     <div className="container mx-auto p-4">
-       <Helmet>
+      <Helmet>
         <title>Update Category</title>
       </Helmet>
       <h2 className="text-2xl md:text-3xl font-semibold text-center mb-12">
         Update Category
       </h2>
       {category && (
-        <form onSubmit={onSubmit} className="space-y-6">
-          <div className="flex flex-col md:flex-row gap-24 justify-center">
-            {/* Category Name */}
-            <div>
-              <label
-                htmlFor="name"
-                className="block text-lg md:text-xl font-medium"
-              >
-                Category Name
-              </label>
-              <input
-                type="text"
-                defaultValue={category.category}
-                name="category"
-                placeholder="Enter category name"
-                className="w-full px-4 py-2 border rounded-md"
-                required
-              />
+        <div className="border-2 max-w-full mx-auto p-6 bg-white rounded-lg shadow-lg">
+          <form onSubmit={onSubmit} className="space-y-6">
+            <div className="flex flex-col md:flex-row gap-6 md:gap-24 justify-center">
+              {/* Category Name */}
+              <div className="flex-1">
+                <label
+                  htmlFor="category"
+                  className="block text-lg md:text-xl font-medium"
+                >
+                  Category Name
+                </label>
+                <input
+                  type="text"
+                  defaultValue={category.category}
+                  name="category"
+                  placeholder="Enter category name"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-500 transition duration-200"
+                  required
+                />
+              </div>
+
+              {/* Category Image Upload */}
+              <div className="flex-1">
+                <label
+                  htmlFor="image"
+                  className="block text-lg md:text-xl font-medium"
+                >
+                  Category Image
+                </label>
+                <input
+                  type="file"
+                  accept="image/*"
+                  onChange={handleFileChange}
+                  className="border rounded-md mb-2"
+                />
+                <img
+                  src={image ? URL.createObjectURL(image) : category?.imgUrl}
+                  alt="Preview"
+                  className="w-full h-auto max-w-[8rem] md:max-w-[12rem] object-contain border-2 border-gray-300 rounded-lg"
+                />
+              </div>
             </div>
 
-            {/* Category Image Upload */}
-            <div>
-              <label
-                htmlFor="image"
-                className="block text-lg md:text-xl font-medium"
+            {/* Submit Button */}
+            <div className="flex md:justify-end">
+              <button
+                type="submit"
+                className="bg-primary-light py-2 md:py-4 px-4 md:px-10 rounded-md text-white text-lg hover:bg-green-600 transition duration-200"
               >
-                Category Image
-              </label>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleFileChange}
-                className="border rounded-md"
-              />
-              <img
-                src={image ? URL.createObjectURL(image) : category?.imgUrl}
-                alt="Preview"
-                className="w-48 h-48 mt-2"
-              />
+                Update Category
+              </button>
             </div>
-          </div>
-
-          {/* Submit Button */}
-          <div className="w-full md:w-1/4 mx-auto">
-            <button
-              type="submit"
-              className="bg-[#005555] w-full text-white py-2 px-6 rounded-md text-lg md:text-xl"
-            >
-              Update Category
-            </button>
-          </div>
-        </form>
+          </form>
+        </div>
       )}
     </div>
   );

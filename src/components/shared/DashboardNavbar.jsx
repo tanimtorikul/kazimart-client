@@ -21,7 +21,7 @@ const DashboardNavbar = () => {
       >
         <img className="w-6 md:w-10" alt="" src={logo} />
 
-        <h2 className="text-lg md:text-xl font-semibold">KaziMart</h2>
+        <h2 className="text-lg md:text-xl font-semibold">Kazimart</h2>
       </Link>
       <div className="relative">
         {user && (

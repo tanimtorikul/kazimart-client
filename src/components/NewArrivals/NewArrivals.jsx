@@ -1,5 +1,5 @@
 import SectionTitle from "../shared/SectionTitle";
-import ProductCard from "../shared/ProductCard"; 
+import ProductCard from "../shared/ProductCard";
 import useProducts from "../../hooks/useProducts";
 
 const NewArrivals = () => {

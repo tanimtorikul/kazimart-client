@@ -5,9 +5,6 @@ import { Autoplay, EffectFade } from "swiper/modules";
 import { Link } from "react-router-dom";
 import useBanners from "../../hooks/useBanners";
 
-// If you choose to define a custom class, ensure you import your CSS file here
-// import './styles.css'; 
-
 const MainBanner = () => {
   const { banners } = useBanners();
 
@@ -18,42 +15,33 @@ const MainBanner = () => {
       effect={"fade"}
       fadeEffect={{ crossFade: true }}
       modules={[Autoplay, EffectFade]}
-      className="mySwiper"
+      className="w-full"
     >
       {banners.map((banner) => (
-        <SwiperSlide key={banner._id} className="w-full flex flex-col gap-4">
+        <SwiperSlide key={banner._id} className="flex flex-col">
           <div
-            className={`hero mx-auto w-full md:h-[600px] relative bg-banner`}
+            className="relative w-full h-[300px] md:h-[600px] bg-cover bg-center bg-no-repeat"
             style={{
               backgroundImage: `url(${banner.imgUrl})`,
-              backgroundSize:"auto"
             }}
           >
-            <div className="absolute inset-0 bg-gradient-to-b from-black to-transparent opacity-60"></div>
-            <div className="hero-content text-neutral-content text-center relative z-10">
-              <div className="max-w-3xl">
-                <h1 className="mb-8 text-3xl md:text-5xl font-extrabold text-white shadow-lg">
-                  {banner.title}
-                </h1>
-                <p className="mb-5 text-lg md:text-xl text-white shadow-md">
-                  {banner.description}
-                </p>
-                {banner.productId ? (
-                  <Link
-                    to={`/product/${banner.productId}`}
-                    className="btn text-lg rounded-full shadow-md transition-colors duration-300"
-                  >
-                    Shop Now
-                  </Link>
-                ) : (
-                  <Link
-                    to="/shop"
-                    className="btn text-lg rounded-full shadow-md transition-colors duration-300"
-                  >
-                    Shop Now
-                  </Link>
-                )}
-              </div>
+            {/* Background gradient overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+
+            {/* Content overlay */}
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 md:px-8 text-white z-10">
+              <h1 className="mb-4 text-3xl md:text-5xl font-bold drop-shadow-lg">
+                {banner.title}
+              </h1>
+              <p className="mb-6 text-lg md:text-xl drop-shadow-md">
+                {banner.description}
+              </p>
+              <Link
+                to={banner.productId ? `/product/${banner.productId}` : "/shop"}
+                className="bg-primary-light hover:bg-primary-dark text-white text-lg font-semibold px-6 py-3 rounded-full shadow-md transition duration-300"
+              >
+                Shop Now
+              </Link>
             </div>
           </div>
         </SwiperSlide>

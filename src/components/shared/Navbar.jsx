@@ -124,7 +124,7 @@ const Navbar = () => {
         >
           <img className="w-6 md:w-10" alt="" src={logo} />
 
-          <h2 className="text-lg md:text-xl font-semibold">KaziMart</h2>
+          <h2 className="text-lg md:text-xl font-semibold">Kazimart</h2>
         </Link>
       </div>
 
@@ -136,9 +136,9 @@ const Navbar = () => {
         <div className="flex items-center gap-6">
           {/* Cart Icon */}
           <Link to="/cart">
-            <div className="indicator flex items-center gap-1 text-lg text-[#01684B] relative">
+            <div className="indicator flex items-center gap-1 text-lg text-primary-light relative">
               {cart.length > 0 && (
-                <span className="indicator-item badge text-white bg-[#01684b] text-xs w-5 h-5 flex items-center justify-center -top-1 -right-1 rounded-full shadow-lg">
+                <span className="indicator-item badge text-white bg-primary-light text-xs w-5 h-5 flex items-center justify-center -top-1 -right-1 rounded-full shadow-lg">
                   {cart.length}
                 </span>
               )}
@@ -174,7 +174,7 @@ const Navbar = () => {
             </div>
           ) : (
             <Link to="/login" className="text-lg">
-              <div className="flex items-center gap-1 text-lg text-[#01684B]">
+              <div className="flex items-center gap-1 text-lg text-primary-light">
                 <FaRegUser />
               </div>
             </Link>

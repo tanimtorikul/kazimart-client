@@ -12,12 +12,15 @@ const Footer = () => {
     <div className="bg-[#F6F6F8]">
       <footer className="flex flex-col md:flex-row justify-between  max-w-[1400px] mx-auto px-4 py-8 border-b-2">
         <div className="flex flex-col items-start space-y-4 mb-8 md:mb-0">
-        <Link to="/" className="flex items-center justify-center space-x-1 md:pace-x-2 lg:justify-start">
-          <img className="w-8 md:w-10" alt="" src={logo} />
+          <Link
+            to="/"
+            className="flex items-center justify-center space-x-1 md:pace-x-2 lg:justify-start"
+          >
+            <img className="w-8 md:w-10" alt="" src={logo} />
 
-          <h2 className="text-xl font-semibold">KaziMart</h2>
-        </Link>
-          
+            <h2 className="text-xl font-semibold">Kazimart</h2>
+          </Link>
+
           <p>Kalatiya, Keranigonj,</p>
           <p>Dhaka, 1313</p>
           <p>

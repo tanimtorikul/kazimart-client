@@ -82,7 +82,7 @@ const AllUser = () => {
                       ) : (
                         <button
                           onClick={() => handleMakeAdmin(user)}
-                          className="border-[#01684b] text-[#01684b] border px-1 py-1 rounded"
+                          className="border-primary-light text-primary-light border px-1 py-1 rounded"
                         >
                           Make Admin
                         </button>

@@ -29,7 +29,7 @@ const AdminSidebar = () => {
                   `flex items-center px-4 py-2 rounded transition-colors ${
                     isActive
                       ? "text-[#47C466] bg-gray-900"
-                      : "hover:bg-[#013737]"
+                      : "hover:bg-primary-dark"
                   }`
                 }
               >
@@ -49,7 +49,7 @@ const AdminSidebar = () => {
                   `flex items-center px-4 py-2 rounded transition-colors ${
                     isActive
                       ? "text-[#47C466] bg-gray-900"
-                      : "hover:bg-[#013737]"
+                      : "hover:bg-primary-dark"
                   }`
                 }
               >
@@ -66,7 +66,7 @@ const AdminSidebar = () => {
                   `flex items-center px-4 py-2 rounded transition-colors ${
                     isActive
                       ? "text-[#47C466] bg-gray-900"
-                      : "hover:bg-[#013737]"
+                      : "hover:bg-primary-dark"
                   }`
                 }
               >
@@ -81,7 +81,7 @@ const AdminSidebar = () => {
                   `flex items-center px-4 py-2 rounded transition-colors ${
                     isActive
                       ? "text-[#47C466] bg-gray-900"
-                      : "hover:bg-[#013737]"
+                      : "hover:bg-primary-dark"
                   }`
                 }
               >
@@ -96,7 +96,7 @@ const AdminSidebar = () => {
                   `flex items-center px-4 py-2 rounded transition-colors ${
                     isActive
                       ? "text-[#47C466] bg-gray-900"
-                      : "hover:bg-[#013737]"
+                      : "hover:bg-primary-dark"
                   }`
                 }
               >
@@ -111,7 +111,7 @@ const AdminSidebar = () => {
                   `flex items-center px-4 py-2 rounded transition-colors ${
                     isActive
                       ? "text-[#47C466] bg-gray-900"
-                      : "hover:bg-[#013737]"
+                      : "hover:bg-primary-dark"
                   }`
                 }
               >
@@ -126,7 +126,7 @@ const AdminSidebar = () => {
                   `flex items-center px-4 py-2 rounded transition-colors ${
                     isActive
                       ? "text-[#47C466] bg-gray-900"
-                      : "hover:bg-[#013737]"
+                      : "hover:bg-primary-dark"
                   }`
                 }
               >
@@ -141,7 +141,7 @@ const AdminSidebar = () => {
                   `flex items-center px-4 py-2 rounded transition-colors ${
                     isActive
                       ? "text-[#47C466] bg-gray-900"
-                      : "hover:bg-[#013737]"
+                      : "hover:bg-primary-dark"
                   }`
                 }
               >
@@ -161,7 +161,7 @@ const AdminSidebar = () => {
                   `flex items-center px-4 py-2 rounded transition-colors ${
                     isActive
                       ? "text-[#47C466] bg-gray-900"
-                      : "hover:bg-[#013737]"
+                      : "hover:bg-primary-dark"
                   }`
                 }
               >
@@ -176,7 +176,7 @@ const AdminSidebar = () => {
                   `flex items-center px-4 py-2 rounded transition-colors ${
                     isActive
                       ? "text-[#47C466] bg-gray-900"
-                      : "hover:bg-[#013737]"
+                      : "hover:bg-primary-dark"
                   }`
                 }
               >

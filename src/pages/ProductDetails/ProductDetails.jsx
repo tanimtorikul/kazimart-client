@@ -104,7 +104,7 @@ const ProductDetails = () => {
       ) : (
         product && (
           <>
-            <div className="max-w-[1200px] mx-auto px-4">
+            <div className="max-w-[1400px] mx-auto px-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10">
                 <div className="max-w-[300px] max-h-[300px] sm:max-w-[400px] sm:max-h-[400px] md:max-w-[500px] md:max-h-[500px] mx-auto">
                   <Zoom>
@@ -122,7 +122,7 @@ const ProductDetails = () => {
                         key={index}
                         src={url}
                         alt={`Thumbnail ${index + 1}`}
-                        className="rounded-lg w-16 h-16 object-cover cursor-pointer border border-gray-300 hover:border-[#01684B]"
+                        className="rounded-lg w-16 h-16 object-cover cursor-pointer border border-gray-300 hover:border-primary-light"
                         onClick={() => setMainImage(url)}
                       />
                     ))}
@@ -138,7 +138,7 @@ const ProductDetails = () => {
                     <p
                       className={`rounded-2xl text-sm md:text-lg px-2 md:px-6 py-1 md:py-2 font-medium ${
                         product.inStock
-                          ? "bg-[#F2F7F6] border-[#01684B] border-2 text-[#01684B]"
+                          ? "bg-[#F2F7F6] border-primary-light border-2 text-primary-light"
                           : "text-red-600"
                       }`}
                     >
@@ -149,13 +149,13 @@ const ProductDetails = () => {
                   <p>{product.quantity}</p>
                   <div className="flex gap-2 items-center mb-4">
                     <p className="line-through">৳ {product.previousPrice}</p>
-                    <p className="text-lg md:text-2xl text-[#01684B] font-bold">
+                    <p className="text-lg md:text-2xl text-primary-light font-bold">
                       ৳ {product.price}
                     </p>
                   </div>
                   <div className="flex md:flex-col flex-row gap-3 items-center md:items-start">
                     <p className="text-gray-300">Total Amount:</p>
-                    <h2 className="text-2xl md:text-5xl text-[#01684B] font-bold">
+                    <h2 className="text-2xl md:text-5xl text-primary-light font-bold">
                       ৳ {product.price}
                     </h2>
                   </div>
@@ -165,7 +165,7 @@ const ProductDetails = () => {
                     className={`${
                       isAddedToCart
                         ? "bg-gray-500 cursor-not-allowed"
-                        : "bg-[#01684B] hover:bg-teal-600"
+                        : "bg-primary-light hover:bg-teal-600"
                     } text-white md:text-xl font-semibold px-4 md:px-8 py-2 md:py-3 rounded-xl shadow-lg transition duration-300 ease-in-out flex items-center space-x-2`}
                     disabled={isAddedToCart}
                   >
@@ -185,7 +185,7 @@ const ProductDetails = () => {
                   onClick={() => setActiveTab("description")}
                   className={`px-4 py-2 text-lg font-semibold ${
                     activeTab === "description"
-                      ? "border-b-2 border-[#01684B] text-[#01684B]"
+                      ? "border-b-2 border-primary-light text-primary-light"
                       : "text-gray-500"
                   }`}
                 >
@@ -195,7 +195,7 @@ const ProductDetails = () => {
                   onClick={() => setActiveTab("reviews")}
                   className={`px-4 py-2 text-lg font-semibold ${
                     activeTab === "reviews"
-                      ? "border-b-2 border-[#01684B] text-[#01684B]"
+                      ? "border-b-2 border-primary-light text-primary-light"
                       : "text-gray-500"
                   }`}
                 >
@@ -210,9 +210,8 @@ const ProductDetails = () => {
                 </div>
               ) : (
                 <div>
-                <Review productId={product._id} />
-              </div>
-              
+                  <Review productId={product._id} />
+                </div>
               )}
             </div>
             {/* Related Products Section

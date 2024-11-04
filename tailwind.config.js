@@ -9,9 +9,15 @@ export default {
       fontFamily: {
         albert: ['Albert Sans', 'sans-serif'], 
       },
+      colors: {
+        primary: {
+          light: '#01684B', 
+          dark: '#013737',  
+        },
+      },
     },
   },
   plugins: [
     require('daisyui'),
   ],
-}
+};

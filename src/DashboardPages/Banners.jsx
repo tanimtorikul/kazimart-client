@@ -200,7 +200,7 @@ const Banners = () => {
                 <div className="md:col-span-2">
                   <button
                     type="submit"
-                    className="bg-[#01684B] py-4 px-4 md:px-10 rounded-md text-white text-sm md:text-lg"
+                    className="bg-primary-light py-4 px-4 md:px-10 rounded-md text-white text-sm md:text-lg"
                   >
                     Add Banner
                   </button>
