@@ -1,24 +1,11 @@
-import { useEffect, useState } from "react";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
 import BlogCard from "../../components/BlogCard/BlogCard";
+import useBlogs from "../../hooks/useBlogs";
+import Spinner from "../../utlis/Spinner";
 
 const Blogs = () => {
-  const [blogs, setBlogs] = useState([]);
-  const axiosPublic = useAxiosPublic();
+  const { blogs, isLoading } = useBlogs();
 
-  // Fetch blogs from API
-  useEffect(() => {
-    const fetchBlogs = async () => {
-      try {
-        const response = await axiosPublic.get("/get-blogs");
-        setBlogs(response.data);
-      } catch (error) {
-        console.error("Error fetching blogs:", error);
-      }
-    };
-
-    fetchBlogs();
-  }, []);
+  if (isLoading) return <Spinner />;
 
   return (
     <div className="max-w-[1400px] mx-auto p-6 h-screen">
