@@ -10,7 +10,7 @@ import { useState } from "react";
 const Review = ({ productId }) => {
   const { user } = useAuth();
   const axiosPublic = useAxiosPublic();
-  const { reviews, isLoading } = useReviews(productId);
+  const { reviews, isLoading, refetch } = useReviews(productId);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const {
     register,
@@ -37,6 +37,7 @@ const Review = ({ productId }) => {
     try {
       await axiosPublic.post("/reviews", newReview);
       reset();
+      refetch()
       toast.success("Review submitted successfully!");
     } catch (error) {
       toast.error("Failed to submit review!");
