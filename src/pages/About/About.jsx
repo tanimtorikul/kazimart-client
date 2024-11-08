@@ -1,6 +1,11 @@
+import { useEffect } from "react";
 import ceoImg from "../../assets/ceo.jpg";
 
 const About = () => {
+   
+    useEffect(() => {
+      window.scrollTo(0, 0);
+    }, []);
   return (
     <div className="max-w-[1400px] mx-auto py-12 px-4">
       <div className="space-y-5 text-center">

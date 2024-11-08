@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
@@ -13,6 +14,9 @@ const Contact = () => {
     toast.success("Thank you! We will contact you shortly");
     reset();
   };
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="min-h-screen my-12 max-w-[1000px] mx-auto md:px-4">

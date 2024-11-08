@@ -17,7 +17,8 @@ const NewArrivals = () => {
         heading="Discover Our Latest Additions"
         subHeading="Quality products freshly stocked for you"
       />
-      <motion.div variants={fadeIn("up", 0.1)}
+      <motion.div
+        variants={fadeIn("up", 0.1)}
         initial="hidden"
         whileInView={"show"}
         viewport={{ once: false, amount: 0.2 }} className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">

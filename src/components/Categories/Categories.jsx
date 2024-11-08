@@ -13,7 +13,7 @@ const Categories = () => {
   const { categories } = useCategories();
 
   return (
-    <div className="md:my-16">
+    <div className="md:my-12">
       <SectionTitle
         heading="Categories"
         subHeading="Discover the Trends and Favorites"
@@ -24,7 +24,7 @@ const Categories = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 lg:hidden">
           {categories.map((category) => (
             <Link to={`/categories/${category.category}`} key={category._id}>
-              <CategoryCard category={category} c />
+              <CategoryCard category={category} />
             </Link>
           ))}
         </div>

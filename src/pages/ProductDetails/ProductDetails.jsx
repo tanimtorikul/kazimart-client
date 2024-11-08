@@ -95,7 +95,7 @@ const ProductDetails = () => {
   };
 
   return (
-    <div className="max-w-[1400px] min-h-screen mx-auto px-4 pt-12">
+    <div className="max-w-[1400px] min-h-screen mx-auto px-4 pt-6 lg:pt-12">
       <Helmet>
         <title>{product?.name}</title>
       </Helmet>
@@ -104,14 +104,14 @@ const ProductDetails = () => {
       ) : (
         product && (
           <>
-            <div className="max-w-[1400px] mx-auto px-4">
+            <div className="px-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10">
                 <div className="max-w-[300px] max-h-[300px] sm:max-w-[400px] sm:max-h-[400px] md:max-w-[500px] md:max-h-[500px] mx-auto">
                   <Zoom>
                     <img
                       src={mainImage}
                       alt={product.name}
-                      className="rounded-lg border border-gray-300 shadow-lg object-cover w-full h-72"
+                      className="rounded-lg border border-gray-300 shadow-lg object-cover w-full h-44 md:h-72 max-h-[500px]"
                     />
                   </Zoom>
 
@@ -129,7 +129,7 @@ const ProductDetails = () => {
                   </div>
                 </div>
 
-                <div className="space-y-3 mt-16 md:mt-0 md:space-y-6 flex flex-col items-center md:block">
+                <div className="space-y-3 mt-8 md:mt-0 md:space-y-6 flex flex-col items-center md:block">
                   <h2 className="text-lg md:text-2xl font-semibold text-[#002349]">
                     {product.name}
                   </h2>

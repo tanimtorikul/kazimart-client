@@ -17,7 +17,7 @@ const CartPage = () => {
     window.scrollTo(0, 0);
   });
   return (
-    <div className="max-w-[1400px] mx-auto min-h-screen mt-8 md:mt-12">
+    <div className=" mx-auto min-h-screen mt-8 md:mt-12">
       {cart.length === 0 ? (
         <div className="flex flex-col items-center space-y-8">
           <img

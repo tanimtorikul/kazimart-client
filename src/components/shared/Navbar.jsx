@@ -92,7 +92,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="navbar bg-white fixed z-10 w-full md:px-36 md:pt-4">
+    <div className="navbar bg-white fixed z-10 w-full md:px-36 md:py-6">
       <div className="navbar-start">
         <div className="dropdown lg:hidden">
           <div tabIndex={0} role="button" className="btn">
@@ -122,7 +122,7 @@ const Navbar = () => {
           to="/"
           className="flex items-center justify-center space-x-1 md:pace-x-2 lg:justify-start ml-2 lg:ml-0"
         >
-          <img className="w-6 md:w-10" alt="" src={logo} />
+          <img className="w-6 md:w-12" alt="" src={logo} />
 
           <h2 className="text-lg md:text-xl font-semibold">Kazimart</h2>
         </Link>

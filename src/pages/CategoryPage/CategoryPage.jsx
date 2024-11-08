@@ -10,14 +10,15 @@ const CategoryPage = () => {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const { allProducts } = useProducts();
   const { categories } = useCategories();
-  //  the current category object
+
+  // Get the current category object
   const currentCategory = categories?.find(
     (cat) => cat.category?.toLowerCase() === category?.toLowerCase()
   );
 
   const bannerImgUrl = currentCategory ? currentCategory.bannerImgUrl : "";
 
-  // Filter the specific category based on category name
+  // Filter products based on category name
   useEffect(() => {
     const filtered = allProducts.filter((product) =>
       product.category[0]?.toLowerCase().includes(category?.toLowerCase())
@@ -25,7 +26,7 @@ const CategoryPage = () => {
     setFilteredProducts(filtered);
   }, [category, allProducts]);
 
-  // To go to the top of the page
+  // Scroll to top on page load
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
@@ -34,23 +35,23 @@ const CategoryPage = () => {
     <div className="max-w-[1400px] mx-auto min-h-screen">
       {/* Banner Image */}
       {bannerImgUrl && (
-        <div className="relative h-28 md:h-52">
+        <div className="relative h-full md:h-60 lg:h-full">
           <img
             src={bannerImgUrl}
             alt={`${category} Banner`}
-            className="w-full h-full object-cover"
+            className="w-full object-cover rounded-lg shadow-lg"
           />
-          {/* overlay */}
-          <div className="absolute inset-0 bg-black opacity-20"></div>
-          <h2 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-sm md:text-lg font-semibold text-center text-white bg-opacity-60 bg-primary-dark px-4 py-2">
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-black opacity-30"></div>
+          <h2 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[10px] md:text-xl lg:text-2xl font-semibold text-center text-white bg-opacity-90 bg-primary-light px-6 py-3 rounded-lg">
             Products in {category}
           </h2>
         </div>
       )}
 
       {/* Product Cards */}
-      <div>
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
+      <div className="mt-8">
+        <div className=" grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
           {filteredProducts.length > 0 ? (
             filteredProducts.map((product) => (
               <ProductCard key={product._id} item={product} />
@@ -61,9 +62,9 @@ const CategoryPage = () => {
                 <img
                   src={cartImg}
                   alt="Empty Cart"
-                  className="w-16 md:w-48 mx-auto my-4"
+                  className="w-16 md:w-28 mx-auto my-4"
                 />
-                <h2 className="capitalize text-sm md:text-2xl text-center">
+                <h2 className="text-sm md:text-xl text-center">
                   Currently no products in {category}
                 </h2>
                 <h2 className="text-xl mt-2">

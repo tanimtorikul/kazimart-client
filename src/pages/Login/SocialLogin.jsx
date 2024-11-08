@@ -7,29 +7,34 @@ import useAxiosPublic from "../../hooks/useAxiosPublic";
 const SocialLogin = () => {
   const { googleSignIn } = useAuth();
   const navigate = useNavigate();
-  const location = useLocation();
+  const { state } = useLocation();
   const axiosPublic = useAxiosPublic();
 
-  const handleGoogleSignIn = () => {
-    googleSignIn().then((result) => {
+  const handleGoogleSignIn = async () => {
+    try {
+      const result = await googleSignIn();
       console.log(result.user);
+      
       const userInfo = {
         email: result.user?.email,
         name: result.user?.displayName,
       };
-      axiosPublic.post("/users", userInfo).then((res) => {
-        console.log(res.data);
+      
+      const res = await axiosPublic.post("/users", userInfo);
+      console.log(res.data);
 
-        toast.success("Logged in successfully!");
-        navigate(location?.state ? location.state : "/");
-      });
-    });
+      toast.success("Logged in successfully!");
+      navigate(state?.from || "/"); // Set a specific fallback if needed
+    } catch (error) {
+      console.error("Google Sign-In error:", error);
+      toast.error("Failed to log in. Please try again.");
+    }
   };
 
   return (
     <div className="mt-4">
       <button
-        type="submit"
+        type="button"
         className="bg-[#265bb1] w-full rounded-md py-2 text-white md:text-lg flex items-center justify-center space-x-2"
         onClick={handleGoogleSignIn}
       >

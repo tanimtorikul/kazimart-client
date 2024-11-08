@@ -42,7 +42,22 @@ const UpdateProduct = () => {
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    let imageUrls = "";
+
+    const price = parseFloat(event.target.price.value);
+    const previousPrice = parseFloat(event.target.previousPrice.value);
+
+    // Validate the price values
+    if (price <= 0) {
+      toast.error("Please enter a valid price greater than 0.");
+      return;
+    }
+
+    if (previousPrice <= 0) {
+      toast.error("Please enter a valid previous price greater than 0.");
+      return;
+    }
+
+    let imageUrls = product?.imageUrls || [];
 
     if (image) {
       const formData = new FormData();
@@ -55,14 +70,13 @@ const UpdateProduct = () => {
             "Content-Type": "multipart/form-data",
           },
         });
-        imageUrls = res.data.secure_url;
+
+        imageUrls = [res.data.secure_url];
       } catch (error) {
         console.error(error);
         toast.error("Failed to upload image");
         return;
       }
-    } else {
-      imageUrls = product?.imageUrls[1] || "";
     }
 
     const categoryArray = [event.target.category.value];
@@ -72,8 +86,8 @@ const UpdateProduct = () => {
 
     const productData = {
       name: event.target.name.value,
-      price: event.target.price.value,
-      previousPrice: event.target.previousPrice.value,
+      price,
+      previousPrice,
       quantity: event.target.quantity.value,
       description,
       category: categoryArray,
@@ -278,12 +292,12 @@ const UpdateProduct = () => {
             </label>
             <input
               type="file"
-              accept="image/*"
+              accept="image/jpeg, image/png, image/webp"
               onChange={handleFileChange}
               className="border rounded-md"
             />
             <img
-              src={image ? URL.createObjectURL(image) : product?.imageUrls[1]}
+              src={image ? URL.createObjectURL(image) : product?.imageUrls[0]}
               alt="Preview"
               className="w-1/2 mt-2"
             />

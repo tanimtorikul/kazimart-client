@@ -6,13 +6,14 @@ import {
 } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../utlis/animationVariants";
+import { FaCreditCard } from "react-icons/fa6";
 
 const Stats = () => {
   const statsData = [
     {
-      icon: <FaShippingFast size={36} />,
-      title: "Free Shipping",
-      description: "Free shipping over 1000 BDT",
+      icon: <FaCreditCard size={36} />,
+      title: "Convenient Checkout",
+      description: "Fast and hassle-free checkout.",
     },
     {
       icon: <FaHeadset size={36} />,
@@ -32,9 +33,10 @@ const Stats = () => {
   ];
 
   return (
-    <motion.div variants={fadeIn("up", 0.1)}
-    initial="hidden"
-    whileInView={"show"}
+    <motion.div
+      variants={fadeIn("up", 0.1)}
+      initial="hidden"
+      whileInView={"show"}
     viewport={{ once: false, amount: 0.2 }} className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 p-6">
       {statsData.map((stat, index) => (
         <div

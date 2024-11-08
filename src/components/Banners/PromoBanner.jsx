@@ -1,29 +1,15 @@
-import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { Autoplay } from "swiper/modules";
-import useAxiosPublic from "../../hooks/useAxiosPublic";
+import usePromos from "../../hooks/usePromo";
 
 function PromoBanner() {
-  const [banners, setBanners] = useState([]);
-  const axiosPublic = useAxiosPublic();
-
-  useEffect(() => {
-    const fetchBanners = async () => {
-      try {
-        const res = await axiosPublic.get("/promo");
-        setBanners(res.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchBanners();
-  }, [axiosPublic]);
+  const { promos } = usePromos(); 
 
   return (
     <div className="max-w-[1400px] mx-auto">
       <Swiper
-        speed={1000}
+        speed={1200}
         autoplay={{ delay: 2000, disableOnInteraction: false }}
         spaceBetween={20}
         modules={[Autoplay]}
@@ -37,13 +23,13 @@ function PromoBanner() {
           },
         }}
       >
-        {banners.map((banner, id) => (
+        {promos.map((promo, id) => (
           <SwiperSlide key={id}>
             <div className="md:h-[200px] my-4 md:my-0">
               <img
                 className="object-contain w-full h-full"
-                src={banner.imgUrl}
-                alt=""
+                src={promo.imgUrl}
+                alt={promo.title || "Promo Image"}
               />
             </div>
           </SwiperSlide>

@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <div className="bg-[#F6F6F8]">
-      <footer className="flex flex-col md:flex-row justify-between  max-w-[1400px] mx-auto px-4 py-8 border-b-2">
+      <footer className="flex flex-col md:flex-row justify-between max-w-[1400px] mx-auto px-4 py-8 border-b-2">
         <div className="flex flex-col items-start space-y-4 mb-8 md:mb-0">
           <Link
             to="/"
@@ -21,18 +21,20 @@ const Footer = () => {
             <h2 className="text-xl font-semibold">Kazimart</h2>
           </Link>
 
-          <p>Kalatiya, Keranigonj,</p>
-          <p>Dhaka, 1313</p>
+          <strong>H M Plaza</strong>
+          <p>Plot 34, Level 11, Room 11, Road 2, Sector 3,Uttara</p>
+          <p>Dhaka 1230</p>
+
           <p>
             Email:{" "}
-            <a href="mailto:kazimart786@gmail.com" className="hover:underline">
-              kazimart786@gmail.com
+            <a href="mailto:admin@kazimart.com" className="hover:underline">
+              admin@kazimart.com
             </a>
           </p>
           <p>
             Phone:{" "}
             <a href="#" className="hover:underline">
-              01720082585
+              01979094748
             </a>
           </p>
 
@@ -79,7 +81,7 @@ const Footer = () => {
               placeholder="Enter your email..."
               className="border p-4 flex-grow rounded-l"
             />
-            <button className="bg-black text-white p-2 rounded-r">
+            <button className="bg-primary-light text-white p-2 rounded-r">
               Subscribe
             </button>
           </div>
@@ -89,7 +91,7 @@ const Footer = () => {
       <div className="flex flex-col md:flex-row justify-between items-center max-w-[1400px] mx-auto px-4 py-4 text-sm text-gray-600">
         <p>© 2024 Kazimart. All Rights Reserved.</p>
         <p>
-          Developed by Tanim with{" "}
+          Developed by <strong>Tanim</strong> with{" "}
           <span className="text-red-500 text-xl">♥</span> | © Kazimart
         </p>
 

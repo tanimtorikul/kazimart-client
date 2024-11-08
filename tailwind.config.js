@@ -8,6 +8,7 @@ export default {
     extend: {
       fontFamily: {
         albert: ['Albert Sans', 'sans-serif'], 
+        bebas: ['Bebas Neue', 'cursive'],
       },
       colors: {
         primary: {

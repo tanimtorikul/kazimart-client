@@ -3,6 +3,7 @@ import {
   FaBoxArchive,
   FaClipboardList,
   FaChartColumn,
+  FaStar,
 } from "react-icons/fa6";
 import { GrGallery } from "react-icons/gr";
 import { MdCategory } from "react-icons/md";
@@ -40,9 +41,7 @@ const AdminSidebar = () => {
 
             {/* Product Management */}
             <li>
-              <p className="text-[#B1E3CE] hidden md:block">
-                Product Management
-              </p>
+              <p className="text-[#B1E3CE] hidden md:block">Product Management</p>
               <NavLink
                 to="/dashboard/add-product"
                 className={({ isActive }) =>
@@ -147,6 +146,24 @@ const AdminSidebar = () => {
               >
                 <FaUser className="mr-3" />
                 <p className="md:block hidden">All Users</p>
+              </NavLink>
+            </li>
+
+            {/* Reviews Section */}
+            <li>
+              <NavLink
+                to="/dashboard/reviews"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 rounded transition-colors ${
+                    isActive
+                      ? "text-[#47C466] bg-gray-900"
+                      : "hover:bg-primary-dark"
+                  }`
+                }
+              >
+                
+                <FaStar className="mr-2" />
+                <p className="md:block hidden">Reviews</p>
               </NavLink>
             </li>
 

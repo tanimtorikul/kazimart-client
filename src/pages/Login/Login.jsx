@@ -2,7 +2,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import SocialLogin from "./SocialLogin";
 import useAuth from "../../hooks/useAuth";
-import logo from "../../assets/kazimart.png";
+import logo from "../../assets/shopping-bag.png";
 import toast from "react-hot-toast";
 import { useEffect } from "react";
 
@@ -35,16 +35,15 @@ const Login = () => {
   }, []);
 
   return (
-    <div className="flex flex-col justify-center min-h-[600px] items-center">
+    <div className="flex flex-col justify-center min-h-[600px] lg:min-h-screen items-center">
       <div className="flex flex-col md:max-w-md w-full rounded-md p-6 bg-white shadow-lg text-gray-900">
-        <div className="mb-4 text-center">
-          <img src={logo} alt="Kazimart Logo" className="w-24 h-auto mx-auto" />
+        <div className="flex items-center justify-center space-x-1 ml-2 lg:ml-0 p-4">
+          <img className="w-6 md:w-10" alt="" src={logo} />
+
+          <h2 className="text-lg md:text-xl font-semibold">Kazimart</h2>
         </div>
 
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className="space-y-4"
-        >
+        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
             <label htmlFor="email" className="block text-sm mb-1">
               Email address
@@ -107,11 +106,11 @@ const Login = () => {
             Sign Up
           </Link>
         </p>
-        <div className="text-center text-xs text-gray-600 mb-2">
+        {/* <div className="text-center text-xs text-gray-600 mb-2">
           <p>Use the following credentials to log in as an admin:</p>
           <p className="font-semibold">Email: admin@kazimart1.com</p>
           <p className="font-semibold">Password: K@zimart1</p>
-        </div>
+        </div> */}
       </div>
     </div>
   );

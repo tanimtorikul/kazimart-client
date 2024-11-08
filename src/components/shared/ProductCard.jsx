@@ -22,7 +22,7 @@ const ProductCard = ({ item }) => {
           const existingCartItem = res.data.find(
             (cartItem) => cartItem.productId === _id
           );
-  
+
           if (existingCartItem) {
             toast.error(`${name} is already in the cart!`);
           } else {
@@ -30,19 +30,18 @@ const ProductCard = ({ item }) => {
               productId: _id,
               email: user.email,
               name,
-              imageUrls, 
+              imageUrls,
               price,
               amount: 1,
               quantity,
             };
-            
+
             axiosSecure
               .post("/carts", cartItem)
               .then((res) => {
                 if (res.data.insertedId) {
                   toast.success(`${name} added to the cart`);
                   refetch();
-                  
                 } else {
                   toast.error("Failed to add to the cart!");
                 }
@@ -62,18 +61,19 @@ const ProductCard = ({ item }) => {
       navigate("/login", { state: { from: location } });
     }
   };
-  
 
   return (
     <div className="relative bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition duration-200 ease-in-out group">
       {/* Image */}
       <div className="relative flex justify-center border border-gray-100 rounded-lg pt-3">
         <Link to={`/product/${item._id}`} className="block">
-          <img
-            src={imageUrls[0]}
-            alt={name}
-            className="rounded-lg w-48 h-48 object-cover hover:"
-          />
+        <img
+  src={imageUrls[0]}
+  alt={name}
+  className="rounded-lg w-full h-auto max-h-48 object-cover px-3 md:px-0"
+/>
+
+
 
           {/* Discount */}
           {previousPrice && previousPrice > price && (
@@ -107,21 +107,27 @@ const ProductCard = ({ item }) => {
 
       {/* Info Section */}
       <div className="mt-4 text-center">
-        <h2 className="text-sm md:text-lg font-semibold text-gray-800">{name}</h2>
+        <h2 className="text-sm md:text-lg font-semibold text-gray-800">
+          {name}
+        </h2>
         <p className="text-sm text-gray-400 mt-4">{quantity}</p>
 
         {/* Price */}
-        <div className="flex justify-center items-center gap-4">
+        <div className="flex justify-center items-center gap-2">
           {previousPrice ? (
-            <p className="text-lg flex">
-              <TbCurrencyTaka size={24}/>
-              <span className="line-through ">{previousPrice}</span>
-              <span className="ml-2 text-lg font-bold text-green-600">
-                ৳{price}
+            <p className="text-lg flex items-center">
+              <TbCurrencyTaka size={24} />
+              <span className="line-through">{previousPrice}</span>
+              <span className="ml-2 text-lg font-bold text-green-600 flex items-center">
+                <TbCurrencyTaka size={24} />
+                {price}
               </span>
             </p>
           ) : (
-            <p className="text-lg font-bold text-green-600">৳{price}</p>
+            <p className="text-lg font-bold text-green-600 flex items-center">
+              <TbCurrencyTaka size={24} />
+              {price}
+            </p>
           )}
         </div>
       </div>

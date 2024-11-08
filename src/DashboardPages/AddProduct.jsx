@@ -267,7 +267,7 @@ const AddProduct = () => {
                 <input
                   type="file"
                   id="image"
-                  accept="image/*"
+                  accept="image/jpeg, image/png, image/webp"
                   onChange={handleFileChange}
                   multiple
                 />

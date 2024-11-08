@@ -2,7 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import SocialLogin from "../Login/SocialLogin";
 import useAuth from "../../hooks/useAuth";
-import logo from "../../assets/kazimart.png";
+import logo from "../../assets/shopping-bag.png";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import toast from "react-hot-toast";
 
@@ -40,14 +40,12 @@ const SignUp = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center min-h-[600px] items-center py-4">
+    <div className="flex flex-col justify-center min-h-[600px] lg:min-h-screen items-center py-4">
       <div className="flex flex-col md:max-w-2xl rounded-md py-2 px-10 bg-white shadow-2xl text-gray-900">
-        <div className="mb-2 text-center">
-          <img
-            src={logo}
-            alt="Kazimart Logo"
-            className="w-24 h-auto mx-auto"
-          />
+      <div className="flex items-center justify-center space-x-1 ml-2 lg:ml-0 py-4 mb-2 p-4">
+          <img className="w-6 md:w-10" alt="" src={logo} />
+
+          <h2 className="text-lg md:text-xl font-semibold">Kazimart</h2>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
