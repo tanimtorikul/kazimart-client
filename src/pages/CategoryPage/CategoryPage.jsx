@@ -32,7 +32,7 @@ const CategoryPage = () => {
   }, []);
 
   return (
-    <div className="max-w-[1400px] mx-auto min-h-screen">
+    <div className="max-w-[1400px] mx-auto min-h-screen py-4 lg:py-12">
       {/* Banner Image */}
       {bannerImgUrl && (
         <div className="relative h-full md:h-60 lg:h-full">

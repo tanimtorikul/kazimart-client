@@ -29,7 +29,7 @@ const MainBanner = () => {
       {banners.map((banner, index) => (
         <SwiperSlide key={banner._id} className="flex flex-col">
           <div
-            className="relative h-[300px] md:h-[600px] bg-cover bg-center bg-no-repeat"
+            className="relative max-w-[1400px] mx-auto h-[300px] md:h-[500px] bg-cover bg-center bg-no-repeat lg:px-4 xl:px-0"
             style={{
               backgroundImage: `url(${banner.imgUrl})`,
             }}

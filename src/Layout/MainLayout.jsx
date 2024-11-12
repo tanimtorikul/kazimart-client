@@ -16,13 +16,13 @@ const MainLayout = () => {
   return (
     <div className="font-albert">
       {isLoading ? (
-        <div className="fixed inset-0 bg-white flex items-center justify-center z-50">
+        <div className="fixed inset-0 bg-white flex items-center justify-center">
           <Spinner />
         </div>
       ) : (
         <>
           <Navbar />
-          <div className="px-2 md:px-0 pt-16">
+          <div className="px-4 md:px-0">
             <Outlet />
           </div>
           <Footer />

@@ -5,7 +5,7 @@ const WelcomeBanner = () => {
     <div className="bg-primary-light text-white py-2 px-4">
       <div className="flex flex-wrap justify-between items-center">
         {/* welcome msg marquee */}
-        <div className="text-sm font-medium w-full lg:w-2/3 mb-2 lg:mb-0">
+        <div className="text-sm font-medium w-full lg:w-2/3">
           <Marquee speed={80}>
             <p className="mr-4">
               Welcome to Kazimart,

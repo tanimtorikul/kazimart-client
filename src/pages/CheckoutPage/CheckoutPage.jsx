@@ -64,8 +64,8 @@ const CheckoutPage = () => {
   };
 
   return (
-    <div className="max-w-[1400px] mx-auto min-h-screen my-2 lg:my-12">
-      <h1 className="md:text-xl font-semibold mb-2 md:mb-6">Checkout</h1>
+    <div className="max-w-[1400px] mx-auto min-h-screen py-4 lg:py-16 px-0 md:px-8 xl:px-0">
+      <h1 className="md:text-xl font-semibold mb-2 md:mb-6 text-center">Checkout</h1>
 
       <div className="flex flex-col md:flex-row gap-12">
         <form

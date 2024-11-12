@@ -21,7 +21,7 @@ const NewArrivals = () => {
         variants={fadeIn("up", 0.1)}
         initial="hidden"
         whileInView={"show"}
-        viewport={{ once: false, amount: 0.2 }} className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+        viewport={{ once: false, amount: 0.2 }} className="max-w-[1400px] mx-auto grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-4 px-0 md:px-8 xl:px-0">
         {latestProducts.map((product) => (
           <ProductCard key={product._id} item={product} />
         ))}

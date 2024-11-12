@@ -9,7 +9,7 @@ const BlogDetails = () => {
   if (isLoading) return <Spinner />;
 
   return (
-    <div className="max-w-[1400px] mx-auto p-8 min-h-screen">
+    <div className="max-w-[1400px] mx-auto px-0 md:px-8 xl:px-0 py-4 lg:py-12 min-h-screen">
       <h2 className="text-lg md:text-3xl font-semibold mb-4 lg:text-center">
         {blog.title}
       </h2>

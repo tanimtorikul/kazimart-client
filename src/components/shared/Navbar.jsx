@@ -93,7 +93,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="fixed z-10 w-full">
+    <div className="sticky top-0 z-10 w-full">
       <WelcomeBanner />
       <div className="navbar bg-white md:px-36 md:py-3">
         <div className="navbar-start">

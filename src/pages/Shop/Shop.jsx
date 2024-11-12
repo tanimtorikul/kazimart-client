@@ -36,7 +36,7 @@ const Shop = () => {
   };
 
   return (
-    <div className="px-4 py-6 min-h-screen">
+    <div className="px-0 md:px-8 xl:px-0 py-16 min-h-screen">
       <Helmet>
         <title>Shop</title>
       </Helmet>
@@ -81,7 +81,7 @@ const Shop = () => {
             initial="hidden"
             whileInView={"show"}
             viewport={{ once: false, amount: 0.2 }}
-            className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-5 gap-4"
+            className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4"
           >
             {products.length > 0 ? (
               products.map((item) => <ProductCard key={item.id} item={item} />)

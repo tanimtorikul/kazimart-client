@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <div className="bg-[#F6F6F8]">
-      <footer className="flex flex-col md:flex-row justify-between max-w-[1400px] mx-auto px-4 py-8 border-b-2">
+      <footer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-4 gap-4 lg:gap-6 xl:justify-between max-w-[1400px] mx-auto px-4 md:px-8 xl:px-0 py-8 border-b-2">
         <div className="flex flex-col items-start space-y-4 mb-8 md:mb-0">
           <Link
             to="/"
@@ -73,7 +73,7 @@ const Footer = () => {
           <a className="link link-hover">About Us</a>
         </nav>
 
-        <nav className="space-y-2 flex flex-col">
+        <nav className="space-y-2 flex flex-col md:w-1/2 xl:w-full">
           <h6 className="text-xl font-semibold">Signup for email</h6>
           <div className="flex">
             <input

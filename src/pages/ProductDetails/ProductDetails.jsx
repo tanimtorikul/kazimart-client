@@ -95,7 +95,7 @@ const ProductDetails = () => {
   };
 
   return (
-    <div className="max-w-[1400px] min-h-screen mx-auto px-4 pt-6 lg:pt-12">
+    <div className="max-w-[1400px] min-h-screen mx-auto px-0 md:px-8 xl:px-0 lg:py-16">
       <Helmet>
         <title>{product?.name}</title>
       </Helmet>

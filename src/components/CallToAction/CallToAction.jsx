@@ -9,11 +9,12 @@ const CallToAction = () => {
   };
 
   return (
-    <div className="bg-[#FBF1E9] max-w-[1400px] mx-auto rounded-xl py-12 my-12 relative">
+   <div className=" md:px-8 xl:px-0">
+     <div className="bg-[#FBF1E9] max-w-[1400px] mx-auto rounded-xl py-12 my-12 relative">
       <div className="flex gap-10 justify-between mx-4 items-center">
         <div>
           <div className="space-y-6">
-            <h3 className="text-[22px] md:text-5xl font-bold">
+            <h3 className="text-[22px] lg:text-5xl font-bold">
               The KaziMart App
             </h3>
             <p className="text-[18px] md:text-2xl text-gray-700">
@@ -35,6 +36,7 @@ const CallToAction = () => {
         alt="App"
       />
     </div>
+   </div>
   );
 };
 

@@ -106,11 +106,11 @@ const Login = () => {
             Sign Up
           </Link>
         </p>
-        {/* <div className="text-center text-xs text-gray-600 mb-2">
+        <div className="text-center text-xs text-gray-600 mb-2">
           <p>Use the following credentials to log in as an admin:</p>
           <p className="font-semibold">Email: admin@kazimart1.com</p>
           <p className="font-semibold">Password: K@zimart1</p>
-        </div> */}
+        </div>
       </div>
     </div>
   );

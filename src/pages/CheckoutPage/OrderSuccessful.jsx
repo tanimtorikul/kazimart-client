@@ -21,7 +21,7 @@ const OrderSuccessful = () => {
     })
 
     return (
-        <div className="flex flex-col items-center justify-center p-4 min-h-[600px] lg:min-h-screen">
+        <div className="flex flex-col items-center justify-center p-4 min-h-[600px] lg:min-h-screen px-0 md:px-8 xl:px-0">
             <h1 className="md:text-3xl font-bold text-primary-light">Thank you! Order Placed Successfully!</h1>
             <p className="mt-4 md:text-lg text-gray-700">Your order ID is 
                 <span className="font-semibold"> {orderId}</span>.

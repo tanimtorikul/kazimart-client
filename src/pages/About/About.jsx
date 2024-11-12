@@ -7,7 +7,7 @@ const About = () => {
       window.scrollTo(0, 0);
     }, []);
   return (
-    <div className="max-w-[1400px] mx-auto py-12 px-4">
+    <div className="max-w-[1400px] mx-auto py-4 lg:py-12 px-4">
       <div className="space-y-5 text-center">
         <h3 className="text-lg md:text-xl font-nsw font-semibold text-[#3AA753]">
           About Kazimart

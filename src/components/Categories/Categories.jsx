@@ -13,15 +13,15 @@ const Categories = () => {
   const { categories } = useCategories();
 
   return (
-    <div className="md:my-12">
+    <div>
       <SectionTitle
         heading="Categories"
         subHeading="Discover the Trends and Favorites"
       />
 
-      <div className="max-w-[1400px] mx-auto mt-6 relative">
-        {/* Grid layout for small screens */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 lg:hidden">
+      <div className="max-w-[1400px] mx-auto relative">
+        {/* Grid layout for different screen sizes */}
+        <div className="grid grid-cols-2 lg:grid-cols-3 xl:hidden gap-4 px-0 md:px-8 xl:px-0">
           {categories.map((category) => (
             <Link to={`/categories/${category.category}`} key={category._id}>
               <CategoryCard category={category} />
@@ -29,8 +29,8 @@ const Categories = () => {
           ))}
         </div>
 
-        {/* Swiper for large screens */}
-        <div className="hidden md:hidden lg:block relative">
+        {/* Swiper for extra large screens */}
+        <div className="hidden xl:block relative">
           <Swiper
             modules={[Navigation, FreeMode]}
             className="mySwiper"

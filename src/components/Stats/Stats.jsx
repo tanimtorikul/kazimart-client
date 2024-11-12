@@ -1,5 +1,4 @@
 import {
-  FaShippingFast,
   FaHeadset,
   FaExchangeAlt,
   FaShieldAlt,
@@ -37,7 +36,7 @@ const Stats = () => {
       variants={fadeIn("up", 0.1)}
       initial="hidden"
       whileInView={"show"}
-    viewport={{ once: false, amount: 0.2 }} className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 p-6">
+    viewport={{ once: false, amount: 0.2 }} className="max-w-[1400px] mx-auto grid grid-cols-2 lg:grid-cols-4 gap-8 py-6 md:px-8 xl:px-0">
       {statsData.map((stat, index) => (
         <div
           key={index}

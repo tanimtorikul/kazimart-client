@@ -8,7 +8,7 @@ const PopularProducts = () => {
   const { allProducts } = useProducts();
   const popularItems = allProducts
     .filter((item) => item.category.includes("popular"))
-    .slice(0, 5);
+    .slice(0, 6);
 
   return (
     <div className="my-16">
@@ -21,7 +21,7 @@ const PopularProducts = () => {
         initial="hidden"
         whileInView={"show"}
         viewport={{ once: false, amount: 0.2 }}
-        className="max-w-[1400px] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4"
+        className="max-w-[1400px] mx-auto grid grid-cols-2 lg:grid-cols-4 xl:grid-col-6 gap-4 px-0 md:px-8 xl:px-0"
       >
         {popularItems.map((item) => (
           <ProductCard key={item._id} item={item} />
