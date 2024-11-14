@@ -27,12 +27,13 @@ const Navbar = () => {
         <NavLink
           exact
           to="/"
-          style={({ isActive, isPending }) => ({
-            fontWeight: isActive ? "bold" : "",
-            borderBottom: isActive ? "2px solid green" : "",
-            backgroundColor: isActive ? "#ffffff" : "transparent",
-            color: isPending ? "red" : "#103178",
-          })}
+          className={({ isActive, isPending }) =>
+            `text-${isActive ? "primary-light" : "#ffffff"} ${
+              isPending ? "text-red-500" : ""
+            } font-${isActive ? "bold" : "normal"} ${
+              isActive ? "border-b-2 border-primary-light" : ""
+            } ${isActive ? "bg-white" : "bg-transparent"}`
+          }
         >
           Home
         </NavLink>
@@ -40,12 +41,13 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/shop"
-          style={({ isActive, isPending }) => ({
-            fontWeight: isActive ? "bold" : "",
-            borderBottom: isActive ? "2px solid green" : "",
-            backgroundColor: isActive ? "#ffffff" : "transparent",
-            color: isPending ? "red" : "#103178",
-          })}
+          className={({ isActive, isPending }) =>
+            `text-${isActive ? "primary-light" : "#ffffff"} ${
+              isPending ? "text-red-500" : ""
+            } font-${isActive ? "bold" : "normal"} ${
+              isActive ? "border-b-2 border-primary-light" : ""
+            } ${isActive ? "bg-white" : "bg-transparent"}`
+          }
         >
           Shop
         </NavLink>
@@ -53,12 +55,13 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/blogs"
-          style={({ isActive, isPending }) => ({
-            fontWeight: isActive ? "bold" : "",
-            borderBottom: isActive ? "2px solid green" : "",
-            backgroundColor: isActive ? "#ffffff" : "transparent",
-            color: isPending ? "red" : "#103178",
-          })}
+          className={({ isActive, isPending }) =>
+            `text-${isActive ? "primary-light" : "#ffffff"} ${
+              isPending ? "text-red-500" : ""
+            } font-${isActive ? "bold" : "normal"} ${
+              isActive ? "border-b-2 border-primary-light" : ""
+            } ${isActive ? "bg-white" : "bg-transparent"}`
+          }
         >
           Blogs
         </NavLink>
@@ -66,12 +69,13 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/contact"
-          style={({ isActive, isPending }) => ({
-            fontWeight: isActive ? "bold" : "",
-            borderBottom: isActive ? "2px solid green" : "",
-            backgroundColor: isActive ? "#ffffff" : "transparent",
-            color: isPending ? "red" : "#103178",
-          })}
+          className={({ isActive, isPending }) =>
+            `text-${isActive ? "primary-light" : "#ffffff"} ${
+              isPending ? "text-red-500" : ""
+            } font-${isActive ? "bold" : "normal"} ${
+              isActive ? "border-b-2 border-primary-light" : ""
+            } ${isActive ? "bg-white" : "bg-transparent"}`
+          }
         >
           Contact Us
         </NavLink>
@@ -79,12 +83,13 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/about"
-          style={({ isActive, isPending }) => ({
-            fontWeight: isActive ? "bold" : "",
-            borderBottom: isActive ? "2px solid green" : "",
-            backgroundColor: isActive ? "#ffffff" : "transparent",
-            color: isPending ? "red" : "#103178",
-          })}
+          className={({ isActive, isPending }) =>
+            `text-${isActive ? "primary-light" : "#ffffff"} ${
+              isPending ? "text-red-500" : ""
+            } font-${isActive ? "bold" : "normal"} ${
+              isActive ? "border-b-2 border-primary-light" : ""
+            } ${isActive ? "bg-white" : "bg-transparent"}`
+          }
         >
           About Us
         </NavLink>

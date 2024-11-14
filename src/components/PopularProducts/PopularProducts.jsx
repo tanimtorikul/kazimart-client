@@ -14,14 +14,14 @@ const PopularProducts = () => {
     <div className="my-16">
       <SectionTitle
         heading="Popular products that we sold"
-        subHeading="We provide the best quality & fresh items near your location"
+        subHeading="We provide the best quality & fresh items"
       />
       <motion.div
         variants={fadeIn("down", 0.1)}
         initial="hidden"
         whileInView={"show"}
         viewport={{ once: false, amount: 0.2 }}
-        className="max-w-[1400px] mx-auto grid grid-cols-2 lg:grid-cols-4 xl:grid-col-6 gap-4 px-0 md:px-8 xl:px-0"
+        className="max-w-[1400px] mx-auto grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-6 gap-4 px-0 md:px-8 xl:px-0"
       >
         {popularItems.map((item) => (
           <ProductCard key={item._id} item={item} />

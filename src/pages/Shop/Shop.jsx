@@ -5,6 +5,7 @@ import Spinner from "../../utlis/Spinner";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { fadeIn } from "../../utlis/animationVariants";
+import { FaMagnifyingGlass } from "react-icons/fa6";
 
 const Shop = () => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -36,7 +37,7 @@ const Shop = () => {
   };
 
   return (
-    <div className="px-0 md:px-8 xl:px-0 py-16 min-h-screen">
+    <div className="px-0 md:px-8 xl:px-0 py-6 lg:py-16 min-h-screen">
       <Helmet>
         <title>Shop</title>
       </Helmet>
@@ -47,19 +48,20 @@ const Shop = () => {
           {/* Searching */}
           <div className="max-w-[1400px] mx-auto mb-6 flex justify-center">
             <form onSubmit={handleSearch} className="flex items-center">
-              <input
-                name="search"
-                type="search"
-                placeholder="Search products..."
-                className="rounded-l-lg px-4 py-2 border"
-              />
-              <button
-                type="submit"
-                className="px-4 py-2 bg-primary-light text-white rounded-r-lg hover:bg-[#014C36]"
-              >
-                Search
-              </button>
-            </form>
+  <input
+    name="search"
+    type="search"
+    placeholder="Search products..."
+    className="rounded-l-lg px-4 py-2 border h-10 bg-gray-100" 
+  />
+  <button
+    type="submit"
+    className="px-4 py-2 bg-primary-light text-white rounded-r-lg hover:bg-[#014C36] h-10 flex items-center justify-center" // Match button height and align text
+  >
+    <FaMagnifyingGlass size={20} />
+  </button>
+</form>
+
           </div>
 
           {/* Sorting */}

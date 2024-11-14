@@ -17,7 +17,7 @@ const CartPage = () => {
     window.scrollTo(0, 0);
   });
   return (
-    <div className="min-h-screen py-4 lg:py-16 px-0 md:px-8 xl:px-0">
+    <div className="min-h-screen py-6 lg:py-16 px-0 md:px-8 xl:px-0">
       {cart.length === 0 ? (
         <div className="flex flex-col items-center space-y-8">
           <img
@@ -39,7 +39,7 @@ const CartPage = () => {
           </h2>
         </div>
       ) : (
-        <div className="flex gap-12 md:gap-32 flex-col md:flex-row md:items-start items-center justify-center">
+        <div className="flex gap-6 md:gap-32 flex-col md:flex-row md:items-start items-center justify-center">
           {/* Cart item cards */}
           <div className="flex flex-col gap-8">
             {cart.map((item, index) => (

@@ -4,11 +4,3 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-.font-nsw {
-  font-family: "Playwrite AU NSW", cursive;
-}
-
-.font-poppins {
-  font-family: "Albert Sans", sans-serif;
-}

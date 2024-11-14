@@ -3,7 +3,6 @@ import DashboardNavbar from "../../components/shared/DashboardNavbar";
 import { Toaster } from "react-hot-toast";
 import useAdmin from "../../hooks/useAdmin";
 import AdminSidebar from "../../components/shared/AdminSidebar";
-import UserSidebar from "../../components/shared/UserSidebar";
 import Spinner from "../../utlis/Spinner";
 
 const Dashboard = () => {
@@ -17,13 +16,9 @@ const Dashboard = () => {
         <Spinner />
       ) : (
         <div className="flex md:w-full">
-          {isAdmin ? (
+          {isAdmin && (
             <div className="md:w-64">
               <AdminSidebar />
-            </div>
-          ) : (
-            <div className="md:w-64">
-              <UserSidebar />
             </div>
           )}
           <div className="flex-grow px-4 py-1 bg-[#F1F5F9]">
